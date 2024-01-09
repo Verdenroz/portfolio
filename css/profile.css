@@ -1,0 +1,85 @@
+.profile-container{
+    align-items: center;
+    display: flex;
+    height: 50rem;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-content{
+    align-items: center;
+    display: flex;
+    height: 50rem;
+    gap: 10rem;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-greeting{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-text{
+    display: flex;
+    flex-direction: column;
+    max-width: 25rem;
+    position: relative;
+}
+
+.profile-text h1{
+    font-size: 2.5em;
+    margin-bottom: 0.5rem;
+}
+
+.profile-text p{
+    font-size: 1.05em;
+}
+
+.profile-social{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    margin: 2rem 0;
+}
+
+.profile-social ul{
+    display: flex;
+    gap: 1.3rem;
+    list-style: none;
+}
+
+.profile-social svg{
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.profile-social svg :hover{
+    fill: #147efb;
+}
+
+.profile-social button {
+    background-color: #000000; 
+    height: 2.5rem;
+    width: 10rem;
+    border: none; 
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px; 
+    transition-duration: 0.4s; 
+}
+
+.profile-social button:hover {
+    background-color: #147efb;
+}
+
+.profile-img img {
+    border-radius: 50%;
+    border: #000 3px solid;
+    width: 20rem;
+    height: 20rem;
+}
