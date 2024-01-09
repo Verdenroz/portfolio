@@ -1,0 +1,21 @@
+.about-container {
+    align-items: center;
+    display: grid;
+    position: relative;
+}
+
+.about-content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: center;
+    position: relative;
+}
+
+.about-body{
+    align-items: center;
+    display: flex;
+    gap: 5rem;
+}
+
