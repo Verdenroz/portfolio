@@ -5,7 +5,7 @@ body{
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    padding-top: 6rem;
+    position: relative;
 }
 
 nav,
@@ -54,3 +54,58 @@ a {
 a:hover {
     color: #147efb;
 }
+
+section{
+    margin: 0 10rem;
+    box-sizing: border-box;
+    min-height: fit-content;
+}
+
+.profile-container{
+    align-items: center;
+    display: flex;
+    height: 50rem;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-content{
+    align-items: center;
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-text{
+    display: flex;
+    flex-direction: column;
+    max-width: 25rem;
+    position: relative;
+}
+
+.profile-text h1{
+    font-size: 2.5em;
+    margin-bottom: 0.5rem;
+}
+
+.profile-text p{
+    font-size: 1.2em;
+}
+
+.profile-img img {
+    border-radius: 50%;
+    border: #000 3px solid;
+    width: 20rem;
+    height: 20rem;
+}
+
+.profile-social{
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 2rem 0;
+}
+
