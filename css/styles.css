@@ -7,13 +7,12 @@
 }
 
 body{
-    background-color: gainsboro;
+    background-color: white;
     font-family: 'Poppins', sans-serif;
     position: relative;
 }
 
 section{
-    margin: 0 10rem;
     box-sizing: border-box;
     min-height: fit-content;
 }
