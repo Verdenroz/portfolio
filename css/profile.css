@@ -11,6 +11,8 @@
 .profile-container{
     margin: 0 10rem;
     display: flex;
+    flex-direction: column;
+    gap: 5rem;
     justify-content: center;
 }
 
@@ -89,4 +91,40 @@
     border: #000 3px solid;
     width: 20rem;
     height: 20rem;
+}
+
+.profile-skills{
+    align-items: center;
+    display: flex;
+    gap: 3rem;
+    position: relative;
+}
+
+.profile-skills h2{
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    padding-right: 2rem;
+    border-right: 2px solid #000;
+}
+
+.profile-skills ul{
+    align-items: center;
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    list-style: none;
+    position: relative;
+}
+
+.profile-skills li{
+    cursor: pointer;
+}
+
+.profile-skills img {
+    transition: transform 0.3s ease;
+}
+
+.profile-skills img:hover {
+    transform: scale(1.2); 
 }
