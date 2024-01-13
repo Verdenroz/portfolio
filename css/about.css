@@ -1,3 +1,14 @@
+#about{
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    padding: 10rem;
+    position: relative;
+    width: 100%;
+}
+
 .about-img{
     width: 30rem;
     height: 25rem;
@@ -5,11 +16,10 @@
 }
 
 .about-container {
-    margin: 5rem 10rem;
     align-items: center;
-    display: flex;
-    gap: 10rem;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
 }
 
 .about-content{
@@ -40,6 +50,7 @@
     justify-content: center;
     position: relative;
     max-width: 50rem;
+    max-height: 25rem;
 }
 
 .about-text h2{
@@ -52,4 +63,31 @@
     font-weight: 300;
     line-height: 2;
     text-align: justify;
+}
+
+@media (max-width: 768px) {
+    #about{
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        padding: 10rem;
+    }
+
+    .about-container{
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+    }
+
+    .about-text{
+        max-width: 50rem;
+    }
+
+    .about-text h2{
+        font-size: 1.2em; 
+    }
+
+    .about-text p{
+        font-size: 1em;
+    }
 }
