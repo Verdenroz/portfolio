@@ -13,6 +13,7 @@
     height: 25rem;
     border-radius: 1.5rem;
     margin-right: 2.5rem;
+    overflow: hidden;
 }
 
 .about-container {
@@ -70,7 +71,7 @@
         height: auto;
         align-items: center;
         justify-content: center;
-        padding: 1rem;
+        padding: 10rem 2rem;
     }
 
     .about-container{
