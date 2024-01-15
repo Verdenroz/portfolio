@@ -1,6 +1,6 @@
 #projects{
     background-color: #f5f5f5;
-    padding: 3rem 0;
+    padding: 5rem 0;
 }
 
 .projects-container{
@@ -15,7 +15,6 @@
 .projects-content{
     display: grid;
     gap: 5rem;
-    height: fit-content;
 }
 
 .projects-body{
@@ -28,9 +27,10 @@
 
 .projects-img{
     width: auto;
-    height: 25rem;
+    height: 35rem;
     object-fit: cover;
     margin-right: 2.5rem;
+    overflow: visible;
 }
 
 .projects-text{
@@ -39,8 +39,6 @@
     align-items: flex-start;
     justify-content: center;
     position: relative;
-    max-width: 75rem;
-    max-height: 35rem;
 }
 
 .projects-container h1,
@@ -60,7 +58,8 @@
     font-size: 1.2em;
 }
 
-.projects-skills{
+.projects-skills,
+.projects-links{
     align-items: center;
     display: flex;
     gap: 3rem;
@@ -68,6 +67,7 @@
     margin-top: 2.5rem;
 }
 
+.projects-links h3,
 .projects-skills h3{
     font-size: 1.1em;
     font-weight: 500;
@@ -86,27 +86,13 @@
     position: relative;
 }
 
-.projects-links{
-    align-items: center;
-    display: flex;
-    gap: 3rem;
-    position: relative;
-    margin-top: 2.5rem;
-}
-
-.projects-links h3{
-    font-size: 1.1em;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    padding-right: 2rem;
-    border-right: 2px solid #000;
-}
-
-.projects-links img {
+.projects-links img,
+.projects-skills img {
     transition: transform 0.3s ease;
 }
 
-.projects-links img:hover{
+.projects-links img:hover,
+.projects-skills img:hover{
     transform: scale(1.2); 
 }
 
@@ -115,20 +101,46 @@
         margin: 0rem 5rem;
     }
 
-    .projects-skills{
-        gap: 1.5rem;
-    }
-
-    .projects-skills h3{
-        padding-right: 1rem;
-    }
-
+    .projects-skills,
     .projects-links{
         gap: 1.5rem;
     }
 
+    .projects-skills h3,
     .projects-links h3{
         padding-right: 1rem;
+    } 
+
+}
+
+@media (max-width: 900px){
+    .projects-container{
+        margin: 0rem 2rem;
+    }
+
+    .projects-body{
+        flex-direction:column-reverse;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .projects-img{
+        align-self: center;
+        margin-right: 0;
+    }
+
+    .projects-skills,
+    .projects-links{
+        flex-direction: column;
+        width: 100%;
+        border-right: none;
+    }
+
+    .projects-skills h3,
+    .projects-links h3{
+        border-right: none;
+        margin-bottom: 1rem;
+        padding-right: 0;
     }
 
 }
