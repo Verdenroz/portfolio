@@ -6,13 +6,13 @@
     justify-content: center;
     padding: 10rem;
     position: relative;
-    width: 100%;
 }
 
 .about-img{
     width: 30rem;
     height: 25rem;
     border-radius: 1.5rem;
+    margin-right: 2.5rem;
 }
 
 .about-container {
@@ -65,12 +65,12 @@
     text-align: justify;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     #about{
         height: auto;
         align-items: center;
         justify-content: center;
-        padding: 10rem;
+        padding: 1rem;
     }
 
     .about-container{
