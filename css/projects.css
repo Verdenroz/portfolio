@@ -1,22 +1,20 @@
 #projects{
     background-color: #f5f5f5;
-    padding: 5rem 0;
-    max-height: fit-content;
+    padding: 3rem 0;
 }
 
 .projects-container{
-    margin: 0rem 10rem;
+    margin: 0rem 15rem;
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 3rem;
     position: relative;
 }
 
 .projects-content{
     display: grid;
     gap: 5rem;
-    width: 100%;
     height: fit-content;
 }
 
@@ -26,12 +24,23 @@
     background-color: #fff;
     border-radius: 1.5rem;
     padding: 3rem;
-    gap: 10rem;
 }
 
 .projects-img{
-    width: 20rem;
-    height: 20rem;
+    width: auto;
+    height: 25rem;
+    object-fit: cover;
+    margin-right: 2.5rem;
+}
+
+.projects-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    max-width: 75rem;
+    max-height: 35rem;
 }
 
 .projects-container h1,
@@ -49,13 +58,48 @@
 .projects-text p{
     color: #000;
     font-size: 1.2em;
-    margin-bottom: 5rem;
 }
 
-.projects-links,
-.projects-links a{
-    display:flex;
+.projects-skills{
     align-items: center;
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    margin-top: 2.5rem;
+}
+
+.projects-skills h3{
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    padding-right: 2rem;
+    border-right: 2px solid #000;
+}
+
+.projects-skills ul{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    list-style: none;
+    position: relative;
+}
+
+.projects-links{
+    align-items: center;
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    margin-top: 2.5rem;
+}
+
+.projects-links h3{
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    padding-right: 2rem;
+    border-right: 2px solid #000;
 }
 
 .projects-links img {
@@ -64,4 +108,27 @@
 
 .projects-links img:hover{
     transform: scale(1.2); 
+}
+
+@media (max-width: 1200px) {
+    .projects-container{
+        margin: 0rem 5rem;
+    }
+
+    .projects-skills{
+        gap: 1.5rem;
+    }
+
+    .projects-skills h3{
+        padding-right: 1rem;
+    }
+
+    .projects-links{
+        gap: 1.5rem;
+    }
+
+    .projects-links h3{
+        padding-right: 1rem;
+    }
+
 }
