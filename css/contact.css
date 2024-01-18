@@ -1,0 +1,129 @@
+#contact{
+    padding: 4rem 0;
+}
+
+.contact-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    margin: 0 5rem;
+    padding: 3rem;
+    border-radius: 1.5rem;
+    gap: 2rem;
+}
+
+.contact-header{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+}
+
+.contact-links{
+    width: 100%;
+    display: flex;
+    gap: 10rem;
+    justify-content: space-around;
+}
+
+.contact-icon{
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color:#000;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.contact-icon:hover{
+    svg{
+        fill: #147efb;
+    }
+}
+
+.contact-method{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-header h1{
+    font-size: 1.6em;
+    color: #147efb;
+}
+
+.contact-header h2{
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.contact-links h3{
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+@media (max-width: 900px){
+    .contact-container{
+        margin: 0 2rem;
+        padding: 2rem;
+    }
+
+    .contact-links{
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-header h1{
+        font-size: 1.4em;
+    }
+
+    .contact-header h2{
+        font-size: 1.2em;
+    }
+
+    .contact-links h3{
+        font-size: 1em;
+    }
+
+    .contact-icon{
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .contact-icon svg{
+        width: 16px;
+        height: 16px;
+    }
+
+    @media (max-width: 400px){
+        .contact-container{
+            margin: 0 1rem;
+            padding: 1rem;
+        }
+
+        .contact-header h1{
+            font-size: 1.2em;
+        }
+
+        .contact-header h2{
+            font-size: 1em;
+        }
+
+        .contact-links h3{
+            font-size: 0.8em;
+        }
+
+        .contact-icon{
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .contact-icon svg{
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
