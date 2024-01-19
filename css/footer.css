@@ -1,0 +1,31 @@
+footer{
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 15rem;
+}
+
+footer h1{
+    color: #fff;
+    font-size: 1.2em;
+    text-align: center;
+}   
+
+.footer-links ul{
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+@media (max-width: 900px){
+    footer{
+        flex-direction: column;
+        padding: 5rem 5rem;
+        gap: 2rem;
+    }
+
+    footer h1{
+        font-size: 1em;
+    }
+}
