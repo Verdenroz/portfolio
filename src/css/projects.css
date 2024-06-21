@@ -26,13 +26,12 @@
 }
 
 .projects-img{
-    width: auto;
-    height: 35rem;
+    width: 20vw;
+    height: auto;
     object-fit: cover;
     margin-right: 2.5rem;
     overflow: visible;
 }
-
 .projects-text{
     display: flex;
     flex-direction: column;
@@ -86,14 +85,20 @@
     position: relative;
 }
 
-.projects-links img,
-.projects-skills img {
+.projects-links img, .projects-links svg,
+.projects-skills img, .projects-skills svg {
     transition: transform 0.3s ease;
 }
 
-.projects-links img:hover,
-.projects-skills img:hover{
-    transform: scale(1.2); 
+.projects-links img:hover, .projects-links svg:hover,
+.projects-skills img:hover, .projects-skills svg:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0);
+    transition: box-shadow 0.3s ease;
+}
+
+.projects-links img:hover, .projects-links svg:hover,
+.projects-skills img:hover, .projects-skills svg:hover {
+    box-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 @media (max-width: 1200px) {
