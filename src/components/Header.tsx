@@ -3,7 +3,7 @@ import resume from "../assets/HT_Resume.pdf";
 
 const Header = () => {
   return (
-    <div className="flex flex-col justify-evenly gap-6 lg:items-end lg:h-screen lg:w-1/3 lg:px-8 lg:py-2 p-6 h-fit w-screen bg-[#DFE3E9] lg:fixed static top-0 z-50">
+    <div className="flex flex-col justify-evenly gap-6 lg:items-end lg:h-screen lg:w-1/3 lg:px-8 lg:py-2 p-6 h-fit w-screen bg-[#DFE3E9] lg:fixed sticky top-0 z-50">
       {/* Profile */}
       <div className="flex flex-col gap-8 items-center justify-center">
         <img
@@ -20,19 +20,20 @@ const Header = () => {
             Android apps and research AI. I have a particular interest in
             finance and birds! 🐦
           </p>
-          <ul className="flex mt-8 list-none items-center justify-around">
+          <ul className="flex mt-8 list-none items-center justify-evenly">
             <li>
               <a
                 target="_blank"
                 href="https://github.com/Verdenroz"
                 rel="noreferrer"
+                aria-label="GitHub"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
                   y="0px"
-                  width="48"
-                  height="48"
+                  width="64"
+                  height="64"
                   viewBox="0 0 64 64"
                   className="fill-black hover:fill-blue-500"
                 >
@@ -46,9 +47,11 @@ const Header = () => {
                 href={resume}
                 download
                 rel="noreferrer"
-                className="bg-black text-white hover:bg-blue-500 p-2.5 rounded-lg"
+                className="bg-black text-white hover:bg-blue-500 p-2.5 rounded-xl"
               >
-                <button>Resume</button>
+                <button className="text-[24px] transition duration-300 ease-in-out transform hover:scale-110">
+                  Resume
+                </button>
               </a>
             </li>
           </ul>
@@ -57,7 +60,9 @@ const Header = () => {
 
       {/* Skills */}
       <div className="w-full flex lg:flex-col flex-wrap justify-center items-center lg:gap-2 gap-4">
-        <h2 className="text-xl font-bold font-display text-[#43474C]">Skills</h2>
+        <h2 className="text-xl font-bold font-display text-[#43474C]">
+          Skills
+        </h2>
         <div className="flex lg:flex-wrap flex-nowrap justify-center xl:gap-8 gap-4">
           <ul className="flex flex-wrap lg:gap-16 gap-4 list-none w-full justify-center">
             <li>

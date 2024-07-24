@@ -53,10 +53,10 @@ export default function App() {
           <div className="star -z-10"></div>
         </div>
         <div className="flex flex-col lg:mr-[15%] lg:ml-[15%] sm:mr-[20%] sm:ml-[20%] mr-[5%] ml-[5%] h-full">
-        <div className="relative">
-        <Activities />
-        <Projects />
-      </div>
+          <div className="relative">
+            <Activities />
+            <Projects />
+          </div>
         </div>
       </main>
       <footer className="sticky top-0 lg:ml-[33%] lg:w-2/3 px-12 py-6 bg-[#0c0d13] border-t-2 border-slate-600 z-10">

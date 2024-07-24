@@ -75,6 +75,7 @@ const Contact = () => {
               target="_blank"
               href="mailto:harveytseng2@gmail.com"
               rel="noreferrer"
+              aria-label="Email"
             >
               <p className="text-white font-light">harveytseng2@gmail.com</p>
             </a>
@@ -86,6 +87,7 @@ const Contact = () => {
               target="_blank"
               href="https://www.linkedin.com/in/harvey-tseng/"
               rel="noreferrer"
+              aria-label="LinkedIn"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
