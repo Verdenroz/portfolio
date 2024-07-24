@@ -88,7 +88,7 @@ const PastProjects = () => {
           name="FSC Where's What"
           description="Android app campus map with OSM"
           img={whereswhat}
-          link="https://github.com/Verdenroz/stockscreener"
+          link="https://gitlab.com/fsc-clam/fsc-wheres-what"
           skills={["kotlin", "androidstudio", "firebase", "figma"]}
         />
       </div>
