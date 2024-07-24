@@ -75,7 +75,7 @@ const PastProjects = () => {
           description="Improved web scraper for financial data"
           img={financequery}
           link="https://github.com/Verdenroz/FinanceQuery"
-          skills={["python", "fastapi", "express", "firebase"]}
+          skills={["python", "fastapi", "aws", "redis"]}
         />
         <ProjectCard
           name="Google Finance Scraper"

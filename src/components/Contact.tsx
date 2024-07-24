@@ -3,7 +3,7 @@
 const Contact = () => {
   return (
     <div className="flex flex-col w-full items-center justify-between">
-      <h1 className="w-full text-3xl text-left font-black font-display text-white mt-4 hover:underline">
+      <h1 className="w-full text-3xl text-left font-black font-display text-white mt-4">
         Contact Me
       </h1>
       <p className="text-lg text-white mt-4">

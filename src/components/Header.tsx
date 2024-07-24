@@ -3,7 +3,7 @@ import resume from "../assets/HT_Resume.pdf";
 
 const Header = () => {
   return (
-    <div className="flex flex-col justify-evenly gap-6 lg:items-end lg:h-screen lg:w-1/3 lg:px-8 lg:py-2 p-6 h-fit w-screen bg-[#DFE3E9] lg:fixed relative top-0 z-50">
+    <div className="flex flex-col justify-evenly gap-6 lg:items-end lg:h-screen lg:w-1/3 lg:px-8 lg:py-2 p-6 h-fit w-screen bg-[#DFE3E9] lg:fixed static top-0 z-50">
       {/* Profile */}
       <div className="flex flex-col gap-8 items-center justify-center">
         <img
