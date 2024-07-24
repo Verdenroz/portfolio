@@ -10,7 +10,7 @@ export default function App() {
         <Header />
       </header>
       <main className="lg:ml-[33%] lg:w-2/3 p-6 bg-radial-gradient sticky">
-        <div className="stars -z-10 ml-60 mb-60 relative">
+        <div className="stars -z-10 ml-60 mb-60 relative hidden lg:block">
           <div className="star -z-10"></div>
           <div className="star -z-10"></div>
           <div className="star -z-10"></div>

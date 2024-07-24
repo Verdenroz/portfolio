@@ -46,12 +46,12 @@ const ProjectCard = ({
         rel="noopener noreferrer"
         className="block"
       >
-        <h1 className="text-3xl font-medium font-display text-center text-[#43474C]  mt-4 ">{date}</h1>
-        <h2 className="text-2xl font-bold font-display text-center mt-2 hover:underline">
+        <h1 className="text-3xl font-medium font-display text-center text-white  mt-4 ">{date}</h1>
+        <h2 className="text-2xl font-bold font-display text-center mt-2 text-white hover:underline">
           {name}
         </h2>
       </a>
-      <p className="text-lg text-[#43474C] text-center">{description}</p>
+      <p className="text-lg text-white text-center">{description}</p>
       <ul className="flex flex-wrap gap-2 list-none w-full justify-center mt-4">
         {skills.map((skill, index) => (
           <li key={index}>
@@ -69,7 +69,7 @@ const ProjectCard = ({
 const PastProjects = () => {
   return (
     <div className="mt-8 py-8 border-t-2 border-[#73777D]">
-      <h1 className="text-3xl font-bold font-display text-center">
+      <h1 className="text-3xl font-bold font-display text-center text-white">
         🌱Past Projects🌱
       </h1>
       <div className="flex flex-wrap gap-16 mt-8 px-4 items-stretch justify-center 2xl:justify-around">
@@ -104,8 +104,8 @@ const PastProjects = () => {
 
 const Projects = () => {
   return (
-    <section className="w-full rounded-2xl p-8 bg-[#F5F5F5] mt-8">
-      <h1 className="text-3xl font-bold font-display text-center">
+    <section className="w-full rounded-2xl p-8 bg-[#1d1d1d] mt-8">
+      <h1 className="text-3xl font-bold font-display text-center text-white">
         ⚡Current Projects⚡
       </h1>
       <div className="flex flex-wrap gap-16 mt-8 px-4 items-center justify-around">
