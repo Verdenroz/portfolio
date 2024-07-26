@@ -10,9 +10,9 @@ const Contact = () => {
         I'm always open to new opportunities. Feel free to contact me through
         any of the platforms below. I'll be happy to get in touch!
       </p>
-      <ul className="flex flex-wrap gap-4 lg:flex-row xl:gap-16 lg:gap-8 mt-4 w-full justify-start">
+      <ul className="flex flex-wrap gap-4 lg:flex-row xl:gap-16 lg:gap-8 mt-2 w-full justify-start">
         <li>
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 p-2 hover:shadow-lg hover:shadow-blue-500/50">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 512 512"
@@ -34,7 +34,7 @@ const Contact = () => {
           </div>
         </li>
         <li>
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 p-2 hover:shadow-lg hover:shadow-blue-500/50 cursor-pointer">
             <a
               target="_blank"
               href="mailto:harveytseng2@gmail.com"
@@ -47,7 +47,6 @@ const Contact = () => {
                 width="36"
                 height="36"
                 viewBox="0 0 48 48"
-                className="hover:fill-white"
               >
                 <path
                   fill="#4caf50"
@@ -82,7 +81,7 @@ const Contact = () => {
           </div>
         </li>
         <li>
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 p-2 hover:shadow-lg hover:shadow-blue-500/50 cursor-pointer">
             <a
               target="_blank"
               href="https://www.linkedin.com/in/harvey-tseng/"

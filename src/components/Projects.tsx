@@ -58,6 +58,7 @@ const ProjectCard = ({
             <img
               src={`https://skillicons.dev/icons?i=${skill}&theme=dark`}
               alt={skill}
+              className="hover:shadow-lg hover:shadow-blue-500/50 cursor-pointer"
             />
           </li>
         ))}
