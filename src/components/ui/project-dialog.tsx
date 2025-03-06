@@ -89,7 +89,7 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
               />
             ))}
           </div>
-          <p className="text-pretty text-sm lg:text-base text-secondary-foreground tracking-wide mx-auto px-2 sm:px-4 py-2 sm:py-4">
+          <p className="text-pretty text-sm lg:text-base text-secondary-foreground tracking-wide mx-auto py-2 sm:py-4">
             {project.longDescription}
           </p>
           <div className="flex gap-2">
