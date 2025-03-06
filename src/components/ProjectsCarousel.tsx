@@ -149,9 +149,13 @@ export default function ProjectCarousel() {
       </div>
 
       <ul
+        id="project-carousel"
         ref={carouselRef}
         className="relative z-0 grid auto-cols-min grid-flow-col gap-x-6 overflow-x-auto px-[calc(50vw-clamp(18rem,42vmin,26rem)/2-7px)] pb-4 pt-4 scrollbar-hide"
         aria-label="Project Carousel"
+        role="list"
+        aria-roledescription="carousel"
+        aria-live="polite"
       >
         {projects.map((project) => (
           <li
