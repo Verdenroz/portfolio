@@ -1,5 +1,5 @@
 <div id="header">
-  <img src="src/assets/github-header-image.png" alt="Banner"/>
+  <img src="public/github-header-image.png" alt="Banner"/>
 
   **I'm an aspiring Android Developer looking into integrating AI with Android!**
 </div>
