@@ -9,44 +9,16 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 
 const fetchGitHubContributions = async () => {
-  const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-  const query = `
-    query {
-      user(login: "verdenroz") {
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                contributionCount
-                date
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query }),
-  });
-
+  const response = await fetch("/api/github");
+  
   if (!response.ok) {
     throw new Error("Failed to fetch GitHub contributions");
   }
 
   const data = await response.json();
   return {
-    totalContributions:
-      data.data.user.contributionsCollection.contributionCalendar
-        .totalContributions,
-    weeks: data.data.user.contributionsCollection.contributionCalendar.weeks,
+    totalContributions: data.totalContributions,
+    weeks: data.weeks,
   };
 };
 
