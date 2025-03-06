@@ -218,6 +218,7 @@ export default function Skills() {
               <button
                 onClick={handlePrevSkill}
                 className="absolute left-2 sm:left-4 md:left-0 p-2 rounded-full hover:bg-secondary transition-colors"
+                aria-label="Previous skill"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -227,6 +228,7 @@ export default function Skills() {
               <button
                 onClick={handleNextSkill}
                 className="absolute right-2 sm:right-4 md:right-0 p-2 rounded-full hover:bg-secondary transition-colors"
+                aria-label="Next skill"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>

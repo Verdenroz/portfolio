@@ -4,48 +4,21 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
-import { ContributionDay, ContributionWeek} from "@/types";
+import { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 const fetchGitHubContributions = async () => {
-  const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-  const query = `
-    query {
-      user(login: "verdenroz") {
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                contributionCount
-                date
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query }),
-  });
-
+  const response = await fetch("/api/github");
+  
   if (!response.ok) {
     throw new Error("Failed to fetch GitHub contributions");
   }
 
   const data = await response.json();
   return {
-    totalContributions:
-      data.data.user.contributionsCollection.contributionCalendar
-        .totalContributions,
-    weeks: data.data.user.contributionsCollection.contributionCalendar.weeks,
+    totalContributions: data.totalContributions,
+    weeks: data.weeks,
   };
 };
 
@@ -187,6 +160,8 @@ const ContributionChart: React.FC<ContributionChartProps> = ({
 };
 
 export default function GitHubContributions() {
+  const { theme, resolvedTheme } = useTheme();
+  const cardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue";
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
   const [totalContributions, setTotalContributions] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -269,10 +244,10 @@ export default function GitHubContributions() {
             </CardContent>
           </Card>
           <Card className="w-full md:max-w-none">
-            <CardContent className="flex items-center justify-center p-6">
+            <CardContent className="flex h-full items-center justify-center p-6">
               <div className="relative w-full max-w-2xl aspect-[2/1]">
                 <Image
-                  src="https://github-readme-stats.vercel.app/api?username=verdenroz&show_icons=true&theme=transparent&hide_border=true"
+                  src={`https://github-readme-stats.vercel.app/api?username=verdenroz&show_icons=true&theme=${cardTheme}&hide_border=true`}
                   alt="GitHub Stats"
                   fill
                   priority
