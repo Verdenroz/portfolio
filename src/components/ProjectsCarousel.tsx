@@ -21,13 +21,13 @@ const projects: Project[] = [
       { name: "Firebase", slug: "firebase" },
       { name: "Algolia", slug: "algolia" },
     ],
-    image: "/assets/verdaxmarket/verdaxmarket.png",
+    image: "/assets/verdaxmarket/verdaxmarket.webp",
     gallery: [
-      "/assets/verdaxmarket/verdaxmarket.png",
-      "/assets/verdaxmarket/verdaxmarket-gallery-1.png",
-      "/assets/verdaxmarket/verdaxmarket-gallery-2.png",
-      "/assets/verdaxmarket/verdaxmarket-gallery-3.png",
-      "/assets/verdaxmarket/verdaxmarket-gallery-4.png",
+      "/assets/verdaxmarket/verdaxmarket.webp",
+      "/assets/verdaxmarket/verdaxmarket-gallery-1.webp",
+      "/assets/verdaxmarket/verdaxmarket-gallery-2.webp",
+      "/assets/verdaxmarket/verdaxmarket-gallery-3.webp",
+      "/assets/verdaxmarket/verdaxmarket-gallery-4.webp",
     ],
     links: {
       github: "https://github.com/verdenroz/verdax-market",
@@ -47,15 +47,16 @@ const projects: Project[] = [
       { name: "AWS", slug: "amazonwebservices" },
       { name: "Docker", slug: "docker" },
     ],
-    image: "/assets/finance-query/financequery.svg",
+    image: "/assets/finance-query/finance-query.webp",
     gallery: [
-      "/assets/finance-query/finance-query-gallery-1.png",
-      "/assets/finance-query/finance-query-gallery-2.png",
-      "/assets/finance-query/finance-query-gallery-3.png",
+      "/assets/finance-query/finance-query-gallery-1.webp",
+      "/assets/finance-query/finance-query-gallery-2.webp",
+      "/assets/finance-query/finance-query-gallery-3.webp",
+      "/assets/finance-query/finance-query-gallery-4.webp",
     ],
     links: {
       github: "https://github.com/verdenroz/finance-query",
-      docs: "https://finance-query.onrender.com/docs",
+      docs: "https://financequery.apidocumentation.com/default-page/financequery",
     },
   },
   {
@@ -73,11 +74,11 @@ const projects: Project[] = [
       { name: "Firebase", slug: "firebase" },
       { name: "Swagger", slug: "swagger" },
     ],
-    image: "/assets/google-finance/google-finance.png",
+    image: "/assets/google-finance/google-finance.webp",
     gallery: [
-      "/assets/google-finance/google-finance-gallery-1.png",
-      "/assets/google-finance/google-finance-gallery-2.png",
-      "/assets/google-finance/google-finance-gallery-3.png",
+      "/assets/google-finance/google-finance-gallery-1.webp",
+      "/assets/google-finance/google-finance-gallery-2.webp",
+      "/assets/google-finance/google-finance-gallery-3.webp",
     ],
     links: {
       github: "https://github.com/verdenroz/googlefinanceapi",
@@ -96,14 +97,14 @@ const projects: Project[] = [
       { name: "Figma", slug: "figma" },
       { name: "Firebase", slug: "firebase" },
     ],
-    image: "assets/stockdiviner/stockdiviner.png",
+    image: "assets/stockdiviner/stockdiviner.webp",
     gallery: [
-      "assets/stockdiviner/stockdiviner.png",
-      "/assets/stockdiviner/stockdiviner-gallery-1.png",
-      "/assets/stockdiviner/stockdiviner-gallery-2.png",
+      "assets/stockdiviner/stockdiviner.webp",
+      "/assets/stockdiviner/stockdiviner-gallery-1.webp",
+      "/assets/stockdiviner/stockdiviner-gallery-2.webp",
     ],
     links: {
-      github: "https://github.com/yourusername/stockdiviner",
+      github: "https://github.com/verdenroz/StockDiviner",
     },
   },
 ];
@@ -208,11 +209,10 @@ export default function ProjectCarousel() {
                   <Image
                     src={project.image}
                     alt={project.description}
-                    className="pointer-events-auto h-full w-full object-cover opacity-50 transition-[transform,opacity] duration-700 group-hover:scale-105 group-hover:opacity-75 group-focus-visible:scale-105 group-focus-visible:opacity-75"
+                    className="pointer-events-auto h-full w-full object-cover transition-[transform,opacity] duration-700 group-hover:scale-105 group-hover:opacity-75 group-focus-visible:scale-105 group-focus-visible:opacity-75"
                     width={3840}
                     height={2160}
                     sizes="(max-width: 3840px) 100vw, 3840px"
-                    loading="lazy"
                   />
                 </div>
               </button>

@@ -38,10 +38,11 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Image
-            src="HT_headshot.jpg"
+            src="HT_headshot.webp"
             alt="Harvey Tseng"
             width={300}
             height={300}
+            priority
             className="rounded-full border-4 border-primary shadow-lg"
           />
         </motion.div>
