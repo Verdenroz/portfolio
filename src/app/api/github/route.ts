@@ -27,11 +27,11 @@ export async function GET() {
       headers: {
         Authorization: `bearer ${token}`,
         "Content-Type": "application/json",
-        "Cache-Control": "max-age=3600"
+        "Cache-Control": "no-store"
       },
       body: JSON.stringify({ query }),
-      // Set Next.js cache behavior
-      next: { revalidate: 3600 } // Cache for 1 hour
+      // Disable Next.js cache
+      cache: "no-store"
     });
 
     if (!response.ok) {
