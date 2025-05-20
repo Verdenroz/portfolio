@@ -10,9 +10,9 @@ import { useTheme } from "next-themes";
 
 const fetchGitHubContributions = async () => {
   const response = await fetch("/api/github");
-  
+
   if (!response.ok) {
-    throw new Error("Failed to fetch GitHub contributions");
+    throw new Error("Failed to fetch GitHub Contributions");
   }
 
   const data = await response.json();
@@ -22,20 +22,43 @@ const fetchGitHubContributions = async () => {
   };
 };
 
-const ContributionCell: React.FC<{ count: number; date: string }> = ({
-  count,
-  date,
-}) => {
+const fetchLeetCodeContributions = async () => {
+  const response = await fetch("/api/leetcode");
+  if (!response.ok) {
+    throw new Error("Failed to fetch LeetCode Contributions");
+  }
+
+  const data = await response.json();
+  return {
+    submissionCalendar: data.submissionCalendar,
+  };
+};
+
+const ContributionCell: React.FC<{
+  count: number;
+  date: string;
+  theme: "github" | "leetcode";
+}> = ({ count, date, theme }) => {
   const bgColor =
-    count === 0
-      ? "bg-gray-300"
+    theme === "github"
+      ? count === 0
+        ? "bg-gray-300 dark:bg-gray-500"
+        : count <= 5
+        ? "bg-green-400 dark:bg-green-900"
+        : count <= 10
+        ? "bg-green-500 dark:bg-green-700"
+        : count <= 20
+        ? "bg-green-600 dark:bg-green-600"
+        : "bg-green-700 dark:bg-green-500"
+      : count === 0
+      ? "bg-gray-300 dark:bg-gray-500"
       : count <= 5
-      ? "bg-green-400"
+      ? "bg-orange-300 dark:bg-orange-900"
       : count <= 10
-      ? "bg-green-500"
+      ? "bg-orange-400 dark:bg-orange-700"
       : count <= 20
-      ? "bg-green-600"
-      : "bg-green-700";
+      ? "bg-orange-500 dark:bg-orange-600"
+      : "bg-orange-600 dark:bg-orange-500";
 
   // Parse the ISO date string and set to noon to avoid timezone issues
   const parsedDate = setHours(parseISO(date), 12);
@@ -48,13 +71,10 @@ const ContributionCell: React.FC<{ count: number; date: string }> = ({
   );
 };
 
-interface ContributionChartProps {
+const ContributionChart: React.FC<{
   contributions: ContributionDay[];
-}
-
-const ContributionChart: React.FC<ContributionChartProps> = ({
-  contributions,
-}) => {
+  theme: "github" | "leetcode";
+}> = ({ contributions, theme }) => {
   // Parse the ISO date string and set to noon to avoid timezone issues
   const firstContributionDate = contributions[0]?.date;
   const start = setHours(parseISO(firstContributionDate), 12);
@@ -147,6 +167,7 @@ const ContributionChart: React.FC<ContributionChartProps> = ({
                     <ContributionCell
                       count={day.contributionCount}
                       date={day.date}
+                      theme={theme}
                     />
                   </td>
                 );
@@ -160,16 +181,25 @@ const ContributionChart: React.FC<ContributionChartProps> = ({
 };
 
 export default function GitHubContributions() {
-  const { theme, resolvedTheme } = useTheme();
-  const cardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue";
-  const [contributions, setContributions] = useState<ContributionDay[]>([]);
-  const [totalContributions, setTotalContributions] = useState<number>(0);
+  const { resolvedTheme } = useTheme();
+  const githubCardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue";
+  const leetCodeCardTheme = resolvedTheme === "dark" ? "nord" : "light";
+  const [contributions, setGitHubContributions] = useState<ContributionDay[]>(
+    []
+  );
+  const [leetCodeContributions, setLeetCodeContributions] = useState<
+    ContributionDay[]
+  >([]);
+  const [totalGitHubContributions, setTotalGitHubContributions] =
+    useState<number>(0);
+  const [totalLeetCodeContributions, setTotalLeetCodeContributions] =
+    useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
-    const getContributions = async () => {
+    const getGithubContributions = async () => {
       try {
         setIsLoading(true);
         const data = await fetchGitHubContributions();
@@ -179,15 +209,15 @@ export default function GitHubContributions() {
             date: day.date,
             contributionCount: day.contributionCount,
           }));
-        setContributions(contributionDays);
-        setTotalContributions(data.totalContributions);
+        setGitHubContributions(contributionDays);
+        setTotalGitHubContributions(data.totalContributions);
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
         toast({
           title: "Error",
-          description: "Failed to fetch GitHub contributions",
+          description: "Failed to fetch GitHub Contributions",
           variant: "destructive",
         });
       } finally {
@@ -195,7 +225,40 @@ export default function GitHubContributions() {
       }
     };
 
-    getContributions();
+    const getLeetCodeContributions = async () => {
+      try {
+        const data = await fetchLeetCodeContributions();
+        const submissionCalendar = JSON.parse(data.submissionCalendar);
+
+        const leetCodeContributionDays = Object.entries(submissionCalendar).map(
+          ([timestamp, count]) => ({
+            // Convert Unix timestamp (in seconds) to YYYY-MM-DD format
+            date: format(new Date(parseInt(timestamp) * 1000), "yyyy-MM-dd"),
+            contributionCount: count as number,
+          })
+        );
+
+        const totalContributions = leetCodeContributionDays.reduce(
+          (acc, day) => acc + day.contributionCount,
+          0
+        );
+
+        setLeetCodeContributions(leetCodeContributionDays);
+        setTotalLeetCodeContributions(totalContributions);
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error ? err.message : "An error occurred";
+        setError(errorMessage);
+        toast({
+          title: "Error",
+          description: "Failed to fetch LeetCode Contributions",
+          variant: "destructive",
+        });
+      }
+    };
+
+    getLeetCodeContributions();
+    getGithubContributions();
   }, [toast]);
 
   if (isLoading || error) {
@@ -203,9 +266,9 @@ export default function GitHubContributions() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12 text-primary">
-            GitHub Activity
+            Proof I'm Still Alive
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-flow-col grid-cols-1 grid-rows-2 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
             <Card className="animate-pulse">
               <CardHeader>
                 <div className="h-8 bg-muted rounded w-1/3" />
@@ -229,26 +292,53 @@ export default function GitHubContributions() {
     <section id="contributions" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-12 text-primary">
-          GitHub Activity
+          Proof I'm Still Alive
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-flow-col grid-cols-1 grid-rows-2 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
           <Card className="w-full">
             <CardHeader>
               <CardTitle>
-                {totalContributions.toLocaleString()} Contributions in the Last
-                Year
+                {totalGitHubContributions.toLocaleString()} GitHub Contributions
+                in the last year
               </CardTitle>
             </CardHeader>
             <CardContent className="flex items-center justify-center">
-              <ContributionChart contributions={contributions} />
+              <ContributionChart contributions={contributions} theme="github" />
             </CardContent>
           </Card>
           <Card className="w-full md:max-w-none">
             <CardContent className="flex h-full items-center justify-center p-6">
               <div className="relative w-full max-w-2xl aspect-[2/1]">
                 <Image
-                  src={`https://github-readme-stats.vercel.app/api?username=verdenroz&show_icons=true&theme=${cardTheme}&hide_border=true`}
+                  src={`https://github-readme-stats.vercel.app/api?username=verdenroz&show_icons=true&theme=${githubCardTheme}&hide_border=true`}
                   alt="GitHub Stats"
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>
+                {totalLeetCodeContributions.toLocaleString()} LeetCode
+                Submissions in the last year
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex items-center justify-center">
+              <ContributionChart
+                contributions={leetCodeContributions}
+                theme="leetcode"
+              />
+            </CardContent>
+          </Card>
+          <Card className="w-full md:max-w-none">
+            <CardContent className="flex h-full items-center justify-center p-6">
+              <div className="relative w-full max-w-2xl aspect-[2/1]">
+                <Image
+                  src={`https://leetcard.jacoblin.cool/Verdenroz?theme=${leetCodeCardTheme}&font=Poppins`}
+                  alt="Leetcode Stats"
                   fill
                   priority
                   className="object-contain"
