@@ -64,7 +64,8 @@ const categories: Category[] = [
       {
         name: "Java",
         slug: "java",
-        slugOverride: "https://cdn.jsdelivr.net/npm/simple-icons@6/icons/java.svg",
+        slugOverride:
+          "https://cdn.jsdelivr.net/npm/simple-icons@6/icons/java.svg",
         description: "Object-oriented programming (JVM)",
         proficiency: "Familiar",
       },
@@ -453,9 +454,10 @@ function CategoryCard({
   const controls = useAnimation();
   const { ref, rotateX, rotateY, onMove, onLeave } = useTilt(8);
   const inView = useInView(ref, { once: true, margin: "-50px" });
+
   useEffect(() => {
     if (inView) controls.start("visible");
-  }, [inView]);
+  }, [inView, controls]);
 
   const groups = {
     Proficient: cat.badges.filter((b) => b.proficiency === "Proficient"),
@@ -474,8 +476,8 @@ function CategoryCard({
       exit="exit"
       variants={categoryVariants}
       custom={index}
-      className={`relative w-96 flex-shrink-0 overflow-visible rounded-2xl p-px ${
-        selected ? "z-10" : ""
+      className={`relative w-96 flex-shrink-0 overflow-visible rounded-2xl p-px z-0 hover:z-50 ${
+        selected ? "z-30" : ""
       }`}
     >
       <div
@@ -513,10 +515,12 @@ function CategoryCard({
 export default function SkillsSection(): ReactNode {
   const [activeCats, setActiveCats] = useState<string[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
+
   const toggleCat = (name: string) =>
     setActiveCats((prev) =>
       prev.includes(name) ? prev.filter((x) => x !== name) : [...prev, name]
     );
+
   const filtered = activeCats.length
     ? categories.filter((c) => activeCats.includes(c.name))
     : categories;
@@ -532,7 +536,7 @@ export default function SkillsSection(): ReactNode {
   return (
     <section
       id="skills"
-      className="relative mx-auto max-w-7xl py-24 px-6 min-h-[600px]"
+      className="relative mx-auto w-full py-24 px-6 min-h-[600px]"
     >
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
@@ -591,7 +595,6 @@ export default function SkillsSection(): ReactNode {
         <motion.div
           ref={carouselRef}
           className="flex cursor-grab gap-10 overflow-x-auto pb-6 active:cursor-grabbing scrollbar-hide"
-          style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
           drag="x"
           dragConstraints={{ left: -800, right: 0 }}
           dragElastic={0.1}
