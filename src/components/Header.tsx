@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "./ThemeToggle";
+import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
