@@ -44,6 +44,14 @@ const categories: Category[] = [
         proficiency: "Proficient",
       },
       {
+        name: "Java",
+        slug: "java",
+        slugOverride:
+          "https://cdn.jsdelivr.net/npm/simple-icons@6/icons/java.svg",
+        description: "Object-oriented programming (JVM)",
+        proficiency: "Familiar",
+      },
+      {
         name: "TypeScript",
         slug: "typescript",
         description: "Type-safe JavaScript",
@@ -57,16 +65,8 @@ const categories: Category[] = [
       },
       {
         name: "SQL",
-        slug: "postgresql",
+        slug: "postgresql/4F8EF7",
         description: "Structured query language for relational databases",
-        proficiency: "Familiar",
-      },
-      {
-        name: "Java",
-        slug: "java",
-        slugOverride:
-          "https://cdn.jsdelivr.net/npm/simple-icons@6/icons/java.svg",
-        description: "Object-oriented programming (JVM)",
         proficiency: "Familiar",
       },
       {
@@ -93,6 +93,12 @@ const categories: Category[] = [
         description: "Fullstack React framework",
         proficiency: "Proficient",
       },
+                  {
+        name: "TailwindCSS",
+        slug: "tailwindcss",
+        description: "Utility-first CSS framework",
+        proficiency: "Proficient",
+      },
       {
         name: "FastAPI",
         slug: "fastapi",
@@ -103,12 +109,6 @@ const categories: Category[] = [
         name: "Express",
         slug: "express",
         description: "Minimal Node.js web server",
-        proficiency: "Familiar",
-      },
-      {
-        name: "TailwindCSS",
-        slug: "tailwindcss",
-        description: "Utility-first CSS framework",
         proficiency: "Familiar",
       },
       {
@@ -137,7 +137,7 @@ const categories: Category[] = [
       },
       {
         name: "Gradle",
-        slug: "gradle",
+        slug: "gradle/20976C",
         description: "Build automation tool",
         proficiency: "Familiar",
       },
@@ -155,7 +155,7 @@ const categories: Category[] = [
       },
       {
         name: "Room",
-        slug: "sqlite",
+        slug: "sqlite/4F8EF7",
         description: "Abstracted SQLite database",
         proficiency: "Familiar",
       },
@@ -216,13 +216,13 @@ const categories: Category[] = [
     badges: [
       {
         name: "LangChain",
-        slug: "langchain/22C55E",
+        slug: "langchain/20976C",
         description: "LLM application framework",
         proficiency: "Proficient",
       },
       {
         name: "LangGraph",
-        slug: "langgraph/22C55E",
+        slug: "langgraph/20976C",
         description: "LLM orchestration framework",
         proficiency: "Proficient",
       },
@@ -264,7 +264,7 @@ const categories: Category[] = [
       },
       {
         name: "Material Design",
-        slug: "materialdesign",
+        slug: "materialdesign/000000",
         description: "Google's design system",
         proficiency: "Proficient",
       },
@@ -550,7 +550,7 @@ export default function SkillsSection(): ReactNode {
 
       <IdleBadges active={!!activeCats.length} />
 
-      <div className="mx-auto mb-8 flex justify-center gap-3 overflow-x-auto whitespace-nowrap px-2 scrollbar-hide">
+      <div className="mx-auto mb-8 flex flex-wrap justify-center gap-3 px-2 scrollbar-hide">
         {categories.map((c, i) => (
           <motion.button
             key={c.name}
@@ -594,10 +594,7 @@ export default function SkillsSection(): ReactNode {
         </div>
         <motion.div
           ref={carouselRef}
-          className="flex cursor-grab gap-10 overflow-x-auto pb-6 active:cursor-grabbing scrollbar-hide"
-          drag="x"
-          dragConstraints={{ left: -800, right: 0 }}
-          dragElastic={0.1}
+          className="flex gap-10 overflow-x-auto pb-6 scrollbar-hide"
         >
           <AnimatePresence initial={false} mode="popLayout">
             {filtered.map((cat, i) => (
