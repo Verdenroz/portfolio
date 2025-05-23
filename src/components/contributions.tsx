@@ -282,6 +282,19 @@ export default function GitHubContributions() {
                 <div className="relative w-full max-w-2xl aspect-[2/1] bg-muted rounded" />
               </CardContent>
             </Card>
+            <Card className="animate-pulse">
+              <CardHeader>
+                <div className="h-8 bg-muted rounded w-1/3" />
+              </CardHeader>
+              <CardContent>
+                <div className="h-[200px] bg-muted rounded" />
+              </CardContent>
+            </Card>
+            <Card className="animate-pulse w-full md:max-w-none">
+              <CardContent className="flex items-center justify-center p-6">
+                <div className="relative w-full max-w-2xl aspect-[2/1] bg-muted rounded" />
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
