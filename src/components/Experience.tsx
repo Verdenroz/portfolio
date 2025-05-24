@@ -611,16 +611,13 @@ const renderNode = ({
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  const [initialTranslate, setInitialTranslate] = useState({ x: 0, y: 0 });
   const [treeInitialized, setTreeInitialized] = useState(false);
-
   useEffect(() => {
     const updateDimensions = () => {
       if (containerRef.current) {
         const { width } = containerRef.current.getBoundingClientRect();
         const newTranslate = { x: width / 2, y: 100 };
         setTranslate(newTranslate);
-        setInitialTranslate(newTranslate);
       }
     };
 
@@ -649,24 +646,15 @@ export default function Experience() {
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
           Work Experience Timeline
-        </h2>{" "}
-        <div className="mb-4 text-center">
+        </h2>        <div className="mb-4 text-center">
           <p className="text-gray-600 dark:text-gray-300 text-sm">
             Click nodes to expand/collapse • Drag to pan • Scroll to zoom
-          </p>{" "}
-          <div className="flex justify-center items-center gap-2 my-2">
-            <button
-              onClick={() => setTranslate(initialTranslate)}
-              className="px-3 py-1 text-xs bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-full transition-colors"
-            >
-              Reset View
-            </button>
-          </div>
+          </p>
           <p className="text-gray-500 text-xs mt-1">
             Showing {experiences.length} work experiences across{" "}
             {new Set(experiences.map((e) => getYear(e.startDate))).size} years
           </p>
-        </div>{" "}
+        </div>
         <div
           ref={containerRef}
           style={{ width: "100%", touchAction: "none", position: "relative" }}
