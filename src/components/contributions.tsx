@@ -76,10 +76,12 @@ const ContributionCell: React.FC<{
 const ContributionChart: React.FC<{
   contributions: ContributionDay[];
   theme: "github" | "leetcode";
-}> = ({ contributions, theme }) => {
-  // Parse the ISO date string and set to noon to avoid timezone issues
+}> = ({ contributions, theme }) => {  // Parse the ISO date string and set to noon to avoid timezone issues
   const firstContributionDate = contributions[0]?.date;
-  const start = setHours(parseISO(firstContributionDate), 12);
+  // Handle case when there are no contributions yet
+  const start = contributions.length > 0
+    ? setHours(parseISO(firstContributionDate), 12)
+    : setHours(new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate()), 12); // Default to 1 year ago
   const end = setHours(new Date(), 12);
 
   const contributionMap = new Map(
