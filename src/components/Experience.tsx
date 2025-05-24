@@ -180,7 +180,7 @@ const experiences: Experience[] = [
     ],
     technologies: ["Customer Service", "Sales", "Teamwork"],
     type: "part-time",
-  }
+  },
 ];
 
 /**
@@ -215,8 +215,12 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
   );
 
   // Separate current and past experiences
-  const currentExperiences = sortedExperiences.filter((exp) => exp.endDate === null);
-  const pastExperiences = sortedExperiences.filter((exp) => exp.endDate !== null);
+  const currentExperiences = sortedExperiences.filter(
+    (exp) => exp.endDate === null
+  );
+  const pastExperiences = sortedExperiences.filter(
+    (exp) => exp.endDate !== null
+  );
 
   // Find earliest year for the timeframe
   const years = sortedExperiences.map((exp) => getYear(exp.startDate));
@@ -238,7 +242,9 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
   // Group current experiences by experienceGroup
   if (currentExperiences.length > 1) {
     // Group by experienceGroup
-    const currentGroups = currentExperiences.reduce<Record<string, Experience[]>>((acc, exp) => {
+    const currentGroups = currentExperiences.reduce<
+      Record<string, Experience[]>
+    >((acc, exp) => {
       const techGroup = exp.experienceGroup || "General";
       if (!acc[techGroup]) {
         acc[techGroup] = [];
@@ -252,7 +258,9 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
       const groupNode: TreeNodeDatum = {
         name: `${techGroup}`,
         attributes: {
-          company: `${exps.length} active position${exps.length > 1 ? "s" : ""}`,
+          company: `${exps.length} active position${
+            exps.length > 1 ? "s" : ""
+          }`,
           timeframe: "Present",
           description: "",
           type: "tech-group",
@@ -268,7 +276,9 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
   }
 
   // Group past experiences by their experience group
-  const pastGroupedByExperience = pastExperiences.reduce<Record<string, Experience[]>>((acc, exp) => {
+  const pastGroupedByExperience = pastExperiences.reduce<
+    Record<string, Experience[]>
+  >((acc, exp) => {
     const group = exp.experienceGroup || "Other Experience";
     if (!acc[group]) {
       acc[group] = [];
@@ -299,7 +309,9 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
       if (node.attributes.type === "tech-group" && node.children) {
         // Handle tech group nodes (with multiple current experiences)
         node.children.forEach((expNode) => {
-          const currentExp = currentExperiences.find((e) => e.position === expNode.name);
+          const currentExp = currentExperiences.find(
+            (e) => e.position === expNode.name
+          );
 
           if (currentExp && techOverlaps[currentExp.id]) {
             if (!expNode.children) expNode.children = [];
@@ -313,7 +325,9 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
         });
       } else if (node.attributes.type !== "profile") {
         // Handle direct current experience nodes
-        const currentExp = currentExperiences.find((e) => e.position === node.name);
+        const currentExp = currentExperiences.find(
+          (e) => e.position === node.name
+        );
 
         if (currentExp && techOverlaps[currentExp.id]) {
           if (!node.children) node.children = [];
@@ -329,23 +343,30 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
   }
 
   // Add remaining unlinked past experiences
-  const unlinkedPastExps = pastExperiences.filter((exp) => !linkedPastExpIds.has(exp.id));
+  const unlinkedPastExps = pastExperiences.filter(
+    (exp) => !linkedPastExpIds.has(exp.id)
+  );
 
   if (unlinkedPastExps.length > 0) {
     // Group unlinked experiences by their experienceGroup
-    const pastGroups = unlinkedPastExps.reduce<Record<string, Experience[]>>((acc, exp) => {
-      const group = exp.experienceGroup || "Other";
-      if (!acc[group]) {
-        acc[group] = [];
-      }
-      acc[group].push(exp);
-      return acc;
-    }, {});
+    const pastGroups = unlinkedPastExps.reduce<Record<string, Experience[]>>(
+      (acc, exp) => {
+        const group = exp.experienceGroup || "Other";
+        if (!acc[group]) {
+          acc[group] = [];
+        }
+        acc[group].push(exp);
+        return acc;
+      },
+      {}
+    );
 
     // Create a group node for each experience group
     Object.entries(pastGroups).forEach(([groupName, exps]) => {
       // Sort experiences by date (most recent first)
-      const sortedGroupExps = [...exps].sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
+      const sortedGroupExps = [...exps].sort(
+        (a, b) => b.startDate.getTime() - a.startDate.getTime()
+      );
 
       // Create group node
       const groupNode: TreeNodeDatum = {
@@ -387,7 +408,7 @@ const NODE_STYLES = {
     height: 320,
     bgClass: "bg-white border-gray-200",
     textSize: "text-sm",
-  }
+  },
 };
 
 /**
@@ -413,23 +434,27 @@ const renderNode = ({
   toggleNode: () => void;
 }) => {
   const node = nodeDatum as unknown as TreeNodeDatum;
-  
+
   // Determine node type
   const isProfileNode = node.attributes.type === "profile";
   const isTechGroupNode = node.attributes.type === "tech-group";
   const isExperienceNode = !isProfileNode && !isTechGroupNode;
-  
+
   // Get styling based on node type
-  const styling = isProfileNode 
-    ? NODE_STYLES.profile 
-    : (isTechGroupNode ? NODE_STYLES.techGroup : NODE_STYLES.experience);
-  
+  const styling = isProfileNode
+    ? NODE_STYLES.profile
+    : isTechGroupNode
+    ? NODE_STYLES.techGroup
+    : NODE_STYLES.experience;
+
   // Get experience type color for badges
-  const getTypeColor = (type: string) => TYPE_COLORS[type as keyof typeof TYPE_COLORS] || "bg-gray-100 text-gray-800";
-  
+  const getTypeColor = (type: string) =>
+    TYPE_COLORS[type as keyof typeof TYPE_COLORS] ||
+    "bg-gray-100 text-gray-800";
+
   // Check if node has children for collapsible behavior
   const hasChildren = node.children && node.children.length > 0;
-  
+
   // Split technologies for display
   const technologies = node.attributes.technologies?.split(", ") || [];
 
@@ -447,7 +472,7 @@ const renderNode = ({
           className="hover:fill-blue-400"
         />
       )}
-      
+
       {/* Node content */}
       <foreignObject
         width={styling.width}
@@ -456,7 +481,9 @@ const renderNode = ({
         y={-styling.height / 2}
       >
         <div
-          className={`border rounded-lg shadow-lg p-4 ${styling.bgClass} h-full overflow-hidden ${
+          className={`border rounded-lg shadow-lg p-4 ${
+            styling.bgClass
+          } h-full overflow-hidden ${
             hasChildren ? "cursor-pointer hover:opacity-95" : ""
           }`}
           onClick={hasChildren ? toggleNode : undefined}
@@ -466,7 +493,7 @@ const renderNode = ({
             <h3 className={`font-semibold ${styling.textSize} flex-1 mr-2`}>
               {node.name}
             </h3>
-            
+
             {isExperienceNode && node.attributes.type && (
               <span
                 className={`px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${getTypeColor(
@@ -476,7 +503,7 @@ const renderNode = ({
                 {node.attributes.type}
               </span>
             )}
-            
+
             {/* Expand/collapse button */}
             {hasChildren && (
               <button
@@ -556,20 +583,18 @@ const renderNode = ({
           {/* Technologies tags */}
           {technologies.length > 0 && (
             <div className="flex flex-wrap gap-1">
-              {technologies
-                .slice(0, 4)
-                .map((tech, i) => (
-                  <span
-                    key={i}
-                    className={`px-2 py-1 rounded-full text-xs ${
-                      isProfileNode || isTechGroupNode
-                        ? "bg-blue-700 text-blue-100"
-                        : "bg-gray-100 text-gray-700"
-                    }`}
-                  >
-                    {tech}
-                  </span>
-                ))}
+              {technologies.slice(0, 4).map((tech, i) => (
+                <span
+                  key={i}
+                  className={`px-2 py-1 rounded-full text-xs ${
+                    isProfileNode || isTechGroupNode
+                      ? "bg-blue-700 text-blue-100"
+                      : "bg-gray-100 text-gray-700"
+                  }`}
+                >
+                  {tech}
+                </span>
+              ))}
               {technologies.length > 4 && (
                 <span className="px-2 py-1 rounded-full text-xs bg-gray-200 text-gray-600">
                   +{technologies.length - 4}
@@ -586,23 +611,35 @@ const renderNode = ({
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  
+  const [initialTranslate, setInitialTranslate] = useState({ x: 0, y: 0 });
+  const [treeInitialized, setTreeInitialized] = useState(false);
+
   useEffect(() => {
     const updateDimensions = () => {
       if (containerRef.current) {
-        const { width, height } = containerRef.current.getBoundingClientRect();
-        setTranslate({ x: width / 2, y: 100 });
+        const { width } = containerRef.current.getBoundingClientRect();
+        const newTranslate = { x: width / 2, y: 100 };
+        setTranslate(newTranslate);
+        setInitialTranslate(newTranslate);
       }
     };
-    
+
     // Set initial dimensions
     updateDimensions();
-    
+
+    // Force a reset after a short delay to ensure tree initialization
+    const initTimer = setTimeout(() => {
+      setTreeInitialized(true);
+    }, 500);
+
     // Update dimensions on window resize
-    window.addEventListener('resize', updateDimensions);
-    
+    window.addEventListener("resize", updateDimensions);
+
     // Clean up event listener
-    return () => window.removeEventListener('resize', updateDimensions);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+      clearTimeout(initTimer);
+    };
   }, []);
 
   const treeData = createTimelineTree(experiences);
@@ -612,21 +649,39 @@ export default function Experience() {
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
           Work Experience Timeline
-        </h2>
-
+        </h2>{" "}
         <div className="mb-4 text-center">
           <p className="text-gray-600 dark:text-gray-300 text-sm">
             Click nodes to expand/collapse • Drag to pan • Scroll to zoom
-          </p>
+          </p>{" "}
+          <div className="flex justify-center items-center gap-2 my-2">
+            <button
+              onClick={() => setTranslate(initialTranslate)}
+              className="px-3 py-1 text-xs bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-full transition-colors"
+            >
+              Reset View
+            </button>
+          </div>
           <p className="text-gray-500 text-xs mt-1">
             Showing {experiences.length} work experiences across{" "}
             {new Set(experiences.map((e) => getYear(e.startDate))).size} years
           </p>
-        </div>        <div
+        </div>{" "}
+        <div
           ref={containerRef}
-          style={{ width: "100%" }}
+          style={{ width: "100%", touchAction: "none", position: "relative" }}
           className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px]"
         >
+          {!treeInitialized && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-black/50 z-10">
+              <div className="flex flex-col items-center">
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-r-transparent mb-2"></div>
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                  Loading visualization...
+                </span>
+              </div>
+            </div>
+          )}
           <Tree
             data={treeData}
             orientation="vertical"
@@ -637,8 +692,11 @@ export default function Experience() {
             nodeSize={{ x: 420, y: 450 }}
             separation={{ siblings: 1.5, nonSiblings: 2.0 }}
             zoomable={true}
-            scaleExtent={{ min: 0.5, max: 1.05 }}
-            zoom={0.75}
+            draggable={true}
+            scaleExtent={{ min: 0.5, max: 1.1 }}
+            zoom={0.8}
+            enableLegacyTransitions={false}
+            key={`tree-${treeInitialized}`} // Force re-render on init
             pathClassFunc={() =>
               "stroke-gray-400 dark:stroke-gray-600 stroke-2 fill-none"
             }
