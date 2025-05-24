@@ -20,6 +20,7 @@ export interface Project {
     github?: string;
     docs?: string;
     play?: string;
+    demo?: string;
   };
 }
 

@@ -76,6 +76,23 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
       </Button>
     )
   }
+  const renderDemoButton = () => {
+    if (!project.links.demo) return null
+
+    return (
+      <Button variant="outline" asChild className="w-fit p-0 h-9">
+        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+          <Image
+            src="https://img.shields.io/badge/Demo-FFFFFF?style=for-the-badge&logoColor=000"
+            alt="Live Demo"
+            width={90}
+            height={36}
+            className="h-full w-auto"
+          />
+        </a>
+      </Button>
+    )
+  }
 
   const repoInfo = project.links.github ? getGitHubRepoInfo(project.links.github) : null
 
@@ -188,6 +205,7 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
                   </Button>
                 )}
                 {renderPlayButton()}
+                {renderDemoButton()}
               </div>
             </div>
 
