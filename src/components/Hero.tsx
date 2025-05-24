@@ -17,7 +17,7 @@ export default function Hero() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Harvey Tseng</h1>
           <h2 className="text-2xl md:text-3xl mb-6">Full Stack Developer</h2>
-            <p className="text-xl mb-8">With a passion for fintech 💸, the stock market 📈, and birds! 🐦</p>
+            <p className="text-xl mb-8">With a passion for fintech 💸 and birds! 🐦</p>
           <div className="flex space-x-4">
             <Button asChild variant="outline">
               <a href="https://github.com/Verdenroz" target="_blank" rel="noopener noreferrer">

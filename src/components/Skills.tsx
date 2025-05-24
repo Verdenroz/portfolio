@@ -559,7 +559,7 @@ export default function SkillsSection(): ReactNode {
             transition={{ delay: i * 0.1, duration: 0.4 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => toggleCat(c.name)}
-            className={`inline-block rounded-full border px-5 py-2 text-sm transition-colors ${
+            className={`inline-block rounded-full border border-black dark:border-white px-5 py-2 text-sm transition-colors ${
               activeCats.includes(c.name)
                 ? "border-transparent bg-primary text-background"
                 : "border-muted text-foreground hover:bg-muted/20"
