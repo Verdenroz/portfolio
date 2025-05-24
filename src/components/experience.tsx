@@ -642,10 +642,11 @@ export default function Experience() {
           Work Experience Timeline
         </h2>{" "}
         <div className="mb-4 text-center">
+          {" "}
           <p className="text-gray-600 dark:text-gray-300 text-sm">
             Click nodes to expand/collapse • Drag to pan • Scroll to zoom
           </p>
-          <p className="text-gray-500 text-xs mt-1">
+          <p className="text-gray-700 dark:text-gray-300 text-xs mt-1">
             Showing {experiences.length} work experiences across{" "}
             {new Set(experiences.map((e) => getYear(e.startDate))).size} years
           </p>
