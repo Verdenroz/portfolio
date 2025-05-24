@@ -593,6 +593,7 @@ export default function SkillsSection(): ReactNode {
           </button>
         </div>
         <motion.div
+          id="skills-carousel"
           ref={carouselRef}
           className="flex gap-10 overflow-x-auto pb-6 scrollbar-hide"
         >
