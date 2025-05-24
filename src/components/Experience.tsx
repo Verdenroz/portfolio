@@ -394,13 +394,13 @@ const NODE_STYLES = {
   profile: {
     width: 400,
     height: 200,
-    bgClass: "bg-blue-600 text-white border-blue-700",
+    bgClass: "bg-blue-800 text-white border-blue-900",
     textSize: "text-lg",
   },
   techGroup: {
     width: 280,
     height: 120,
-    bgClass: "bg-green-500 text-white border-green-600",
+    bgClass: "bg-green-700 text-white border-green-800",
     textSize: "text-base",
   },
   experience: {
@@ -521,24 +521,20 @@ const renderNode = ({
               </button>
             )}
           </div>
-
           {/* Company name */}
           <p
             className={`font-medium mb-1 ${
-              isProfileNode || isTechGroupNode
-                ? "text-blue-100"
-                : "text-blue-600"
+              isProfileNode || isTechGroupNode ? "text-white" : "text-blue-700"
             } text-sm`}
           >
             {node.attributes.company}
           </p>
-
           {/* Timeframe and location */}
           <div className="flex justify-between items-center mb-2">
             <p
               className={`${
                 isProfileNode || isTechGroupNode
-                  ? "text-blue-100"
+                  ? "text-white"
                   : "text-gray-500"
               } text-xs`}
             >
@@ -550,7 +546,6 @@ const renderNode = ({
               </p>
             )}
           </div>
-
           {/* Description */}
           <p
             className={`mb-3 leading-relaxed ${
@@ -559,7 +554,6 @@ const renderNode = ({
           >
             {node.attributes.description}
           </p>
-
           {/* Achievements (if any) */}
           {node.attributes.achievements && (
             <div className="mb-3">
@@ -579,16 +573,16 @@ const renderNode = ({
               </div>
             </div>
           )}
-
           {/* Technologies tags */}
           {technologies.length > 0 && (
             <div className="flex flex-wrap gap-1">
+              {" "}
               {technologies.slice(0, 4).map((tech, i) => (
                 <span
                   key={i}
                   className={`px-2 py-1 rounded-full text-xs ${
                     isProfileNode || isTechGroupNode
-                      ? "bg-blue-700 text-blue-100"
+                      ? "bg-blue-900 text-white"
                       : "bg-gray-100 text-gray-700"
                   }`}
                 >
@@ -646,7 +640,8 @@ export default function Experience() {
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
           Work Experience Timeline
-        </h2>        <div className="mb-4 text-center">
+        </h2>{" "}
+        <div className="mb-4 text-center">
           <p className="text-gray-600 dark:text-gray-300 text-sm">
             Click nodes to expand/collapse • Drag to pan • Scroll to zoom
           </p>
