@@ -23,9 +23,8 @@ interface ProjectDialogProps {
 }
 
 export function ProjectDialog({ project, children }: ProjectDialogProps) {
-  const { theme, resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const cardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue"
-  const galleryRef = useRef<HTMLDivElement>(null)
   const [isGitHubCardLoading, setIsGitHubCardLoading] = useState(true)
 
   const getGitHubRepoInfo = (githubUrl: string) => {
