@@ -7,7 +7,7 @@ import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
 export default function Hero() {
   return (
-    <section id="hero" className="bg-background text-foreground py-20">
+    <section id="hero" className="bg-background text-foreground py-24 mt-28">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
         <motion.div 
           className="md:w-1/2 mb-8 md:mb-0"
@@ -17,7 +17,7 @@ export default function Hero() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Harvey Tseng</h1>
           <h2 className="text-2xl md:text-3xl mb-6">Full Stack Developer</h2>
-            <p className="text-xl mb-8">With a passion for fintech 💸, the stock market 📈, and birds! 🐦</p>
+            <p className="text-xl mb-8">With a passion for fintech 💸 and birds! 🐦</p>
           <div className="flex space-x-4">
             <Button asChild variant="outline">
               <a href="https://github.com/Verdenroz" target="_blank" rel="noopener noreferrer">

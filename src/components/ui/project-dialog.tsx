@@ -23,9 +23,8 @@ interface ProjectDialogProps {
 }
 
 export function ProjectDialog({ project, children }: ProjectDialogProps) {
-  const { theme, resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const cardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue"
-  const galleryRef = useRef<HTMLDivElement>(null)
   const [isGitHubCardLoading, setIsGitHubCardLoading] = useState(true)
 
   const getGitHubRepoInfo = (githubUrl: string) => {
@@ -69,6 +68,23 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
           <Image
             src="https://img.shields.io/badge/-333333?style=social&logo=googleplay"
             alt="Google Play"
+            width={90}
+            height={36}
+            className="h-full w-auto"
+          />
+        </a>
+      </Button>
+    )
+  }
+  const renderDemoButton = () => {
+    if (!project.links.demo) return null
+
+    return (
+      <Button variant="outline" asChild className="w-fit p-0 h-9">
+        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+          <Image
+            src="https://img.shields.io/badge/Demo-FFFFFF?style=for-the-badge&logoColor=000"
+            alt="Live Demo"
             width={90}
             height={36}
             className="h-full w-auto"
@@ -189,6 +205,7 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
                   </Button>
                 )}
                 {renderPlayButton()}
+                {renderDemoButton()}
               </div>
             </div>
 

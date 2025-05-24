@@ -1,12 +1,6 @@
-interface Badge {
-  name: string;
-  slug: string;
-}
-
 export interface Skill {
   name: string;
-  level: number;
-  badges: Badge[];
+  slug: string;
 }
 
 export interface ProjectSkill {
@@ -26,6 +20,7 @@ export interface Project {
     github?: string;
     docs?: string;
     play?: string;
+    demo?: string;
   };
 }
 

@@ -58,6 +58,37 @@ const projects: Project[] = [
       github: "https://github.com/verdenroz/finance-query",
       docs: "https://financequery.apidocumentation.com/default-page/financequery",
     },
+  },  {
+    title: "JobScrub",
+    description:
+    "An AI-enhanced platform to simplify the job search process and empower individuals to advance their careers",    longDescription:
+      "JobScrub is an AI-powered job search platform that streamlines the job hunting process through intelligent filtering, community verification, and personalized career guidance. Key features include resume-to-job matching with vector embeddings (scoring matches based on skills), secure document storage with AWS S3, and an AI assistant named Scrubby powered by Google Gemini. The platform offers smart job filtering, community-based company metrics, and an intelligent resume optimization system. Built with Next.js 14, TypeScript, and Tailwind CSS for the frontend, with FastAPI and Python powering the backend, Firebase for authentication, and Pinecone for semantic vector search.",
+    date: "2025-05-22",
+    skills: [
+      { name: "Next.js", slug: "nextdotjs" },
+      { name: "TypeScript", slug: "typescript" },
+      { name: "Tailwind CSS", slug: "tailwindcss" },
+      { name: "Python", slug: "python" },
+      { name: "FastAPI", slug: "fastapi" },
+      { name: "Pinecone", slug: "pinecone" },
+      { name: "Firebase", slug: "firebase" },
+      { name: "Gemini", slug: "google" },
+      { name: "LangChain", slug: "langchain" },
+      { name: "Langgraph", slug: "langgraph" },
+      { name: "HuggingFace", slug: "huggingface" },
+      { name: "AWS", slug: "amazonwebservices" },
+    ],
+    image: "/assets/job-scrub/job-scrub.webp",
+    gallery: [
+      "/assets/job-scrub/job-scrub-gallery-1.webp",
+      "/assets/job-scrub/job-scrub-gallery-2.webp",
+      "/assets/job-scrub/job-scrub-gallery-3.webp",
+      "/assets/job-scrub/job-scrub-gallery-4.webp",
+    ],
+    links: {
+      github: "https://github.com/FSC-Senior-Project-Spring-25/job-scrub-frontend",
+      demo: "https://job-scrub.vercel.app/",
+    }
   },
   {
     title: "GoogleFinanceAPI",
