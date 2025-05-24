@@ -1,10 +1,12 @@
 "use client";
 
+import type React from "react";
+
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
-import { ContributionDay, ContributionWeek } from "@/types";
+import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
@@ -180,7 +182,7 @@ const ContributionChart: React.FC<{
   );
 };
 
-export default function GitHubContributions() {
+export default function Contributions() {
   const { resolvedTheme } = useTheme();
   const githubCardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue";
   const leetCodeCardTheme = resolvedTheme === "dark" ? "nord" : "light";
@@ -231,11 +233,16 @@ export default function GitHubContributions() {
         const submissionCalendar = JSON.parse(data.submissionCalendar);
 
         const leetCodeContributionDays = Object.entries(submissionCalendar).map(
-          ([timestamp, count]) => ({
-            // Convert Unix timestamp (in seconds) to YYYY-MM-DD format
-            date: format(new Date(parseInt(timestamp) * 1000), "yyyy-MM-dd"),
-            contributionCount: count as number,
-          })
+          ([timestamp, count]) => {
+            // Convert Unix timestamp (in seconds) to date
+            const date = new Date(parseInt(timestamp) * 1000);
+            // Add one day to fix the off-by-one issue
+            date.setDate(date.getDate() + 1);
+            return {
+              date: format(date, "yyyy-MM-dd"),
+              contributionCount: count as number,
+            };
+          }
         );
 
         const totalContributions = leetCodeContributionDays.reduce(
@@ -268,7 +275,7 @@ export default function GitHubContributions() {
           <h2 className="text-3xl font-bold text-center mb-12 text-primary">
             Proof I'm Still Alive
           </h2>
-          <div className="grid grid-flow-col grid-cols-1 grid-rows-2 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
             <Card className="animate-pulse">
               <CardHeader>
                 <div className="h-8 bg-muted rounded w-1/3" />
@@ -307,7 +314,7 @@ export default function GitHubContributions() {
         <h2 className="text-3xl font-bold text-center mb-12 text-primary">
           Proof I'm Still Alive
         </h2>
-        <div className="grid grid-flow-col grid-cols-1 grid-rows-2 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
           <Card className="w-full">
             <CardHeader>
               <CardTitle>
