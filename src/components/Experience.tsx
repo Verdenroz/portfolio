@@ -622,12 +622,10 @@ export default function Experience() {
             Showing {experiences.length} work experiences across{" "}
             {new Set(experiences.map((e) => getYear(e.startDate))).size} years
           </p>
-        </div>
-
-        <div
+        </div>        <div
           ref={containerRef}
-          style={{ width: "100%", height: "800px" }}
-          className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+          style={{ width: "100%" }}
+          className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px]"
         >
           <Tree
             data={treeData}
