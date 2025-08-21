@@ -61,20 +61,6 @@ export interface Experience {
   experienceGroup?: string; // Group category for current experiences (e.g., "Full Stack Development")
 }
 
-export interface TreeNodeDatum {
-  name: string;
-  attributes: {
-    company: string;
-    timeframe: string;
-    description: string;
-    technologies?: string;
-    achievements?: string;
-    location?: string;
-    type?: string;
-  };
-  children?: TreeNodeDatum[];
-}
-
 // Activities section types
 export interface Mention {
   text: string;

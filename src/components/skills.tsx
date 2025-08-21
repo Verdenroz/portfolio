@@ -303,12 +303,12 @@ export default function SkillsSection(): ReactNode {
 
       <Carousel
         id="skills-carousel"
-        scrollAmount={424}
+        scrollAmount={400}
         gap="gap-10"
-        padding="px-[calc(50vw-24rem/2-20px)] pb-6"
+        padding="px-[calc(30vw-24rem/2-20px)] pb-6"
         ariaLabel="Skills Carousel"
         enableMotion={true}
-        controlsPosition="relative"
+        controlsPosition="absolute"
       >
         <AnimatePresence initial={false} mode="popLayout">
           {filtered.map((cat, i) => (
