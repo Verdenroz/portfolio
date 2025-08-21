@@ -87,6 +87,12 @@ export const skillCategories: SkillCategory[] = [
         proficiency: "Proficient",
       },
       {
+        name: "Stripe",
+        slug: "stripe",
+        description: "Payment processing API",
+        proficiency: "Familiar",
+      },
+      {
         name: "Express",
         slug: "express",
         description: "Minimal Node.js web server",
