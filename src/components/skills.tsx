@@ -75,6 +75,13 @@ const categories: Category[] = [
         description: "Systems programming language",
         proficiency: "Learning",
       },
+      {
+        name: "Mojo",
+        slug: "mojo",
+        slugOverride: "https://assets-global.website-files.com/64174a9fd03969ab5b930a08/64f9f9ed4ecb5d38e455a902_Group%20237%20(2).png",
+        description: "High-performance pythonic GPU programming language",
+        proficiency: "Learning",
+      },
     ],
   },
   {
@@ -175,6 +182,12 @@ const categories: Category[] = [
         name: "Firebase",
         slug: "firebase",
         description: "Google's serverless backend",
+        proficiency: "Proficient",
+      },
+      {
+        name: "Supabase",
+        slug: "supabase",
+        description: "Open-source Firebase alternative",
         proficiency: "Proficient",
       },
       {
@@ -476,8 +489,7 @@ function CategoryCard({
       exit="exit"
       variants={categoryVariants}
       custom={index}
-      className={`relative w-96 flex-shrink-0 overflow-visible rounded-2xl p-px z-0 hover:z-50 ${
-        selected ? "z-30" : ""
+      className={`relative w-96 flex-shrink-0 overflow-visible rounded-2xl p-px z-0 hover:z-50 ${selected ? "z-30" : ""
       }`}
     >
       <div
@@ -559,11 +571,22 @@ export default function SkillsSection(): ReactNode {
             transition={{ delay: i * 0.1, duration: 0.4 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => toggleCat(c.name)}
-            className={`inline-block rounded-full border border-black dark:border-white px-5 py-2 text-sm transition-colors ${
-              activeCats.includes(c.name)
-                ? "border-transparent bg-primary text-background"
-                : "border-muted text-foreground hover:bg-muted/20"
-            }`}
+            className={`inline-block rounded-full border border-black dark:border-white px-5 py-2 text-sm transition-all ${activeCats.includes(c.name)
+                ? "border-transparent bg-primary text-white"
+                : "border-muted text-foreground"
+              }`}
+            onMouseEnter={(e) => {
+              if (!activeCats.includes(c.name)) {
+                e.currentTarget.style.backgroundColor = `#${c.color}40`;
+                e.currentTarget.style.borderColor = `#${c.color}`;
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!activeCats.includes(c.name)) {
+                e.currentTarget.style.backgroundColor = '';
+                e.currentTarget.style.borderColor = '';
+              }
+            }}
           >
             {c.name}
           </motion.button>
