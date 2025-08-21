@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import {
   motion,
@@ -8,7 +8,7 @@ import {
   useAnimation,
   AnimatePresence,
 } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Carousel } from "./ui/carousel";
 import Image from "next/image";
 import { useTilt } from "@/hooks/use-tilt";
 
@@ -100,7 +100,7 @@ const categories: Category[] = [
         description: "Fullstack React framework",
         proficiency: "Proficient",
       },
-                  {
+      {
         name: "TailwindCSS",
         slug: "tailwindcss",
         description: "Utility-first CSS framework",
@@ -400,9 +400,8 @@ function BadgeLogo({
         <p className="mb-1 font-semibold">{badge.name}</p>
         <p className="mb-1">{badge.description}</p>
         <span
-          className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${
-            proficiencyColor[badge.proficiency]
-          }`}
+          className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${proficiencyColor[badge.proficiency]
+            }`}
         >
           {badge.proficiency}
         </span>
@@ -490,7 +489,7 @@ function CategoryCard({
       variants={categoryVariants}
       custom={index}
       className={`relative w-96 flex-shrink-0 overflow-visible rounded-2xl p-px z-0 hover:z-50 ${selected ? "z-30" : ""
-      }`}
+        }`}
     >
       <div
         className="absolute inset-0 -z-10 rounded-2xl"
@@ -526,7 +525,6 @@ function CategoryCard({
 
 export default function SkillsSection(): ReactNode {
   const [activeCats, setActiveCats] = useState<string[]>([]);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   const toggleCat = (name: string) =>
     setActiveCats((prev) =>
@@ -536,14 +534,6 @@ export default function SkillsSection(): ReactNode {
   const filtered = activeCats.length
     ? categories.filter((c) => activeCats.includes(c.name))
     : categories;
-
-  const scroll = (dir: "left" | "right") => {
-    if (!carouselRef.current) return;
-    carouselRef.current.scrollBy({
-      left: dir === "left" ? -300 : 300,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <section
@@ -593,45 +583,26 @@ export default function SkillsSection(): ReactNode {
         ))}
       </div>
 
-      {/* Carousel controls */}
-      <div className="relative">
-        <div className="sticky w-full flex justify-between items-center mb-4">
-          <button
-            type="button"
-            onClick={() => scroll("left")}
-            title="Previous skill slide"
-            aria-controls="skills-carousel"
-            className="pointer-events-auto z-20 aspect-square h-fit rounded-full border-2 border-neutral-400 bg-neutral-950/95 p-4 text-neutral-50 shadow-lg backdrop-blur-sm transition-all hover:border-neutral-300 hover:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 supports-[backdrop-filter]:bg-neutral-950/90"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scroll("right")}
-            title="Next skill slide"
-            aria-controls="skills-carousel"
-            className="pointer-events-auto z-20 aspect-square h-fit rounded-full border-2 border-neutral-400 bg-neutral-950/95 p-4 text-neutral-50 shadow-lg backdrop-blur-sm transition-all hover:border-neutral-300 hover:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 supports-[backdrop-filter]:bg-neutral-950/90"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
-        <motion.div
-          id="skills-carousel"
-          ref={carouselRef}
-          className="flex gap-10 overflow-x-auto pb-6 scrollbar-hide"
-        >
-          <AnimatePresence initial={false} mode="popLayout">
-            {filtered.map((cat, i) => (
-              <CategoryCard
-                key={cat.name}
-                cat={cat}
-                index={i}
-                selected={activeCats.includes(cat.name)}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </div>
+      <Carousel
+        id="skills-carousel"
+        scrollAmount={424}
+        gap="gap-10"
+        padding="px-[calc(50vw-24rem/2-20px)] pb-6"
+        ariaLabel="Skills Carousel"
+        enableMotion={true}
+        controlsPosition="relative"
+      >
+        <AnimatePresence initial={false} mode="popLayout">
+          {filtered.map((cat, i) => (
+            <CategoryCard
+              key={cat.name}
+              cat={cat}
+              index={i}
+              selected={activeCats.includes(cat.name)}
+            />
+          ))}
+        </AnimatePresence>
+      </Carousel>
     </section>
   );
 }

@@ -1,9 +1,8 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
 import { ProjectDialog } from "./ui/project-dialog";
+import { Carousel } from "./ui/carousel";
 import { Project } from "../types";
 
 const projects: Project[] = [
@@ -141,52 +140,20 @@ const projects: Project[] = [
 ];
 
 export default function ProjectCarousel() {
-  const carouselRef = useRef<HTMLUListElement>(null);
-
-  const scroll = (direction: "left" | "right") => {
-    if (!carouselRef.current) return;
-    const scrollAmount = direction === "left" ? -400 : 400;
-    carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  };
-
   return (
     <section id="projects" className="relative">
       <h2 className="text-3xl font-bold text-center mb-6 text-primary">
         Projects
       </h2>
 
-      <div
-        aria-label="Carousel Controls"
-        className="pointer-events-none absolute top-1/2 flex w-full -translate-y-1/2 justify-between px-4 lg:px-8 z-20"
-      >
-        <button
-          type="button"
-          onClick={() => scroll("left")}
-          title="Previous project slide"
-          aria-controls="project-carousel"
-          className="pointer-events-auto z-20 aspect-square h-fit rounded-full border-2 border-neutral-400 bg-neutral-950/95 p-4 text-neutral-50 shadow-lg backdrop-blur-sm transition-all hover:border-neutral-300 hover:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 supports-[backdrop-filter]:bg-neutral-950/90"
-        >
-          <ChevronLeft className="size-5" />
-        </button>
-        <button
-          type="button"
-          onClick={() => scroll("right")}
-          title="Next project slide"
-          aria-controls="project-carousel"
-          className="pointer-events-auto z-20 aspect-square h-fit rounded-full border-2 border-neutral-400 bg-neutral-950/95 p-4 text-neutral-50 shadow-lg backdrop-blur-sm transition-all hover:border-neutral-300 hover:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 supports-[backdrop-filter]:bg-neutral-950/90"
-        >
-          <ChevronRight className="size-5" />
-        </button>
-      </div>
-
-      <ul
+      <Carousel
         id="project-carousel"
-        ref={carouselRef}
-        className="relative z-0 grid auto-cols-min grid-flow-col gap-x-6 overflow-x-auto px-[calc(50vw-clamp(18rem,42vmin,26rem)/2-7px)] pb-4 pt-4 scrollbar-hide"
-        aria-label="Project Carousel"
-        role="list"
-        aria-roledescription="carousel"
-        aria-live="polite"
+        scrollAmount={400}
+        gap="gap-x-6"
+        padding="px-[calc(50vw-clamp(18rem,42vmin,26rem)/2-7px)]"
+        ariaLabel="Project Carousel"
+        as="ul"
+        controlsPosition="absolute"
       >
         {projects.map((project) => (
           <li
@@ -254,7 +221,7 @@ export default function ProjectCarousel() {
             </ProjectDialog>
           </li>
         ))}
-      </ul>
+      </Carousel>
     </section>
   );
 }
