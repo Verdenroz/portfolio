@@ -32,12 +32,11 @@ function CarouselNavigation({
 }: CarouselNavigationProps) {
   const buttonClass = "pointer-events-auto z-20 aspect-square h-fit rounded-full border-2 border-neutral-400 bg-neutral-950/95 p-4 text-neutral-50 shadow-lg backdrop-blur-sm transition-all hover:border-neutral-300 hover:bg-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 supports-[backdrop-filter]:bg-neutral-950/90";
   
-  if (position === "absolute") {
-    return (
-      <div
-        aria-label="Carousel Controls"
-        className="pointer-events-none absolute top-1/2 flex w-full -translate-y-1/2 justify-between px-4 lg:px-8 z-20"
-      >
+  // Responsive positioning: relative on mobile, configurable on desktop
+  return (
+    <>
+      {/* Mobile controls (always relative positioning for better touch UX) */}
+      <div className="flex justify-between mt-6 md:hidden">
         <button
           type="button"
           onClick={onScrollLeft}
@@ -57,30 +56,57 @@ function CarouselNavigation({
           <ChevronRight className="size-5" />
         </button>
       </div>
-    );
-  }
 
-  return (
-    <div className="sticky w-full flex justify-between items-center mb-4">
-      <button
-        type="button"
-        onClick={onScrollLeft}
-        title="Previous slide"
-        aria-controls={carouselId}
-        className={buttonClass}
-      >
-        <ChevronLeft className="size-5" />
-      </button>
-      <button
-        type="button"
-        onClick={onScrollRight}
-        title="Next slide"
-        aria-controls={carouselId}
-        className={buttonClass}
-      >
-        <ChevronRight className="size-5" />
-      </button>
-    </div>
+      {/* Desktop controls (based on position prop) */}
+      <div className="hidden md:block">
+        {position === "absolute" ? (
+          <div
+            aria-label="Carousel Controls"
+            className="pointer-events-none absolute top-1/2 flex w-full -translate-y-1/2 justify-between px-4 lg:px-8 z-20"
+          >
+            <button
+              type="button"
+              onClick={onScrollLeft}
+              title="Previous slide"
+              aria-controls={carouselId}
+              className={buttonClass}
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              onClick={onScrollRight}
+              title="Next slide"
+              aria-controls={carouselId}
+              className={buttonClass}
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
+        ) : (
+          <div className="flex justify-between items-center mb-4">
+            <button
+              type="button"
+              onClick={onScrollLeft}
+              title="Previous slide"
+              aria-controls={carouselId}
+              className={buttonClass}
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              onClick={onScrollRight}
+              title="Next slide"
+              aria-controls={carouselId}
+              className={buttonClass}
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -182,7 +208,7 @@ export function Carousel({
           enableMotion={enableMotion}
           gap={gap}
           padding={padding}
-          className="pb-4 pt-4"
+          className={controlsPosition === "relative" ? "pb-4 pt-4" : "pb-4 pt-4"}
         >
           {children}
         </CarouselContent>
