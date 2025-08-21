@@ -55,3 +55,17 @@ export interface Activity {
   mentions?: Mention[];
   projectLink?: string;
 }
+
+export interface SkillBadge {
+  name: string;
+  slug: string;
+  slugOverride?: string;
+  description: string;
+  proficiency: "Proficient" | "Familiar" | "Learning";
+}
+
+export interface SkillCategory {
+  name: string;
+  color: string; // accent color (hex)
+  badges: SkillBadge[];
+}
