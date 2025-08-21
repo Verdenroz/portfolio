@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import type { Project } from "@/types"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { GalleryDialog } from "@/components/ui/gallery-dialog"
 import { useTheme } from "next-themes"
 
@@ -131,13 +131,15 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
           <div className="grid gap-4">
             <div className="flex flex-wrap gap-2">
               {project.skills.map((skill) => (
-                <img
+                <Image
                   key={skill.slug}
                   src={`https://img.shields.io/badge/${skill.name}-333333?style=flat&logo=${skill.slug}`}
                   alt={skill.name}
                   aria-label={skill.name}
                   title={skill.name}
-                  className="h-6"
+                  width={80}
+                  height={24}
+                  className="h-6 w-auto"
                 />
               ))}
             </div>
@@ -158,7 +160,7 @@ export function ProjectDialog({ project, children }: ProjectDialogProps) {
                       <GitHubCardSkeleton />
                     </div>
                     <div className={isGitHubCardLoading ? "opacity-0" : "opacity-100 transition-opacity duration-300"}>
-                      <img
+                      <Image
                         src={`https://github-readme-stats.vercel.app/api/pin/?username=${repoInfo.username}&repo=${repoInfo.repo}&theme=${cardTheme}`}
                         alt={`${project.title} GitHub repository stats`}
                         width={250}

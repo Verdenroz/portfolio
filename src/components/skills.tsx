@@ -144,7 +144,7 @@ function IdleBadges({ active }: { active: boolean }) {
       });
     }, 6000);
     return () => clearInterval(iv);
-  }, [active]);
+  }, [active, controls]);
   if (active) return null;
   return (
     <motion.div className="absolute inset-0 flex items-center justify-center pointer-events-none">

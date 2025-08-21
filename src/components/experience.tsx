@@ -240,6 +240,15 @@ const TYPE_COLORS = {
 };
 
 /**
+ * Extended RawNodeDatum interface to include react-d3-tree internal state
+ */
+interface ExtendedRawNodeDatum extends RawNodeDatum {
+  __rd3t?: {
+    collapsed?: boolean;
+  };
+}
+
+/**
  * Renders a custom tree node for experience visualization
  */
 const renderNode = ({
@@ -330,7 +339,7 @@ const renderNode = ({
                     : "bg-blue-100 text-blue-800 hover:bg-blue-200"
                   }`}
               >
-                {(nodeDatum as any).__rd3t?.collapsed ? "+" : "−"}
+                {(nodeDatum as ExtendedRawNodeDatum).__rd3t?.collapsed ? "+" : "-"}
               </button>
             )}
           </div>

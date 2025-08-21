@@ -62,13 +62,15 @@ export default function ProjectCarousel() {
                   <div className="overflow-hidden">
                     <div className="flex flex-wrap gap-2 justify-center transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0 md:translate-y-full">
                       {project.skills.map((skill) => (
-                        <img
+                        <Image
                           key={skill.slug}
                           src={`https://img.shields.io/badge/${skill.name}-333333?style=flat&logo=${skill.slug}`}
                           alt={skill.name}
                           aria-label={skill.name}
                           title={skill.name}
-                          className="h-6"
+                          width={80}
+                          height={24}
+                          className="h-6 w-auto"
                         />
                       ))}
                     </div>

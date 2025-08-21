@@ -36,7 +36,7 @@ export function GalleryDialog({ images, title, initialIndex, children }: Gallery
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:max-w-none w-screen h-screen p-0 border-none bg-black z-50 m-0 fixed"
-        onClick={(e) => setOpen(false)}
+        onClick={() => setOpen(false)}
       >
         <DialogTitle className="sr-only">
           {title} - Image {currentIndex + 1} of {images.length}

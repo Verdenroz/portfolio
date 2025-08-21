@@ -71,7 +71,6 @@ export interface TreeNodeDatum {
     achievements?: string;
     location?: string;
     type?: string;
-    [key: string]: any;
   };
   children?: TreeNodeDatum[];
 }
