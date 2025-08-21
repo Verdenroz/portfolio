@@ -2,191 +2,8 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Tree, { RawNodeDatum } from "react-d3-tree";
-
-/**
- * Interface representing a work experience entry
- */
-interface Experience {
-  id: string;
-  company: string;
-  position: string;
-  location: string;
-  timeframe: string;
-  startDate: Date;
-  endDate: Date | null; // null for current positions
-  description: string;
-  achievements: string[];
-  technologies: string[];
-  type: "internship" | "freelance" | "full-time" | "part-time" | "volunteer";
-  experienceGroup?: string; // Group category for current experiences (e.g., "Full Stack Development")
-}
-
-/**
- * Interface for tree node data structure used in the visualization
- */
-interface TreeNodeDatum {
-  name: string;
-  attributes: {
-    company: string;
-    timeframe: string;
-    description: string;
-    technologies?: string;
-    achievements?: string;
-    location?: string;
-    type?: string;
-    [key: string]: any;
-  };
-  children?: TreeNodeDatum[];
-}
-
-// Work experiences data - easily extendable
-const experiences: Experience[] = [
-  {
-    id: "klover-2025",
-    company: "Klover",
-    position: "Software Engineer Intern",
-    location: "Remote",
-    timeframe: "March 2025 – Present",
-    startDate: new Date(2025, 2), // March 2025
-    endDate: null,
-    description:
-      "Develop and maintain open source agentic AI software in the fields of finance and talent acquisition.",
-    achievements: [
-      "Automated hiring and code judging processes for future interns",
-      "Created multi-agent system for real-time financial data and sentiment analysis",
-    ],
-    technologies: ["Python", "AI", "OpenAI API", "Selenium"],
-    type: "internship",
-    experienceGroup: "AI Development",
-  },
-  {
-    id: "freelance-kevin-2025",
-    company: "Kevin Schoovaerts",
-    position: "Freelance Full-stack Developer",
-    location: "Remote",
-    timeframe: "March 2025 – Present",
-    startDate: new Date(2025, 2), // March 2025
-    endDate: null,
-    description:
-      "Created personal portfolio website for stock trader, polling real-time data and setting up Stripe payment/paywall for client's current paying Substack subscribers.",
-    achievements: [
-      "Gathered requirements with weekly meetings and daily messages",
-      "Implemented agile development methodology",
-      "Integrated real-time data polling system",
-      "Set up Stripe payment gateway for subscription management",
-    ],
-    technologies: ["React", "Next.js", "Stripe", "Real-time APIs", "Agile"],
-    type: "freelance",
-    experienceGroup: "Full Stack Development",
-  },
-  {
-    id: "commons-xr-2024",
-    company: "The Commons XR",
-    position: "Full-Stack Developer Intern",
-    location: "Remote",
-    timeframe: "September 2024 – January 2025",
-    startDate: new Date(2024, 8), // September 2024
-    endDate: new Date(2025, 0), // January 2025
-    description:
-      "Enhanced application interface by implementing interactive UI components using MUI in a React-based project.",
-    achievements: [
-      "Architectured data flow pipelines for user analytics",
-      "Led migration from PowerBI to React-based charts",
-      "Enhanced user interactions through custom UI components",
-      "Improved application performance and user experience",
-    ],
-    technologies: [
-      "React",
-      "Material-UI",
-      "PowerBI",
-      "Data Analytics",
-      "UI/UX",
-    ],
-    type: "internship",
-    experienceGroup: "Full Stack Development",
-  },
-  {
-    id: "headstarter-2024",
-    company: "Headstarter",
-    position: "Software Engineering Fellow",
-    location: "Remote",
-    timeframe: "June 2024 – September 2024",
-    startDate: new Date(2024, 5), // June 2024
-    endDate: new Date(2024, 8), // September 2024
-    description:
-      "Fellowship program focused on building a full-stack web application using React, Next.js, and AI.",
-    achievements: ["Finalist in 2 hiring hackathons"],
-    technologies: ["React", "Next.js", "AI"],
-    type: "internship",
-    experienceGroup: "AI Development",
-  },
-  {
-    id: "mobalytics-2024",
-    company: "Extern",
-    position: "Mobalytics Remote Extern",
-    location: "Remote",
-    timeframe: "May 2024 – June 2024",
-    startDate: new Date(2024, 4), // May 2024
-    endDate: new Date(2024, 5), // June 2024
-    description:
-      "Delivered competitive market insights, emerging as 1 of 4 final presenters from a 412-member cohort.",
-    achievements: [
-      "Selected as top 4 presenter from 412-member cohort",
-      "Identified strategic growth opportunities in gaming industry",
-      "Conducted thorough competitive market research",
-      "Presented findings to executive leadership",
-    ],
-    technologies: [
-      "Market Research",
-      "Data Analysis",
-      "Competitive Analysis",
-      "Strategic Planning",
-    ],
-    type: "internship",
-  },
-  {
-    id: "coachart-2023",
-    company: "CoachArt",
-    position: "Coding Coach",
-    location: "Remote",
-    timeframe: "November 2022 - February 2023",
-    startDate: new Date(2022, 10), // November 2022
-    endDate: new Date(2023, 1), // February 2023
-    description:
-      "Taught Python programming and game development to children with chronic illnesses, fostering a supportive learning environment.",
-    achievements: [
-      "Developed engaging lesson plans for children",
-      "Fostered a supportive and inclusive learning environment",
-      "Encouraged creativity and problem-solving skills",
-      "Mentored students in their coding journey",
-    ],
-    technologies: ["Python", "Game Development", "Teaching", "Mentoring"],
-    type: "volunteer",
-    experienceGroup: "Full Stack Development",
-  },
-  {
-    id: "macys-2022",
-    company: "Macy's",
-    position: "Sales Associate",
-    location: "New York, NY",
-    timeframe: "June 2022 - September 2023",
-    startDate: new Date(2022, 5), // June 2022
-    endDate: new Date(2023, 8), // September 2023
-    description:
-      "Provided exceptional customer service and assisted in sales operations, contributing to a positive shopping experience.",
-    achievements: [
-      "Received positive customer feedback for service excellence",
-      "Trained new employees on sales techniques and customer service",
-    ],
-    technologies: ["Customer Service", "Sales", "Teamwork"],
-    type: "part-time",
-  },
-];
-
-/**
- * Helper function to get year from date
- */
-const getYear = (date: Date): number => date.getFullYear();
+import type { Experience, TreeNodeDatum } from "@/types";
+import { experiencesData } from "@/config/experiences";
 
 /**
  * Helper function to create an experience node for the tree
@@ -223,7 +40,7 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
   );
 
   // Find earliest year for the timeframe
-  const years = sortedExperiences.map((exp) => getYear(exp.startDate));
+  const years = sortedExperiences.map((exp) => exp.startDate.getFullYear());
   const earliestYear = Math.min(...years);
 
   // Create the root node (profile)
@@ -258,9 +75,8 @@ const createTimelineTree = (experiences: Experience[]): TreeNodeDatum => {
       const groupNode: TreeNodeDatum = {
         name: `${techGroup}`,
         attributes: {
-          company: `${exps.length} active position${
-            exps.length > 1 ? "s" : ""
-          }`,
+          company: `${exps.length} active position${exps.length > 1 ? "s" : ""
+            }`,
           timeframe: "Present",
           description: "",
           type: "tech-group",
@@ -444,8 +260,8 @@ const renderNode = ({
   const styling = isProfileNode
     ? NODE_STYLES.profile
     : isTechGroupNode
-    ? NODE_STYLES.techGroup
-    : NODE_STYLES.experience;
+      ? NODE_STYLES.techGroup
+      : NODE_STYLES.experience;
 
   // Get experience type color for badges
   const getTypeColor = (type: string) =>
@@ -481,11 +297,9 @@ const renderNode = ({
         y={-styling.height / 2}
       >
         <div
-          className={`border rounded-lg shadow-lg p-4 ${
-            styling.bgClass
-          } h-full overflow-hidden ${
-            hasChildren ? "cursor-pointer hover:opacity-95" : ""
-          }`}
+          className={`border rounded-lg shadow-lg p-4 ${styling.bgClass
+            } h-full overflow-hidden ${hasChildren ? "cursor-pointer hover:opacity-95" : ""
+            }`}
           onClick={hasChildren ? toggleNode : undefined}
         >
           {/* Header with title and type badge */}
@@ -511,11 +325,10 @@ const renderNode = ({
                   e.stopPropagation();
                   toggleNode();
                 }}
-                className={`ml-2 text-xs px-2 py-1 rounded ${
-                  isProfileNode || isTechGroupNode
+                className={`ml-2 text-xs px-2 py-1 rounded ${isProfileNode || isTechGroupNode
                     ? "bg-white/20 text-white hover:bg-white/30"
                     : "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                }`}
+                  }`}
               >
                 {(nodeDatum as any).__rd3t?.collapsed ? "+" : "−"}
               </button>
@@ -523,20 +336,18 @@ const renderNode = ({
           </div>
           {/* Company name */}
           <p
-            className={`font-medium mb-1 ${
-              isProfileNode || isTechGroupNode ? "text-white" : "text-blue-700"
-            } text-sm`}
+            className={`font-medium mb-1 ${isProfileNode || isTechGroupNode ? "text-white" : "text-blue-700"
+              } text-sm`}
           >
             {node.attributes.company}
           </p>
           {/* Timeframe and location */}
           <div className="flex justify-between items-center mb-2">
             <p
-              className={`${
-                isProfileNode || isTechGroupNode
+              className={`${isProfileNode || isTechGroupNode
                   ? "text-white"
                   : "text-gray-500"
-              } text-xs`}
+                } text-xs`}
             >
               {node.attributes.timeframe}
             </p>
@@ -548,9 +359,8 @@ const renderNode = ({
           </div>
           {/* Description */}
           <p
-            className={`mb-3 leading-relaxed ${
-              isProfileNode || isTechGroupNode ? "text-white" : "text-gray-700"
-            } text-xs line-clamp-3`}
+            className={`mb-3 leading-relaxed ${isProfileNode || isTechGroupNode ? "text-white" : "text-gray-700"
+              } text-xs line-clamp-3`}
           >
             {node.attributes.description}
           </p>
@@ -580,11 +390,10 @@ const renderNode = ({
               {technologies.slice(0, 4).map((tech, i) => (
                 <span
                   key={i}
-                  className={`px-2 py-1 rounded-full text-xs ${
-                    isProfileNode || isTechGroupNode
+                  className={`px-2 py-1 rounded-full text-xs ${isProfileNode || isTechGroupNode
                       ? "bg-blue-900 text-white"
                       : "bg-gray-100 text-gray-700"
-                  }`}
+                    }`}
                 >
                   {tech}
                 </span>
@@ -633,7 +442,7 @@ export default function Experience() {
     };
   }, []);
 
-  const treeData = createTimelineTree(experiences);
+  const treeData = createTimelineTree(experiencesData);
 
   return (
     <section id="experience" className="py-8">
@@ -647,8 +456,8 @@ export default function Experience() {
             Click nodes to expand/collapse • Drag to pan • Scroll to zoom
           </p>
           <p className="text-gray-700 dark:text-gray-300 text-xs mt-1">
-            Showing {experiences.length} work experiences across{" "}
-            {new Set(experiences.map((e) => getYear(e.startDate))).size} years
+            Showing {experiencesData.length} work experiences across{" "}
+            {new Set(experiencesData.map((e) => e.startDate.getFullYear())).size} years
           </p>
         </div>
         <div
