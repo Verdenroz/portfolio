@@ -15,6 +15,28 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'codecov.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.shields.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        pathname: '/**',
+      },
+    ],
   },
   experimental: {
     webpackBuildWorker: true,

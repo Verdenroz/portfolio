@@ -22,7 +22,7 @@ export interface ProjectSkill {
 export interface Project {
   title: string;
   description: string;
-  longDescription: string;
+  keypoints: string[];
   date: string;
   skills: ProjectSkill[];
   image: string;
@@ -33,6 +33,7 @@ export interface Project {
     play?: string;
     demo?: string;
   };
+  badges?: string[];
 }
 
 // Contributions section types
