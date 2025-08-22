@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui"
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
 export default function Hero() {
@@ -16,7 +16,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Image
-            src="HT_headshot.webp"
+            src="/HT_headshot.webp"
             alt="Harvey Tseng"
             width={300}
             height={300}

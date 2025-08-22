@@ -1,5 +1,8 @@
-import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { Dialog, DialogTrigger, DialogTitle, DialogDescription, DialogPortal, DialogOverlay } from "./dialog"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { Button } from "./button"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -34,10 +37,12 @@ export function GalleryDialog({ images, title, initialIndex, children }: Gallery
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:max-w-none w-screen h-screen p-0 border-none bg-black z-50 m-0 fixed"
-        onClick={() => setOpen(false)}
-      >
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogPrimitive.Content
+          className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:max-w-none w-screen h-screen p-0 border-none bg-black z-50 m-0 fixed"
+          onClick={() => setOpen(false)}
+        >
         <DialogTitle className="sr-only">
           {title} - Image {currentIndex + 1} of {images.length}
         </DialogTitle>
@@ -125,7 +130,8 @@ export function GalleryDialog({ images, title, initialIndex, children }: Gallery
             </div>
           )}
         </div>
-      </DialogContent>
+        </DialogPrimitive.Content>
+      </DialogPortal>
     </Dialog>
   )
 }

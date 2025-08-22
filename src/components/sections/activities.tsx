@@ -1,12 +1,12 @@
 "use client";
 import {
+  Badge,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+} from "@/components/ui";
 import { CalendarIcon, ClockIcon } from "@heroicons/react/24/solid";
 import type { Mention } from "@/types";
 import { activitiesData } from "@/config/activities";

@@ -3,8 +3,7 @@
 import type React from "react";
 
 import { useEffect, useState, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
+import { Card, CardContent, CardHeader, CardTitle, useToast } from "@/components/ui";
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
 import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";

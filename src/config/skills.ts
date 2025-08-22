@@ -93,15 +93,45 @@ export const skillCategories: SkillCategory[] = [
         proficiency: "Familiar",
       },
       {
+        name: "Node.js",
+        slug: "nodedotjs",
+        description: "JavaScript runtime for server-side development",
+        proficiency: "Familiar",
+      },
+      {
         name: "Express",
         slug: "express",
         description: "Minimal Node.js web server",
         proficiency: "Familiar",
       },
       {
+        name: "Axios",
+        slug: "axios",
+        description: "Promise-based HTTP client for JavaScript",
+        proficiency: "Familiar",
+      },
+      {
+        name: "Cheerio",
+        slug: "cheerio",
+        description: "Server-side implementation of core jQuery",
+        proficiency: "Familiar",
+      },
+      {
+        name: "Swagger",
+        slug: "swagger",
+        description: "API documentation and testing framework",
+        proficiency: "Familiar",
+      },
+      {
         name: "MUI",
         slug: "mui",
         description: "Material Design component library for React",
+        proficiency: "Familiar",
+      },
+      {
+        name: "Algolia",
+        slug: "algolia",
+        description: "Search-as-a-service platform",
         proficiency: "Familiar",
       },
     ],
@@ -236,6 +266,12 @@ export const skillCategories: SkillCategory[] = [
         name: "OpenAI",
         slug: "openai",
         description: "Provider of LLM APIs",
+        proficiency: "Familiar",
+      },
+      {
+        name: "Gemini",
+        slug: "google",
+        description: "Google's generative AI model",
         proficiency: "Familiar",
       },
       {

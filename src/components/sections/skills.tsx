@@ -8,8 +8,7 @@ import {
   useAnimation,
   AnimatePresence,
 } from "framer-motion";
-import { Carousel } from "./ui/carousel";
-import Image from "next/image";
+import { Carousel, SkillIconWithFallback } from "@/components/ui";
 import { useTilt } from "@/hooks/use-tilt";
 import { SkillBadge, SkillCategory } from "@/types";
 import { skillCategories } from "@/config/skills";
@@ -69,9 +68,6 @@ function BadgeLogo({
     Learning: "bg-yellow-500 text-white",
   } as const;
 
-  const badgeSlug =
-    badge.slugOverride || `https://cdn.simpleicons.org/${badge.slug}`;
-
   return (
     <motion.div
       variants={badgeVariants}
@@ -89,11 +85,8 @@ function BadgeLogo({
         bg-gray-100/70 border-gray-200/60"
       >
         <div className="flex items-center justify-center h-6 w-6 mb-1">
-          <Image
-            key={badge.slug}
-            src={badgeSlug}
-            alt={badge.name}
-            title={badge.name}
+          <SkillIconWithFallback
+            skillName={badge.name}
             width={24}
             height={24}
             className="object-contain"

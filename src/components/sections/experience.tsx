@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Experience } from "@/types";
 import { experiencesData } from "@/config/experiences";
-import { Carousel } from "./ui/carousel";
+import { Carousel } from "@/components/ui";
 
 // Type for filter options
 type FilterType = "all" | "internship" | "freelance" | "full-time" | "part-time" | "volunteer";
