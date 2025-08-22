@@ -124,6 +124,22 @@ export default function ProjectPageClient({ project, prev, next }: ProjectPageCl
                     </a>
                   </Button>
                 )}
+                {project.links.pypi && (
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="border-2 hover:bg-primary hover:text-primary-foreground
+                               transition-all duration-200 hover:scale-105 active:scale-95
+                               focus-visible:ring-2 focus-visible:ring-primary 
+                               focus-visible:ring-offset-2 focus-visible:outline-none"
+                  >
+                    <a href={project.links.pypi} target="_blank" rel="noopener noreferrer" aria-label="View package on PyPI">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      PyPI Package
+                    </a>
+                  </Button>
+                )}
                 {project.links.demo && (
                   <Button
                     variant="outline"

@@ -32,6 +32,7 @@ export interface Project {
     docs?: string;
     play?: string;
     demo?: string;
+    pypi?: string;
   };
   badges?: string[];
 }

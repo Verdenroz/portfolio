@@ -2,6 +2,48 @@ import { Project } from "@/types";
 
 export const projectsData: Project[] = [
   {
+    title: "Chimeric",
+    description:
+      "Unified Python interface for multiple LLM providers with automatic provider detection and seamless switching.",
+    keypoints: [
+      "Multi-provider support for 7 major AI providers including OpenAI, Anthropic, Google AI, xAI Grok, Groq, Cohere, and Cerebras",
+      "Automatic API key detection from environment variables with seamless provider switching",
+      "Unified interface providing consistent API across all providers with streaming, async/await, and function-calling support",
+      "Strict code quality with comprehensive linting using Ruff, basedpyright type checking, and codespell validation",
+      "PyPI package distribution with comprehensive documentation and CI/CD pipeline achieving 100% coverage"
+    ],
+    date: "2025-06-01 - Present",
+    skills: [
+      { name: "Python", slug: "python" },
+      { name: "Pytest", slug: "pytest" },
+      { name: "PyPI", slug: "pypi" },
+    ],
+    image: "/assets/chimeric/chimeric.webp",
+    gallery: [
+      "/assets/chimeric/chimeric.webp",
+      "/assets/chimeric/chimeric-gallery-1.webp",
+      "/assets/chimeric/chimeric-gallery-2.webp",
+      "/assets/chimeric/chimeric-gallery-3.webp",
+      "/assets/chimeric/chimeric-gallery-4.webp",
+    ],
+    links: {
+      github: "https://github.com/Verdenroz/chimeric",
+      docs: "https://verdenroz.github.io/chimeric/",
+      pypi: "https://pypi.org/project/chimeric/",
+    },
+    badges: [
+      "https://img.shields.io/pypi/v/chimeric.svg",
+      "https://img.shields.io/pypi/pyversions/chimeric.svg",
+      "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "https://img.shields.io/badge/docs-latest-blue.svg",
+      "https://github.com/Verdenroz/chimeric/workflows/CI/badge.svg",
+      "https://codecov.io/gh/Verdenroz/chimeric/graph/badge.svg?token=UOfsQnGQ3E",
+      "https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json",
+      "https://img.shields.io/badge/basedpyright-checked-42b883",
+      "https://img.shields.io/badge/codespell-checked-42b883"
+    ],
+  },
+  {
     title: "FinanceQuery",
     description:
       "Production-grade RESTful API providing real-time financial data with Redis caching and WebSocket streaming capabilities.",
@@ -16,6 +58,7 @@ export const projectsData: Project[] = [
     skills: [
       { name: "Python", slug: "python" },
       { name: "FastAPI", slug: "fastapi" },
+      { name: "Pytest", slug: "pytest" },
       { name: "Redis", slug: "redis" },
       { name: "AWS", slug: "aws" },
       { name: "Docker", slug: "docker" },
