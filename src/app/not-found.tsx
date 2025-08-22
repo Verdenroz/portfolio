@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Home, Briefcase, User, Mail, Github, Linkedin } from 'lucide-react';
+import { Home, Briefcase, User, Mail } from 'lucide-react';
+import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import { Header } from '@/components/layout';
 import { Button } from '@/components/ui';
 
@@ -102,7 +103,7 @@ export default function NotFound() {
                   className="group p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-center"
                 >
                   <div className="w-8 h-8 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform">
-                    <Github className="w-full h-full" />
+                    <GitHubLogoIcon className="w-full h-full" />
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     GitHub
@@ -142,7 +143,7 @@ export default function NotFound() {
                     className="flex items-center gap-2"
                     aria-label="Visit Harvey's GitHub profile"
                   >
-                    <Github className="h-4 w-4" />
+                    <GitHubLogoIcon className="h-4 w-4" />
                     GitHub
                   </a>
                 </Button>
@@ -154,7 +155,7 @@ export default function NotFound() {
                     className="flex items-center gap-2"
                     aria-label="Visit Harvey's LinkedIn profile"
                   >
-                    <Linkedin className="h-4 w-4" />
+                    <LinkedInLogoIcon className="h-4 w-4" />
                     LinkedIn
                   </a>
                 </Button>
