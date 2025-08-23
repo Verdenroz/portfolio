@@ -113,7 +113,7 @@ export function assignTracks(experiences: Experience[]): Map<string, number> {
 export function generateGridLines(timeRange: TimeRange, containerWidth: number): GridLine[] {
   const gridLines: GridLine[] = [];
   
-  let current = new Date(timeRange.start);
+  const current = new Date(timeRange.start);
   current.setMonth(0); // Start at January
   current.setDate(1); // Start at the beginning of the month
   

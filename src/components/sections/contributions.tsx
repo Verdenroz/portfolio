@@ -352,7 +352,7 @@ export default function Contributions() {
             <CardContent className="flex h-full items-center justify-center p-6">
               <div className="relative w-full max-w-2xl aspect-[2/1]">
                 <Image
-                  src={`https://github-readme-stats.vercel.app/api?username=verdenroz&show_icons=true&theme=${githubCardTheme}&hide_border=true`}
+                  src={`https://github-readme-stats-pied-nine-61.vercel.app/api?username=verdenroz&show_icons=true&theme=${githubCardTheme}&hide_border=true`}
                   alt="GitHub Stats"
                   fill
                   priority

@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// Force this route to be dynamic to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const response = await fetch("https://leetcode.com/graphql", {

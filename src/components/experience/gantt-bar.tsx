@@ -14,12 +14,10 @@ import {
   TechnologyBadge
 } from "@/components/ui";
 import { 
-  formatDateRange, 
   formatDateRangeByType,
   isCurrentPosition, 
   getBarWidthCategory, 
-  getContentPriority,
-  type BarWidthCategory 
+  getContentPriority 
 } from "./gantt-utils";
 
 // Experience type color mapping for bar backgrounds - vibrant colors with transparency for softer appearance
@@ -67,7 +65,6 @@ export function GanttBar({
   const typeBadgeColor = TYPE_BADGE_COLORS[experience.type as keyof typeof TYPE_BADGE_COLORS] || 
     "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-900/20 dark:text-gray-400 dark:border-gray-800";
   
-  const dateRange = formatDateRange(experience.startDate, experience.endDate);
   const widthCategory = getBarWidthCategory(width);
   const contentPriority = getContentPriority(widthCategory);
   const adaptiveDateRange = formatDateRangeByType(experience.startDate, experience.endDate, contentPriority.dateFormat);

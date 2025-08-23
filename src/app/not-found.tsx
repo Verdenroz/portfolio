@@ -35,8 +35,8 @@ export default function NotFound() {
                 Page Not Found
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                The page you're looking for seems to have taken a different path. 
-                Let's get you back to exploring my work and experience.
+                The page you&apos;re looking for seems to have taken a different path. 
+                Let&apos;s get you back to exploring my work and experience.
               </p>
             </motion.div>
 
@@ -132,7 +132,7 @@ export default function NotFound() {
               className="border-t border-border pt-8"
             >
               <p className="text-sm text-muted-foreground mb-4">
-                Can't find what you're looking for?
+                Can&apos;t find what you&apos;re looking for?
               </p>
               <div className="flex justify-center gap-4">
                 <Button asChild variant="ghost" size="sm">

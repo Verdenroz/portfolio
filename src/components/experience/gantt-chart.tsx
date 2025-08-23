@@ -291,7 +291,7 @@ export function GanttChart({ experiences, className = "" }: GanttChartProps) {
         <p>
           Visual elements: Position bars show job title, company name, and date ranges directly on wider bars. 
           Shorter bars display essential information with detailed tooltips available on hover or focus.
-          The timeline shows months and years along the bottom axis with a vertical line indicating today's date.
+          The timeline shows months and years along the bottom axis with a vertical line indicating today&apos;s date.
           Bar colors indicate employment type as shown in the legend below the chart.
         </p>
       </div>

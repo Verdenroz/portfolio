@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Harvey Tseng - Developer Portfolio',
   description: 'Full Stack Developer specializing in fintech and stock market applications',
+  metadataBase: new URL('https://harveytseng.com'),
 }
 
 export default function RootLayout({

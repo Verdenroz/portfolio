@@ -143,6 +143,10 @@ function IconBadge({ technology, className = "" }: { technology: string; classNa
 }
 
 export function TechnologyBadge({ technology, className = "" }: TechnologyBadgeProps) {
+  // Always call hooks at the top level
+  const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+  
   // Check if this technology has a known shields.io logo
   const hasShieldsLogo = SHIELDS_LOGO_MAP[technology as keyof typeof SHIELDS_LOGO_MAP];
   
@@ -150,10 +154,6 @@ export function TechnologyBadge({ technology, className = "" }: TechnologyBadgeP
   if (!hasShieldsLogo) {
     return <IconBadge technology={technology} className={className} />;
   }
-  
-  // For technologies with shields logos, try shields.io first
-  const [imageError, setImageError] = useState(false);
-  const [imageLoading, setImageLoading] = useState(true);
   
   const shieldsUrl = getShieldsBadgeUrl(technology);
   
