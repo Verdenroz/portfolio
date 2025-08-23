@@ -2,6 +2,29 @@ import { Activity } from "@/types";
 
 export const activitiesData: Activity[] = [
   {
+    title: "Modular Hack Weekend",
+    date: "Jun 29, 2025",
+    duration: "48 hours",
+    description:
+      "Developed a high-performance Finance Mixture of Experts (MoE) system for Modular's Hack Weekend, creating a sophisticated financial routing engine. The system, built with Mojo compute kernels and PyTorch, intelligently routes financial queries across four specialized domains: equities, fixed income, commodities, and derivatives. Didn't place, but was a great learning experience with Mojo and Modular!",
+    tags: [
+      "Hackathon",
+      "Fintech",
+      "Mojo",
+      "PyTorch",
+      "Modular"
+    ],
+    projectLink: "https://github.com/Verdenroz/finance-moe-kernel"
+  },
+  {
+    title: "Completed GSWEP Spring 2025",
+    date: "Jun 17, 2025",
+    duration: "4 months",
+    description:
+      "My last time with GSWEP (now BSWEP)! Mentored by a Google senior SWE, I learned from the best on developer best practices and how to tackle Leetcode-style DSA problems. This time, focusing on dynamic programming and behavioral interviews.",
+    tags: ["GSWEP", "Mentorship", "DSA"],
+  },
+  {
     title: "2nd Place Ramhacks 2025",
     date: "April 27, 2025",
     duration: "48 hours",
@@ -37,8 +60,8 @@ export const activitiesData: Activity[] = [
     date: "January 3, 2024",
     duration: "4 months",
     description:
-      "Mentored by another Google senior SWE, I learned from the best on developer best practices and how to tackle Leetcode-style DSA problems.",
-    tags: ["Mentorship", "DSA"],
+      "Mentored by another Google senior SWE, I learned from the best on developer best practices and how to tackle Leetcode-style DSA problems. This time, focusing on graphs and system design.",
+    tags: ["GSWEP", "Mentorship", "DSA"],
   },
   {
     title: "AssemblyAI Hackathon 2024",
@@ -54,8 +77,8 @@ export const activitiesData: Activity[] = [
     date: "September 28, 2024",
     duration: "4 months",
     description:
-      "Mentored by a Google SWE, I learned from the best on developer best practices and how to tackle Leetcode-style DSA problems.",
-    tags: ["Mentorship", "DSA"],
+      "Mentored by a Google SWE, I learned from the best on developer best practices and how to tackle Leetcode-style DSA problems. Focused on arrays, strings, linked lists, and trees.",
+    tags: ["GSWEP", "Mentorship", "DSA"],
   },
   {
     title: "Finalist in Headerstarter's 2nd Hiring Hackathon",

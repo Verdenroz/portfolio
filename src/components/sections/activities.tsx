@@ -1,6 +1,7 @@
 "use client";
 import {
   Badge,
+  Button,
   Card,
   CardContent,
   CardDescription,
@@ -64,7 +65,7 @@ export default function Activities() {
           Recent Activities
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {activitiesData.map((activity, index) => (
+          {activitiesData.slice(0, 3).map((activity, index) => (
             <Card key={index}>
               <CardHeader>
                 <CardTitle>{activity.title}</CardTitle>
@@ -91,6 +92,15 @@ export default function Activities() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        {/* View More Button */}
+        <div className="text-center mt-12">
+          <Button asChild size="lg">
+            <Link href="/activities">
+              View All Activities
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
