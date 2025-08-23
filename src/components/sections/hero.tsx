@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui"
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
 export default function Hero() {
@@ -10,7 +10,22 @@ export default function Hero() {
     <section id="hero" className="bg-background text-foreground py-24 mt-28">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
         <motion.div 
-          className="md:w-1/2 mb-8 md:mb-0"
+          className="md:w-1/2 mb-8 md:mb-0 md:order-2"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Image
+            src="/HT_headshot.webp"
+            alt="Harvey Tseng"
+            width={300}
+            height={300}
+            priority
+            className="rounded-full border-4 border-primary shadow-lg"
+          />
+        </motion.div>
+        <motion.div 
+          className="md:w-1/2 md:order-1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -30,21 +45,6 @@ export default function Hero() {
               </a>
             </Button>
           </div>
-        </motion.div>
-        <motion.div 
-          className="md:w-1/2"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <Image
-            src="HT_headshot.webp"
-            alt="Harvey Tseng"
-            width={300}
-            height={300}
-            priority
-            className="rounded-full border-4 border-primary shadow-lg"
-          />
         </motion.div>
       </div>
     </section>

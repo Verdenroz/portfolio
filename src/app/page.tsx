@@ -1,11 +1,5 @@
-import Header from "@/components/header";
-import Hero from "@/components/hero";
-import Skills from "@/components/skills";
-import ProjectCarousel from "@/components/project-carousel";
-import Contributions from "@/components/contributions";
-import Experience from "@/components/experience";
-import Activities from "@/components/activities";
-import Footer from "@/components/footer";
+import { Header, Footer } from "@/components/layout";
+import { Hero, Skills, ProjectCarousel, Contributions, Experience, Activities } from "@/components/sections";
 
 export default function Home() {
   return (

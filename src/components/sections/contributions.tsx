@@ -2,9 +2,8 @@
 
 import type React from "react";
 
-import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
+import { useEffect, useState, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle, useToast } from "@/components/ui";
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
 import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
@@ -67,7 +66,7 @@ const ContributionCell: React.FC<{
 
   return (
     <div
-      className={`w-3 h-3 m-0.5 ${bgColor}`}
+      className={`w-2 h-2 sm:w-3 sm:h-3 m-0.5 sm:m-[2px] ${bgColor} rounded-[1px]`}
       title={`${count} contributions on ${format(parsedDate, "MMMM do")}`}
     />
   );
@@ -76,7 +75,8 @@ const ContributionCell: React.FC<{
 const ContributionChart: React.FC<{
   contributions: ContributionDay[];
   theme: "github" | "leetcode";
-}> = ({ contributions, theme }) => {  // Parse the ISO date string and set to noon to avoid timezone issues
+}> = ({ contributions, theme }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const firstContributionDate = contributions[0]?.date;
   // Handle case when there are no contributions yet
   const start = contributions.length > 0
@@ -113,6 +113,21 @@ const ContributionChart: React.FC<{
     weeks.push({ contributionDays: currentWeek });
   }
 
+  // Auto-scroll to the right to show recent dates first
+  useEffect(() => {
+    const scrollToRight = () => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        // Scroll to the rightmost position
+        container.scrollLeft = container.scrollWidth - container.clientWidth;
+      }
+    };
+
+    // Scroll after a brief delay to ensure content is rendered
+    const timeoutId = setTimeout(scrollToRight, 100);
+    return () => clearTimeout(timeoutId);
+  }, [contributions, theme]); // Re-scroll when data changes
+
   // Calculate month labels
   const monthLabels: { month: string; colspan: number }[] = [];
   let currentMonth = "";
@@ -135,51 +150,56 @@ const ContributionChart: React.FC<{
   });
 
   return (
-    <div className="overflow-x-auto scrollbar-hide">
-      <table className="table-fixed border-spacing-[3px] border-separate">
-        <thead>
-          <tr>
-            <th className="w-4" />
-            {monthLabels.map((label, i) => (
-              <th
-                key={i}
-                className="text-xs text-muted-foreground font-normal h-8"
-                colSpan={label.colspan}
-              >
-                {label.month}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Array.from({ length: 7 }).map((_, dayOfWeek) => (
-            <tr key={dayOfWeek}>
-              <td className="text-xs text-muted-foreground pr-2 w-4 text-right">
-                {dayOfWeek === 1
-                  ? "Mon"
-                  : dayOfWeek === 3
-                  ? "Wed"
-                  : dayOfWeek === 5
-                  ? "Fri"
-                  : ""}
-              </td>
-              {weeks.map((week, weekIndex) => {
-                const day = week.contributionDays[dayOfWeek];
-                if (!day) return <td key={weekIndex} className="w-4 h-4" />;
-                return (
-                  <td key={weekIndex} className="p-0 w-4 h-4">
-                    <ContributionCell
-                      count={day.contributionCount}
-                      date={day.date}
-                      theme={theme}
-                    />
-                  </td>
-                );
-              })}
+    <div 
+      ref={scrollContainerRef}
+      className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+    >
+      <div className="min-w-fit w-full">
+        <table className="table-fixed border-spacing-[2px] sm:border-spacing-[3px] border-separate min-w-full">
+          <thead>
+            <tr>
+              <th className="w-3 sm:w-4" />
+              {monthLabels.map((label, i) => (
+                <th
+                  key={i}
+                  className="text-xs text-muted-foreground font-normal h-6 sm:h-8 px-1"
+                  colSpan={label.colspan}
+                >
+                  {label.month}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {Array.from({ length: 7 }).map((_, dayOfWeek) => (
+              <tr key={dayOfWeek}>
+                <td className="text-xs text-muted-foreground pr-1 sm:pr-2 w-3 sm:w-4 text-right">
+                  {dayOfWeek === 1
+                    ? "Mon"
+                    : dayOfWeek === 3
+                    ? "Wed"
+                    : dayOfWeek === 5
+                    ? "Fri"
+                    : ""}
+                </td>
+                {weeks.map((week, weekIndex) => {
+                  const day = week.contributionDays[dayOfWeek];
+                  if (!day) return <td key={weekIndex} className="w-3 h-3 sm:w-4 sm:h-4" />;
+                  return (
+                    <td key={weekIndex} className="p-0 w-3 h-3 sm:w-4 sm:h-4">
+                      <ContributionCell
+                        count={day.contributionCount}
+                        date={day.date}
+                        theme={theme}
+                      />
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
@@ -275,7 +295,7 @@ export default function Contributions() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12 text-primary">
-            Proof I'm Still Alive
+            Proof I&apos;m Still Alive
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
             <Card className="animate-pulse">
@@ -314,7 +334,7 @@ export default function Contributions() {
     <section id="contributions" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-12 text-primary">
-          Proof I'm Still Alive
+          Proof I&apos;m Still Alive
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
           <Card className="w-full">
@@ -332,7 +352,7 @@ export default function Contributions() {
             <CardContent className="flex h-full items-center justify-center p-6">
               <div className="relative w-full max-w-2xl aspect-[2/1]">
                 <Image
-                  src={`https://github-readme-stats.vercel.app/api?username=verdenroz&show_icons=true&theme=${githubCardTheme}&hide_border=true`}
+                  src={`https://github-readme-stats-pied-nine-61.vercel.app/api?username=verdenroz&show_icons=true&theme=${githubCardTheme}&hide_border=true`}
                   alt="GitHub Stats"
                   fill
                   priority

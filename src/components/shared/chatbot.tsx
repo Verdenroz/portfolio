@@ -3,9 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircleIcon, XIcon, SendIcon } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { Button, Input, ScrollArea } from "@/components/ui"
 
 type Message = {
   text: string;
@@ -53,7 +51,7 @@ export default function ChatBot() {
             className="fixed bottom-20 right-4 w-80 h-96 bg-background border border-border rounded-lg shadow-lg overflow-hidden"
           >
             <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="font-semibold">Chat with Harvey's Assistant</h3>
+              <h3 className="font-semibold">Chat with Harvey&apos;s Assistant</h3>
               <Button variant="ghost" size="icon" onClick={toggleChat}>
                 <XIcon className="h-4 w-4" />
               </Button>
