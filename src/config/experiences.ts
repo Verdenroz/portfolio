@@ -10,16 +10,18 @@ export const experiencesData: Experience[] = [
     startDate: new Date(2025, 2), // March 2025
     endDate: null,
     description:
-      "Develop and maintain open source agentic AI software in the fields of finance and talent acquisition.",
+      "Lead engineer for AI-powered personalized newsletter platform and intern hiring automation system.",
     achievements: [
-      "Automated hiring and code judging processes for future interns",
-      "Created multi-agent system for real-time financial data and sentiment analysis",
+      "Built personalized article feed system using 1536-dimensional OpenAI embeddings with PostgreSQL vector similarity matching",
+      "Implemented real-time ML-powered preference learning system that adapts to user interactions with weighted feedback algorithms",
+      "Architected full-stack application with Next.js 15, React 19, Supabase backend, and Stripe payment integration",
+      "Automated hiring and code judging processes for future interns"
     ],
-    technologies: ["Python", "AI", "OpenAI API", "Selenium"],
+    technologies: ["Python", "AI", "Selenium", "Next.js", "Supabase", "PostgreSQL", "Stripe"],
     type: "internship",
     experienceGroup: "AI Development",
-  },
-  {
+    },
+    {
     id: "freelance-kevin-2025",
     company: "Kevin Schoovaerts",
     position: "Freelance Full-stack Developer",
@@ -28,14 +30,13 @@ export const experiencesData: Experience[] = [
     startDate: new Date(2025, 2), // March 2025
     endDate: null,
     description:
-      "Created personal portfolio website for stock trader, polling real-time data and setting up Stripe payment/paywall for client's current paying Substack subscribers.",
+      "Architected and delivered comprehensive fintech solutions including a production-ready portfolio platform with real-time market data integration, subscription monetization system, and a sophisticated stock investing prompt library with database-driven content management.",
     achievements: [
-      "Gathered requirements with weekly meetings and daily messages",
-      "Implemented agile development methodology",
-      "Integrated real-time data polling system",
-      "Set up Stripe payment gateway for subscription management",
+      "Engineered dynamic portfolio platform featuring real-time market data integration with Stripe paywall implementation for existing Substack subscriber base",
+      "Designed and implemented stock investing prompt library utilizing Supabase backend architecture with PostgreSQL database for scalable content management and retrieval",
+      "Established comprehensive project lifecycle management through structured weekly stakeholder meetings and daily communication protocols, ensuring iterative delivery and requirement alignment"
     ],
-    technologies: ["React", "Next.js", "Stripe", "Real-time APIs", "Agile"],
+    technologies: ["React", "Next.js", "Stripe", "Supabase", "PostgreSQL", "Agile"],
     type: "freelance",
     experienceGroup: "Full Stack Development",
   },
@@ -48,12 +49,10 @@ export const experiencesData: Experience[] = [
     startDate: new Date(2024, 8), // September 2024
     endDate: new Date(2025, 0), // January 2025
     description:
-      "Enhanced application interface by implementing interactive UI components using MUI in a React-based project.",
+      "Led enterprise data visualization migration from PowerBI to React-based charts, enhancing user analytics capabilities for XR application platform.",
     achievements: [
-      "Architectured data flow pipelines for user analytics",
-      "Led migration from PowerBI to React-based charts",
-      "Enhanced user interactions through custom UI components",
-      "Improved application performance and user experience",
+      "Enhanced application interface by implementing interactive UI components using MUI in a React-based project",
+      "Architectured data flow pipelines for user analytics, leading migration from PowerBI to React-based charts for enhanced user interactions",
     ],
     technologies: [
       "React",
@@ -89,12 +88,10 @@ export const experiencesData: Experience[] = [
     startDate: new Date(2024, 4), // May 2024
     endDate: new Date(2024, 5), // June 2024
     description:
-      "Delivered competitive market insights, emerging as 1 of 4 final presenters from a 412-member cohort.",
+      "Delivered strategic market analysis and growth recommendations for gaming analytics platform, selected as top presenter from 412-person competitive cohort.",
     achievements: [
-      "Selected as top 4 presenter from 412-member cohort",
-      "Identified strategic growth opportunities in gaming industry",
-      "Conducted thorough competitive market research",
-      "Presented findings to executive leadership",
+      "Delivered competitive market insights, emerging as 1 of 4 final presenters from a 412-member cohort",
+      "Identified strategic growth opportunities in the gaming industry through thorough market research",
     ],
     technologies: [
       "Market Research",
@@ -103,6 +100,24 @@ export const experiencesData: Experience[] = [
       "Strategic Planning",
     ],
     type: "internship",
+  },
+  {
+    id: "farmingdale-2023",
+    company: "Farmingdale State College",
+    position: "Mathematics Tutor",
+    location: "Farmingdale, NY",
+    timeframe: "September 2023 – Present",
+    startDate: new Date(2023, 8), // September 2023
+    endDate: null,
+    description:
+      "Tutored undergraduate students in mathematics, focusing on calculus and statistics, while developing personalized learning plans.",
+    achievements: [
+      "Aided over 50 students each semester in improving their math skills",
+      "Tailored teaching methods to individual learning styles",
+    ],
+    technologies: ["Mathematics", "Tutoring"],
+    type: "part-time",
+    experienceGroup: "Education",
   },
   {
     id: "coachart-2023",

@@ -7,9 +7,14 @@ export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 export { GalleryDialog } from './gallery-dialog';
 export { Input } from './input';
 export { ProjectBadge } from './project-badge';
+export { TechnologyBadge } from './technology-badge';
 export { ProjectEdgeNavigation } from './project-edge-navigation';
 export { ScrollArea } from './scroll-area';
+export { Sheet, SheetPortal, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetTrigger } from './sheet';
 export { SkillBadgeWithFallback } from './skill-badge-with-fallback';
 export { SkillIconWithFallback } from './skill-icon-with-fallback';
 export { Toaster } from './toast';
 export { toast, useToast } from './use-toast';
+export { GanttChart } from '../experience/gantt-chart';
+export { GanttBar } from '../experience/gantt-bar';
+export { GanttTimeline } from '../experience/gantt-timeline';
