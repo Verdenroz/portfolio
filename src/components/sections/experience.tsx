@@ -28,12 +28,8 @@ export default function Experience() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Work Experience
+            Professional Experience
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            My professional journey spanning {new Set(experiencesData.map(e => e.startDate.getFullYear())).size} years 
-            across {experiencesData.length} positions in various roles and industries.
-          </p>
         </motion.div>
 
 

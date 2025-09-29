@@ -101,7 +101,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-background/80 backdrop-blur-md shadow-md fixed top-0 left-0 right-0 z-50">
+    <header className="bg-background/80 backdrop-blur-md shadow-md fixed top-0 left-0 right-0 px-8 z-50">
       <nav className="container mx-auto py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
