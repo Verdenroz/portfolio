@@ -4,16 +4,23 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui"
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
+import { useEffect, useState } from 'react'
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section id="hero" className="bg-background text-foreground p-24 mt-16">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-around gap-8 md:gap-12">
         <motion.div
           className="md:w-1/2 md:order-2 flex justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={mounted ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: mounted ? 0.3 : 0 }}
         >
           <Image
             src="/HT_headshot.webp"
@@ -21,14 +28,15 @@ export default function Hero() {
             width={300}
             height={300}
             priority
+            sizes="(max-width: 768px) 240px, 300px"
             className="rounded-full border-4 border-primary shadow-lg"
           />
         </motion.div>
         <motion.div
           className="md:w-1/2 md:order-1 text-center md:text-left"
-          initial={{ opacity: 0, y: 20 }}
+          initial={mounted ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: mounted ? 0.3 : 0 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Harvey Tseng</h1>
           <h2 className="text-2xl md:text-3xl mb-6">Full Stack Developer</h2>
