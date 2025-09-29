@@ -18,7 +18,7 @@ export default function ProjectCarousel() {
         id="project-carousel"
         scrollAmount={400}
         gap="gap-x-6"
-        padding="px-[calc(50vw-clamp(18rem,42vmin,26rem)/2-7px)]"
+        padding="px-24"
         ariaLabel="Project Carousel"
         as="ul"
         controlsPosition="absolute"

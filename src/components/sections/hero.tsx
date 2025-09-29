@@ -7,10 +7,10 @@ import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
 export default function Hero() {
   return (
-    <section id="hero" className="bg-background text-foreground py-24 mt-28">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
-        <motion.div 
-          className="md:w-1/2 mb-8 md:mb-0 md:order-2"
+    <section id="hero" className="bg-background text-foreground p-24 mt-16">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-around gap-8 md:gap-12">
+        <motion.div
+          className="md:w-1/2 md:order-2 flex justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -24,8 +24,8 @@ export default function Hero() {
             className="rounded-full border-4 border-primary shadow-lg"
           />
         </motion.div>
-        <motion.div 
-          className="md:w-1/2 md:order-1"
+        <motion.div
+          className="md:w-1/2 md:order-1 text-center md:text-left"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -33,7 +33,7 @@ export default function Hero() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Harvey Tseng</h1>
           <h2 className="text-2xl md:text-3xl mb-6">Full Stack Developer</h2>
             <p className="text-xl mb-8">With a passion for fintech 💸 and birds! 🐦</p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 justify-center md:justify-start">
             <Button asChild variant="outline">
               <a href="https://github.com/Verdenroz" target="_blank" rel="noopener noreferrer">
                 <GitHubLogoIcon className="mr-2 h-4 w-4" /> GitHub
