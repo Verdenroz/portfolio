@@ -19,7 +19,6 @@ export const experiencesData: Experience[] = [
     ],
     technologies: ["Python", "AI", "Selenium", "Next.js", "Supabase", "PostgreSQL", "Stripe"],
     type: "internship",
-    experienceGroup: "AI Development",
     },
     {
     id: "freelance-kevin-2025",
@@ -38,7 +37,6 @@ export const experiencesData: Experience[] = [
     ],
     technologies: ["React", "Next.js", "Stripe", "Supabase", "PostgreSQL", "Agile"],
     type: "freelance",
-    experienceGroup: "Full Stack Development",
   },
   {
     id: "commons-xr-2024",
@@ -62,7 +60,6 @@ export const experiencesData: Experience[] = [
       "UI/UX",
     ],
     type: "internship",
-    experienceGroup: "Full Stack Development",
   },
   {
     id: "headstarter-2024",
@@ -77,7 +74,6 @@ export const experiencesData: Experience[] = [
     achievements: ["Finalist in 2 hiring hackathons"],
     technologies: ["React", "Next.js", "AI"],
     type: "internship",
-    experienceGroup: "AI Development",
   },
   {
     id: "mobalytics-2024",
@@ -117,7 +113,6 @@ export const experiencesData: Experience[] = [
     ],
     technologies: ["Mathematics", "Tutoring"],
     type: "part-time",
-    experienceGroup: "Education",
   },
   {
     id: "coachart-2023",
@@ -137,7 +132,6 @@ export const experiencesData: Experience[] = [
     ],
     technologies: ["Python", "Game Development", "Teaching", "Mentoring"],
     type: "volunteer",
-    experienceGroup: "Full Stack Development",
   },
   {
     id: "macys-2022",

@@ -1,19 +1,18 @@
-// Skills section types
-export interface SkillBadge {
+// Projects section types
+interface SkillBadge {
   name: string;
-  slug: string;
-  slugOverride?: string;
+  slug: string; // Simple Icons slug, optionally with color code (e.g., "python/3776AB")
+  slugOverride?: string; // Full URL to icon image if not using Simple Icons
   description: string;
   proficiency: "Proficient" | "Familiar" | "Learning";
 }
 
 export interface SkillCategory {
   name: string;
-  color: string; // accent color (hex)
+  color: string; // Tailwind CSS color code (e.g., "F97316" for orange-500)
   badges: SkillBadge[];
 }
 
-// Projects section types
 export interface ProjectSkill {
   name: string;
   slug: string;
@@ -60,7 +59,6 @@ export interface Experience {
   achievements: string[];
   technologies: string[];
   type: "internship" | "freelance" | "full-time" | "part-time" | "volunteer";
-  experienceGroup?: string; // Group category for current experiences (e.g., "Full Stack Development")
 }
 
 // Activities section types

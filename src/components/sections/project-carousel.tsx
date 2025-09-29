@@ -18,7 +18,7 @@ export default function ProjectCarousel() {
         id="project-carousel"
         scrollAmount={400}
         gap="gap-x-6"
-        padding="px-[calc(50vw-clamp(18rem,42vmin,26rem)/2-7px)]"
+        padding="px-24"
         ariaLabel="Project Carousel"
         as="ul"
         controlsPosition="absolute"
@@ -94,9 +94,10 @@ export default function ProjectCarousel() {
                   src={project.image}
                   alt={project.description}
                   className="pointer-events-auto h-full w-full object-cover transition-[transform,opacity] duration-700 group-hover:scale-105 group-hover:opacity-75 group-focus-visible:scale-105 group-focus-visible:opacity-75"
-                  width={3840}
-                  height={2160}
-                  sizes="(max-width: 3840px) 100vw, 3840px"
+                  width={416}
+                  height={624}
+                  sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 416px"
+                  loading="lazy"
                 />
               </div>
             </Link>
