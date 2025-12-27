@@ -1,18 +1,25 @@
 import { Project } from "@/types";
 
+const parseProjectDate = (date: string) => {
+  const parts = date.split(" - ").map((part) => part.trim());
+  const startStr = parts[0] ?? "";
+  const endStr = parts[1] ?? startStr;
+
+  const start = Date.parse(startStr);
+  const end = endStr === "Present" ? Date.parse("9999-12-31") : Date.parse(endStr);
+
+  return {
+    start: Number.isFinite(start) ? start : 0,
+    end: Number.isFinite(end) ? end : 0,
+  };
+};
+
 export const projectsData: Project[] = [
   {
     title: "Chimeric",
     description:
       "Unified Python interface for multiple LLM providers with automatic provider detection and seamless switching.",
-    keypoints: [
-      "Multi-provider support for 7 major AI providers including OpenAI, Anthropic, Google AI, xAI Grok, Groq, Cohere, and Cerebras",
-      "Automatic API key detection from environment variables with seamless provider switching",
-      "Unified interface providing consistent API across all providers with streaming, async/await, and function-calling support",
-      "Strict code quality with comprehensive linting using Ruff, basedpyright type checking, and codespell validation",
-      "PyPI package distribution with comprehensive documentation and CI/CD pipeline achieving 100% coverage"
-    ],
-    date: "2025-06-01 - Present",
+    date: "2025-06-01 - 2025-09-01",
     skills: [
       { name: "Python", slug: "python" },
       { name: "Pytest", slug: "pytest" },
@@ -47,13 +54,6 @@ export const projectsData: Project[] = [
     title: "FinanceQuery",
     description:
       "Production-grade RESTful API providing real-time financial data with Redis caching and WebSocket streaming capabilities.",
-    keypoints: [
-      "Optimized web scraping using lxml and asyncio for high throughput data extraction, extending to international markets",
-      "High-performance data pipeline with efficient Redis caching strategies, achieving sub-200ms response times",
-      "Real-time market streaming via WebSocket and SSE with Cython integration for accelerated technical indicator calculations",
-      "Dockerized deployment supporting AWS Lambda and Render with automated rate limiting and API security",
-      "Maintains above 95% test coverage with pytest, ensuring robust and reliable API functionality",
-    ],
     date: "2024-04-01 - Present",
     skills: [
       { name: "Python", slug: "python" },
@@ -89,13 +89,7 @@ export const projectsData: Project[] = [
     title: "VerdaxMarket",
     description:
       "Modular Android application delivering institutional-quality stock market insights through MVVM architecture.",
-    keypoints: [
-      "MVVM architecture with multi-module design and dependency injection using Hilt & Dagger",
-      "Jetpack Compose UI with Material themes and responsive design patterns",
-      "Firebase integration with Authentication and Crashlytics",
-      "Algolia-powered search providing user analytics for stocks throughout international markets",
-    ],
-    date: "2024-01-01 - Present",
+    date: "2024-01-01 - 2025-09-01",
     skills: [
       { name: "Kotlin", slug: "kotlin" },
       { name: "Android", slug: "android" },
@@ -120,12 +114,6 @@ export const projectsData: Project[] = [
     title: "JobScrub",
     description:
       "Full-stack AI platform revolutionizing job search through intelligent resume-to-job matching and community-driven insights.",
-    keypoints: [
-      "Multi-agent AI system with LangGraph orchestration and HuggingFace transformers for resume analysis",
-      "Vector similarity search implementation using Pinecone for semantic job matching",
-      "'Scrubby' assistant with context-aware conversation memory and chat persistence",
-      "Intelligent filtering and recommendation system streamlining job search workflow"
-    ],
     date: "2025-05-22",
     skills: [
       { name: "Next.js", slug: "nextdotjs" },
@@ -157,12 +145,6 @@ export const projectsData: Project[] = [
     title: "GoogleFinanceAPI",
     description:
       "A web scraper for financial data using ExpressJS, axios, and cheerio.",
-    keypoints: [
-      "Web scraping tool for Google Finance using Node.js and Express",
-      "Comprehensive API documentation with Swagger integration",
-      "Firebase hosting with reliable cloud deployment",
-      "Clean data extraction using axios and cheerio libraries"
-    ],
     date: "2024-05-31",
     skills: [
       { name: "Node.js", slug: "nodedotjs" },
@@ -187,12 +169,6 @@ export const projectsData: Project[] = [
     title: "StockDiviner",
     description:
       "Cross-platform desktop application combining traditional technical analysis with alternative market indicators.",
-    keypoints: [
-      "Led cross-functional development team as SCRUM Master implementing agile methodologies",
-      "JavaFX application with MVC patterns and clean architecture principles",
-      "Comprehensive unit testing with JUnit framework and Test-Driven Development practices",
-      "Collaborative Figma prototyping for intuitive UI/UX design and user workflow optimization"
-    ],
     date: "2024-05-31",
     skills: [
       { name: "Java/JavaFX", slug: "openjdk" },
@@ -209,4 +185,13 @@ export const projectsData: Project[] = [
       github: "https://github.com/verdenroz/StockDiviner",
     },
   },
-];
+]
+  .slice()
+  .sort((a, b) => {
+    const aDate = parseProjectDate(a.date);
+    const bDate = parseProjectDate(b.date);
+
+    if (aDate.end !== bDate.end) return bDate.end - aDate.end;
+    if (aDate.start !== bDate.start) return bDate.start - aDate.start;
+    return a.title.localeCompare(b.title);
+  });

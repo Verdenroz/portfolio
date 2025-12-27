@@ -7,6 +7,7 @@ import { ZoomIn, GitBranch, ExternalLink, BookOpen, Play } from "lucide-react";
 import type { Project } from "@/types";
 import { Header } from "@/components/layout";
 import { SkillIconWithFallback } from "@/components/ui";
+import { formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
 
 interface ProjectPageClientProps {
   project: Project;
@@ -34,29 +35,12 @@ export default function ProjectPageClient({ project, prev, next }: ProjectPageCl
                                bg-clip-text text-transparent leading-[1.1] tracking-tight mb-6">
                   {project.title}
                 </h1>
-                <time className="inline-flex items-center gap-2 text-base font-medium 
+                <time
+                  dateTime={getProjectStartDateISO(project.date)}
+                  className="inline-flex items-center gap-2 text-base font-medium 
                                 text-muted-foreground bg-secondary/50 px-3 py-1.5 
                                 rounded-full border mb-6">
-                  {(() => {
-                    if (project.date === "Present") return "Present";
-                    if (project.date.includes(" - Present")) {
-                      const startDate = project.date.split(" - Present")[0];
-                      // Parse date parts manually to avoid timezone issues
-                      const [year, month, day] = startDate.split("-").map(Number);
-                      const date = new Date(year, month - 1, day); // month is 0-indexed
-                      return `${date.toLocaleDateString("en-US", {
-                        month: "long",
-                        year: "numeric",
-                      })} - Present`;
-                    }
-                    // Parse date parts manually to avoid timezone issues
-                    const [year, month, day] = project.date.split("-").map(Number);
-                    const date = new Date(year, month - 1, day); // month is 0-indexed
-                    return date.toLocaleDateString("en-US", {
-                      month: "long",
-                      year: "numeric",
-                    });
-                  })()}
+                  {formatProjectDateRange(project.date)}
                 </time>
               </div>
 

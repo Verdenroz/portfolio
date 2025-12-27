@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Carousel, SkillBadgeWithFallback } from "@/components/ui";
 import { projectsData } from "@/config/projects";
-import { createSlug } from "@/lib/projects";
+import { createSlug, formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
 
 
 export default function ProjectCarousel() {
@@ -37,33 +37,10 @@ export default function ProjectCarousel() {
               <article className="absolute inset-0 flex flex-col items-center justify-center gap-y-2 bg-neutral-900/60 p-4 text-center transition-opacity duration-300 md:opacity-0 md:backdrop-blur-sm group-hover:opacity-100 group-focus-visible:opacity-100 z-10">
                 <div className="overflow-hidden">
                   <time
-                    dateTime={
-                      project.date === "Present"
-                        ? new Date().toISOString().split("T")[0]
-                        : project.date.includes(" - Present")
-                        ? project.date.split(" - Present")[0]
-                        : project.date
-                    }
+                    dateTime={getProjectStartDateISO(project.date)}
                     className="block text-xs uppercase text-neutral-200/90 transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0 md:translate-y-full"
                   >
-                    {(() => {
-                      if (project.date === "Present") return "Present";
-                      if (project.date.includes(" - Present")) {
-                        const startDate = project.date.split(" - Present")[0];
-                        const [year, month, day] = startDate.split("-").map(Number);
-                        const date = new Date(year, month - 1, day);
-                        return `${date.toLocaleDateString("en-US", {
-                          month: "long",
-                          year: "numeric",
-                        })} - Present`;
-                      }
-                      const [year, month, day] = project.date.split("-").map(Number);
-                      const date = new Date(year, month - 1, day);
-                      return date.toLocaleDateString("en-US", {
-                        month: "long",
-                        year: "numeric",
-                      });
-                    })()}
+                    {formatProjectDateRange(project.date)}
                   </time>
                 </div>
                 <div className="overflow-hidden">

@@ -21,7 +21,6 @@ export interface ProjectSkill {
 export interface Project {
   title: string;
   description: string;
-  keypoints: string[];
   date: string;
   skills: ProjectSkill[];
   image: string;

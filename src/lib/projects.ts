@@ -19,6 +19,41 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projectsData.find(project => createSlug(project.title) === slug);
 }
 
+function formatProjectMonthYear(dateStr: string): string {
+  if (dateStr === "Present") return "Present";
+
+  const [year, month, day] = dateStr.split("-").map(Number);
+  if (!year || !month || !day) return dateStr;
+
+  // Construct using local time to avoid timezone shifting the day.
+  const date = new Date(year, month - 1, day);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export function formatProjectDateRange(date: string): string {
+  if (date === "Present") return "Present";
+
+  const [startRaw, endRaw] = date.split(" - ").map((p) => p.trim());
+  if (!endRaw) return formatProjectMonthYear(startRaw);
+
+  const startLabel = formatProjectMonthYear(startRaw);
+  const endLabel = formatProjectMonthYear(endRaw);
+  return `${startLabel} - ${endLabel}`;
+}
+
+export function getProjectStartDateISO(date: string): string {
+  if (date === "Present") return new Date().toISOString().split("T")[0];
+  const [startRaw] = date.split(" - ");
+  const start = (startRaw ?? "").trim();
+  // Best effort: if this isn't ISO, fall back to today.
+  return /^\d{4}-\d{2}-\d{2}$/.test(start)
+    ? start
+    : new Date().toISOString().split("T")[0];
+}
+
 /**
  * Gets all project slugs for static generation
  */
