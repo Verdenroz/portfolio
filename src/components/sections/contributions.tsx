@@ -3,10 +3,11 @@
 import type React from "react";
 
 import { useEffect, useState, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle, useToast } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
 import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const fetchGitHubContributions = async () => {
   const response = await fetch("/api/github");
@@ -218,7 +219,6 @@ export default function Contributions() {
     useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { toast } = useToast();
 
   useEffect(() => {
     const getGithubContributions = async () => {
@@ -237,10 +237,8 @@ export default function Contributions() {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
-        toast({
-          title: "Error",
+        toast.error("Error", {
           description: "Failed to fetch GitHub Contributions",
-          variant: "destructive",
         });
       } finally {
         setIsLoading(false);
@@ -276,17 +274,15 @@ export default function Contributions() {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
-        toast({
-          title: "Error",
+        toast.error("Error", {
           description: "Failed to fetch LeetCode Contributions",
-          variant: "destructive",
         });
       }
     };
 
     getLeetCodeContributions();
     getGithubContributions();
-  }, [toast]);
+  }, []);
 
   if (isLoading || error) {
     return (

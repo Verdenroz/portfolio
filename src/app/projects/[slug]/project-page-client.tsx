@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { Button, GalleryDialog, ProjectEdgeNavigation, ProjectBadge } from "@/components/ui";
 import { ZoomIn, GitBranch, ExternalLink, BookOpen, Play } from "lucide-react";
-import { motion } from "framer-motion";
 import type { Project } from "@/types";
 import { Header } from "@/components/layout";
 import { SkillIconWithFallback } from "@/components/ui";

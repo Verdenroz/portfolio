@@ -73,7 +73,7 @@ export default function NotFound() {
               <h3 className="text-lg font-medium text-foreground mb-6">
                 Popular Sections
               </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
                 <Link 
                   href="/#skills"
                   className="group p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-center"
