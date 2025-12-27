@@ -21,7 +21,6 @@ export interface ProjectSkill {
 export interface Project {
   title: string;
   description: string;
-  keypoints: string[];
   date: string;
   skills: ProjectSkill[];
   image: string;
@@ -56,23 +55,7 @@ export interface Experience {
   startDate: Date;
   endDate: Date | null; // null for current positions
   description: string;
-  achievements: string[];
   technologies: string[];
-  type: "internship" | "freelance" | "full-time" | "part-time" | "volunteer";
+  image: string;
 }
 
-// Activities section types
-export interface Mention {
-  text: string;
-  link: string;
-}
-
-export interface Activity {
-  title: string;
-  date: string;
-  duration: string;
-  description: string;
-  tags: string[];
-  mentions?: Mention[];
-  projectLink?: string;
-}
