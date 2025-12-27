@@ -149,9 +149,9 @@ export default function Header() {
             </Button>
           ) : (
             <div className="flex items-center space-x-4">
-              {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
               <NavItem to="contributions">Contributions</NavItem>
               <NavItem to="experience">Experience</NavItem>
+              {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
             </div>
           )}
         </div>
@@ -165,9 +165,9 @@ export default function Header() {
               transition={{ duration: 0.2 }}
               className="mt-4 flex flex-col space-y-2 overflow-hidden"
             >
-              {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
               <NavItem to="contributions">Contributions</NavItem>
               <NavItem to="experience">Experience</NavItem>
+              {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
             </motion.div>
           )}
         </AnimatePresence>

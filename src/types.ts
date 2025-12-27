@@ -56,8 +56,7 @@ export interface Experience {
   startDate: Date;
   endDate: Date | null; // null for current positions
   description: string;
-  achievements: string[];
   technologies: string[];
-  type: "internship" | "freelance" | "full-time" | "part-time" | "volunteer";
+  image: string;
 }
 

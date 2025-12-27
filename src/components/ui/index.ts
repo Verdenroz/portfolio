@@ -15,6 +15,3 @@ export { SkillBadgeWithFallback } from './skill-badge-with-fallback';
 export { SkillIconWithFallback } from './skill-icon-with-fallback';
 export { Toaster } from './toast';
 export { toast, useToast } from './use-toast';
-export { GanttChart } from '../experience/gantt-chart';
-export { GanttBar } from '../experience/gantt-bar';
-export { GanttTimeline } from '../experience/gantt-timeline';

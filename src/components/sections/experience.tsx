@@ -1,48 +1,132 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Experience } from "@/types";
 import { experiencesData } from "@/config/experiences";
-import { GanttChart } from "@/components/experience/gantt-chart";
+import { SkillBadgeWithFallback } from "@/components/ui";
 
-// Removed filter functionality
+// Calculate duration in months
+function getDurationMonths(startDate: Date, endDate: Date | null): number {
+  const end = endDate || new Date();
+  const months = (end.getFullYear() - startDate.getFullYear()) * 12 +
+                 (end.getMonth() - startDate.getMonth());
+  return Math.max(1, months);
+}
 
-// Main Experience Timeline Component
+// Determine grid size based on duration
+function getGridSize(months: number): "large" | "medium" | "small" {
+  if (months >= 6) return "large";
+  if (months >= 3) return "medium";
+  return "small";
+}
+
+const gridSizeClasses = {
+  large: "md:col-span-2 md:row-span-2",
+  medium: "md:col-span-1 md:row-span-2",
+  small: "md:col-span-1 md:row-span-2", // min 2 rows to show image
+};
+
+function ExperienceCard({
+  experience,
+  index,
+  size
+}: {
+  experience: Experience;
+  index: number;
+  size: "large" | "medium" | "small";
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className={`group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/30 transition-all ${gridSizeClasses[size]}`}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[#0a0a0a]">
+        <Image
+          src={experience.image}
+          alt={experience.company}
+          fill
+          quality={90}
+          className="object-contain p-8 transition-transform duration-500 group-hover:scale-105"
+          sizes={size === "large" ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 25vw"}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+      </div>
+
+      {/* Content Overlay */}
+      <div className="relative h-full flex flex-col justify-end p-5 overflow-hidden">
+        {/* Header - always visible */}
+        <div className="mb-2">
+          <p className="text-sm text-neutral-300 mb-1">{experience.timeframe}</p>
+          <h3 className={`font-bold text-white mb-1 ${size === "small" ? "text-lg" : "text-xl"}`}>
+            {experience.position}
+          </h3>
+          <p className="text-primary font-semibold">{experience.company}</p>
+        </div>
+
+        {/* Description - revealed on hover */}
+        <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-out">
+          <p className="text-sm text-neutral-200 py-2 line-clamp-3">
+            {experience.description}
+          </p>
+        </div>
+
+        {/* Tech badges - always visible */}
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {experience.technologies.slice(0, size === "large" ? 5 : size === "medium" ? 3 : 2).map((tech) => (
+            <SkillBadgeWithFallback
+              key={tech}
+              skillName={tech}
+              skillSlug={tech.toLowerCase().replace(/\s+/g, "")}
+              width={70}
+              height={20}
+              className="h-5 w-auto"
+            />
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 export default function Experience() {
-  // Process experiences without filtering
-  const allExperiences = useMemo(() => {
-    return [...experiencesData].sort(
-      (a, b) => b.startDate.getTime() - a.startDate.getTime()
-    );
+  const experiencesWithSize = useMemo(() => {
+    return experiencesData
+      .map(exp => ({
+        ...exp,
+        duration: getDurationMonths(exp.startDate, exp.endDate),
+        size: getGridSize(getDurationMonths(exp.startDate, exp.endDate)),
+      }))
+      .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
   }, []);
 
   return (
-    <section id="experience" className="py-20">
-      <div className="container mx-auto px-4 w-full">
-        {/* Header */}
-        <motion.div
+    <section id="experience" className="py-16">
+      <div className="container mx-auto px-6">
+        <motion.h2
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold text-center text-primary mb-10"
         >
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Professional Experience
-          </h2>
-        </motion.div>
+          Experience
+        </motion.h2>
 
-
-        {/* Gantt Chart */}
-        <div className="relative">
-          {/* Gantt Chart Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <GanttChart experiences={allExperiences} />
-          </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[200px]">
+          {experiencesWithSize.map((experience, index) => (
+            <ExperienceCard
+              key={experience.id}
+              experience={experience}
+              index={index}
+              size={experience.size}
+            />
+          ))}
         </div>
       </div>
     </section>
