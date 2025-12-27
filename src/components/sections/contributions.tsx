@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle, useToast } from "@/components
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
 import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 
 const fetchGitHubContributions = async () => {
   const response = await fetch("/api/github");
@@ -43,23 +42,23 @@ const ContributionCell: React.FC<{
   const bgColor =
     theme === "github"
       ? count === 0
-        ? "bg-gray-300 dark:bg-gray-500"
+        ? "bg-gray-500"
         : count <= 5
-        ? "bg-green-400 dark:bg-green-900"
+        ? "bg-green-900"
         : count <= 10
-        ? "bg-green-500 dark:bg-green-700"
+        ? "bg-green-700"
         : count <= 20
-        ? "bg-green-600 dark:bg-green-600"
-        : "bg-green-700 dark:bg-green-500"
+        ? "bg-green-600"
+        : "bg-green-500"
       : count === 0
-      ? "bg-gray-300 dark:bg-gray-500"
+      ? "bg-gray-500"
       : count <= 5
-      ? "bg-orange-300 dark:bg-orange-900"
+      ? "bg-orange-900"
       : count <= 10
-      ? "bg-orange-400 dark:bg-orange-700"
+      ? "bg-orange-700"
       : count <= 20
-      ? "bg-orange-500 dark:bg-orange-600"
-      : "bg-orange-600 dark:bg-orange-500";
+      ? "bg-orange-600"
+      : "bg-orange-500";
 
   // Parse the ISO date string and set to noon to avoid timezone issues
   const parsedDate = setHours(parseISO(date), 12);
@@ -205,9 +204,8 @@ const ContributionChart: React.FC<{
 };
 
 export default function Contributions() {
-  const { resolvedTheme } = useTheme();
-  const githubCardTheme = resolvedTheme === "dark" ? "vue-dark" : "vue";
-  const leetCodeCardTheme = resolvedTheme === "dark" ? "nord" : "light";
+  const githubCardTheme = "vue-dark";
+  const leetCodeCardTheme = "nord";
   const [contributions, setGitHubContributions] = useState<ContributionDay[]>(
     []
   );

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Home, Briefcase, User, Mail } from 'lucide-react';
+import { Home, Briefcase, User } from 'lucide-react';
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import { Header } from '@/components/layout';
 import { Button } from '@/components/ui';
@@ -98,7 +98,7 @@ export default function NotFound() {
                   </span>
                 </Link>
 
-                <Link 
+                <Link
                   href="/#contributions"
                   className="group p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-center"
                 >
@@ -107,18 +107,6 @@ export default function NotFound() {
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     GitHub
-                  </span>
-                </Link>
-
-                <Link 
-                  href="/#activities"
-                  className="group p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-center"
-                >
-                  <div className="w-8 h-8 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform">
-                    <Mail className="w-full h-full" />
-                  </div>
-                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                    Activities
                   </span>
                 </Link>
               </div>

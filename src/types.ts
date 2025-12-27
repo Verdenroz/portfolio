@@ -61,18 +61,3 @@ export interface Experience {
   type: "internship" | "freelance" | "full-time" | "part-time" | "volunteer";
 }
 
-// Activities section types
-export interface Mention {
-  text: string;
-  link: string;
-}
-
-export interface Activity {
-  title: string;
-  date: string;
-  duration: string;
-  description: string;
-  tags: string[];
-  mentions?: Mention[];
-  projectLink?: string;
-}

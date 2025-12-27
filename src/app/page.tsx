@@ -12,9 +12,6 @@ const Contributions = dynamic(() => import("@/components/sections/contributions"
 const Experience = dynamic(() => import("@/components/sections/experience"), {
   ssr: false,
 });
-const Activities = dynamic(() => import("@/components/sections/activities"), {
-  ssr: false,
-});
 
 export default function Home() {
   return (
@@ -24,8 +21,6 @@ export default function Home() {
       <ProjectCarousel />
       <Contributions />
       <Experience />
-      <Activities />
-      {/* <ChatBot /> */}
       <div className="mt-auto">
         <Footer />
       </div>

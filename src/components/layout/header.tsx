@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation"
 import { Link as ScrollLink } from "react-scroll"
 import Link from "next/link"
 import { Button } from "@/components/ui"
-import { ThemeToggle } from "@/components/shared"
 import { Menu, X, ChevronLeft } from "lucide-react"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { motion, AnimatePresence } from "framer-motion"
@@ -21,9 +20,6 @@ export default function Header() {
   
   // Check if we're on a project page
   const isProjectPage = pathname?.startsWith('/projects/')
-  
-  // Check if we're on activities page
-  const isActivitiesPage = pathname === '/activities'
 
   // Navigation handler for project pages
   const handleProjectPageNavigation = (sectionId: string) => {
@@ -77,11 +73,11 @@ export default function Header() {
     to: string
     children: React.ReactNode
   }) => {
-    if (isProjectPage || isActivitiesPage) {
-      // On project or activities pages, use navigation handler to return to home
+    if (isProjectPage) {
+      // On project pages, use navigation handler to return to home
       return (
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           onClick={() => handleProjectPageNavigation(to)}
           className="cursor-pointer"
         >
@@ -89,7 +85,7 @@ export default function Header() {
         </Button>
       )
     }
-    
+
     // On home page, use ScrollLink for smooth scrolling
     return (
       <Button variant="ghost" asChild onClick={() => setIsMenuOpen(false)}>
@@ -125,25 +121,6 @@ export default function Header() {
                     </Link>
                   </Button>
                 </motion.div>
-              ) : isActivitiesPage ? (
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Button
-                    variant="ghost"
-                    asChild
-                    className="flex items-center gap-2 hover:bg-primary/10 transition-colors group"
-                  >
-                    <Link href="/#activities">
-                      <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                      <span className="hidden sm:inline">Back to Activities</span>
-                      <span className="sm:hidden">Back</span>
-                    </Link>
-                  </Button>
-                </motion.div>
               ) : (
                 showTitle && (
                   <motion.div
@@ -167,19 +144,14 @@ export default function Header() {
           </div>
 
           {isMobile ? (
-            <div className="flex items-center">
-              <ThemeToggle />
-              <Button variant="ghost" onClick={toggleMenu} className="ml-2">
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </Button>
-            </div>
+            <Button variant="ghost" onClick={toggleMenu}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
           ) : (
             <div className="flex items-center space-x-4">
               {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
               <NavItem to="contributions">Contributions</NavItem>
               <NavItem to="experience">Experience</NavItem>
-              {!isActivitiesPage && <NavItem to="activities">Activities</NavItem>}
-              <ThemeToggle />
             </div>
           )}
         </div>
@@ -196,7 +168,6 @@ export default function Header() {
               {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
               <NavItem to="contributions">Contributions</NavItem>
               <NavItem to="experience">Experience</NavItem>
-              {!isActivitiesPage && <NavItem to="activities">Activities</NavItem>}
             </motion.div>
           )}
         </AnimatePresence>
