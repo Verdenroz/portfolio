@@ -3,8 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { Button, GalleryDialog, ProjectEdgeNavigation, ProjectBadge } from "@/components/ui";
-import { ZoomIn, GitBranch, ExternalLink, BookOpen, Play, Sparkles } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { ZoomIn, GitBranch, ExternalLink, BookOpen, Play } from "lucide-react";
+import { motion } from "framer-motion";
 import type { Project } from "@/types";
 import { Header } from "@/components/layout";
 import { SkillIconWithFallback } from "@/components/ui";
@@ -16,9 +16,6 @@ interface ProjectPageClientProps {
 }
 
 export default function ProjectPageClient({ project, prev, next }: ProjectPageClientProps) {
-  const highlightsRef = React.useRef(null);
-  const isHighlightsInView = useInView(highlightsRef, { once: true, margin: "-50px" });
-
   return (
     <main className="min-h-screen bg-background" role="main">
       <Header />
@@ -249,85 +246,6 @@ export default function ProjectPageClient({ project, prev, next }: ProjectPageCl
                 </div>
               </section>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Highlights Section */}
-      <section className="py-16 relative">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="relative mx-auto px-8 md:px-16 lg:px-24 max-w-4xl">
-          <div className="max-w-3xl mx-auto">
-            <motion.div 
-              ref={highlightsRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isHighlightsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-full rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-accent/5 
-                        border border-primary/20 p-8 shadow-lg"
-            >
-              <div className="flex items-center gap-3 mb-6 justify-center">
-                <motion.div
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={isHighlightsInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                  transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 300 }}
-                >
-                  <Sparkles className="h-6 w-6 text-primary" />
-                </motion.div>
-                <h3 className="text-2xl font-semibold text-primary">Highlights</h3>
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={isHighlightsInView ? { scaleX: 1 } : { scaleX: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent max-w-16"
-                />
-              </div>
-              
-              <div className="space-y-3">
-                {project.keypoints.map((point, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isHighlightsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: 0.6 + (index * 0.1),
-                      ease: "easeOut"
-                    }}
-                    className="group relative p-4 rounded-lg
-                             hover:bg-gradient-to-r hover:from-primary/5 hover:to-transparent
-                             transition-all duration-300 cursor-default"
-                  >
-                    <div className="flex items-start gap-3">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={isHighlightsInView ? { scale: 1 } : { scale: 0 }}
-                        transition={{ 
-                          duration: 0.3, 
-                          delay: 0.8 + (index * 0.1),
-                          type: "spring",
-                          stiffness: 400
-                        }}
-                        className="flex-shrink-0 w-2 h-2 bg-gradient-to-r from-primary to-accent 
-                                 rounded-full mt-2.5 group-hover:scale-125 transition-transform duration-200"
-                      />
-                      <p className="text-foreground/90 leading-relaxed font-medium group-hover:text-foreground 
-                                  transition-colors duration-300">
-                        {point}
-                      </p>
-                    </div>
-                    
-                    <motion.div
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-primary to-accent 
-                               origin-left opacity-0 group-hover:opacity-100"
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
