@@ -52,42 +52,44 @@ function ExperienceCard({
           alt={experience.company}
           fill
           quality={90}
-          className="object-contain p-8 transition-transform duration-500 group-hover:scale-105"
+          className="object-contain p-4 sm:p-6 md:p-8 transition-transform duration-500 group-hover:scale-105"
           sizes={size === "large" ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 25vw"}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/20 md:from-black/90 md:via-black/50" />
       </div>
 
       {/* Content Overlay */}
-      <div className="relative h-full flex flex-col justify-end p-5 overflow-hidden">
-        {/* Header - always visible */}
-        <div className="mb-2">
-          <p className="text-sm text-neutral-300 mb-1">{experience.timeframe}</p>
-          <h3 className={`font-bold text-white mb-1 ${size === "small" ? "text-lg" : "text-xl"}`}>
-            {experience.position}
-          </h3>
-          <p className="text-primary font-semibold">{experience.company}</p>
-        </div>
+      <div className="relative h-full flex flex-col justify-end p-4 sm:p-5 overflow-hidden">
+        <div className="rounded-lg bg-black/60 backdrop-blur-sm p-4 md:rounded-none md:bg-transparent md:backdrop-blur-none md:p-0">
+          {/* Header - always visible */}
+          <div className="mb-2">
+            <p className="text-sm text-neutral-300 mb-1">{experience.timeframe}</p>
+            <h3 className={`font-bold text-white mb-1 ${size === "small" ? "text-lg" : "text-xl"}`}>
+              {experience.position}
+            </h3>
+            <p className="text-primary font-semibold">{experience.company}</p>
+          </div>
 
-        {/* Description - revealed on hover */}
-        <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-300 ease-out">
-          <p className="text-sm text-neutral-200 py-2 line-clamp-3">
-            {experience.description}
-          </p>
-        </div>
+          {/* Description - always visible on mobile, hover-revealed on desktop */}
+          <div className="max-h-40 overflow-hidden transition-all duration-300 ease-out md:max-h-0 md:group-hover:max-h-40">
+            <p className="text-sm text-neutral-200 py-2 line-clamp-4 md:line-clamp-3">
+              {experience.description}
+            </p>
+          </div>
 
-        {/* Tech badges - always visible */}
-        <div className="flex flex-wrap gap-1.5 mt-2">
-          {experience.technologies.slice(0, size === "large" ? 5 : size === "medium" ? 3 : 2).map((tech) => (
-            <SkillBadgeWithFallback
-              key={tech}
-              skillName={tech}
-              skillSlug={tech.toLowerCase().replace(/\s+/g, "")}
-              width={70}
-              height={20}
-              className="h-5 w-auto"
-            />
-          ))}
+          {/* Tech badges - always visible */}
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {experience.technologies.slice(0, size === "large" ? 5 : size === "medium" ? 3 : 2).map((tech) => (
+              <SkillBadgeWithFallback
+                key={tech}
+                skillName={tech}
+                skillSlug={tech.toLowerCase().replace(/\s+/g, "")}
+                width={70}
+                height={20}
+                className="h-5 w-auto"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </motion.article>
@@ -118,7 +120,7 @@ export default function Experience() {
           Experience
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[200px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[260px] sm:auto-rows-[240px] md:auto-rows-[200px]">
           {experiencesWithSize.map((experience, index) => (
             <ExperienceCard
               key={experience.id}
