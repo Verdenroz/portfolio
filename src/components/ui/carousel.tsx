@@ -160,7 +160,6 @@ export function Carousel({
   ariaLabel,
   className = "",
   as = "div",
-  enableMotion = false,
   controlsPosition = "absolute"
 }: CarouselProps) {
   const carouselRef = useRef<HTMLDivElement | HTMLUListElement>(null);
@@ -193,7 +192,6 @@ export function Carousel({
           id={id}
           ariaLabel={ariaLabel}
           as={as}
-          enableMotion={enableMotion}
           gap={gap}
           padding={padding}
           className={controlsPosition === "relative" ? "pb-4 pt-4" : "pb-4 pt-4"}

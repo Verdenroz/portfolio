@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { Link as ScrollLink } from "react-scroll"
 import Link from "next/link"
 import { Button, Menu, X, ChevronLeft } from "@/components/ui"
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -64,6 +63,18 @@ export default function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
+  const handleNavClick = (sectionId: string) => {
+    if (isProjectPage) {
+      handleProjectPageNavigation(sectionId)
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+      setIsMenuOpen(false)
+    }
+  }
+
   const NavItem = ({
     to,
     children,
@@ -71,25 +82,13 @@ export default function Header() {
     to: string
     children: React.ReactNode
   }) => {
-    if (isProjectPage) {
-      // On project pages, use navigation handler to return to home
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => handleProjectPageNavigation(to)}
-          className="cursor-pointer"
-        >
-          {children}
-        </Button>
-      )
-    }
-
-    // On home page, use ScrollLink for smooth scrolling
     return (
-      <Button variant="ghost" asChild onClick={() => setIsMenuOpen(false)}>
-        <ScrollLink to={to} smooth={true} duration={500} className="cursor-pointer">
-          {children}
-        </ScrollLink>
+      <Button
+        variant="ghost"
+        onClick={() => handleNavClick(to)}
+        className="cursor-pointer"
+      >
+        {children}
       </Button>
     )
   }
@@ -116,14 +115,12 @@ export default function Header() {
             ) : (
               showTitle && (
                 <div className="motion-preset-fade motion-translate-x-in-[-20px] motion-duration-300">
-                  <ScrollLink
-                    to="hero"
-                    smooth={true}
-                    duration={500}
-                    className="text-xl font-bold text-foreground cursor-pointer"
+                  <button
+                    onClick={() => handleNavClick('hero')}
+                    className="text-xl font-bold text-foreground cursor-pointer hover:opacity-80 transition-opacity"
                   >
                     Harvey Tseng
-                  </ScrollLink>
+                  </button>
                 </div>
               )
             )}
