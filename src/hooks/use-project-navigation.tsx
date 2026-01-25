@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useMotionValue } from "framer-motion";
 import { createSlug } from "@/lib/projects";
 import type { Project } from "@/types";
 
@@ -14,9 +13,6 @@ export function useProjectNavigation({ prev, next }: UseProjectNavigationProps) 
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
 
   // Detect mobile/tablet devices
   useEffect(() => {
@@ -28,19 +24,6 @@ export function useProjectNavigation({ prev, next }: UseProjectNavigationProps) 
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  // Mouse position tracking
-  useEffect(() => {
-    if (isMobile) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY, isMobile]);
 
   // Debounced hover state management
   const handleLeftHover = useCallback((hovered: boolean) => {
@@ -98,8 +81,6 @@ export function useProjectNavigation({ prev, next }: UseProjectNavigationProps) 
     isLeftHovered,
     isRightHovered,
     isMobile,
-    mouseX,
-    mouseY,
     handleLeftHover,
     handleRightHover,
     hasNavigation: !!(prev || next)

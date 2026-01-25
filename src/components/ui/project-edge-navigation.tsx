@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./button";
 import { useProjectNavigation } from "@/hooks/use-project-navigation";
@@ -34,11 +33,7 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
           <div className="flex justify-between items-center">
             {/* Previous button */}
             {prev && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="pointer-events-auto"
-              >
+              <div className="pointer-events-auto motion-preset-fade motion-scale-in-80">
                 <Button
                   asChild
                   size="lg"
@@ -51,16 +46,12 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
                     <ChevronLeft className="h-6 w-6" />
                   </Link>
                 </Button>
-              </motion.div>
+              </div>
             )}
 
             {/* Next button */}
             {next && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="pointer-events-auto"
-              >
+              <div className="pointer-events-auto motion-preset-fade motion-scale-in-80">
                 <Button
                   asChild
                   size="lg"
@@ -73,7 +64,7 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
                     <ChevronRight className="h-6 w-6" />
                   </Link>
                 </Button>
-              </motion.div>
+              </div>
             )}
           </div>
         </div>
@@ -92,16 +83,11 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
             onMouseEnter={() => handleLeftHover(true)}
             onMouseLeave={() => handleLeftHover(false)}
           >
-            <AnimatePresence>
-              {isLeftHovered && (
-                <>
-                  {/* Left semicircle backdrop overlay with background image */}
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="fixed left-0 top-0 h-screen w-96 cursor-pointer border-0 p-0 bg-transparent"
+            {isLeftHovered && (
+              <>
+                {/* Left semicircle backdrop overlay with background image */}
+                <button
+                  className="fixed left-0 top-0 h-screen w-96 cursor-pointer border-0 p-0 bg-transparent motion-preset-fade motion-duration-200"
                     style={{
                       backgroundImage: `url(${prev.image})`,
                       backgroundSize: 'cover',
@@ -119,32 +105,17 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
                       }
                     }}
                   />
-                  
+
                   {/* Gradient overlay for readability */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="fixed left-0 top-0 h-screen w-96 bg-gradient-to-r from-black/60 via-black/40 to-black/20 backdrop-blur-sm pointer-events-none"
+                  <div
+                    className="fixed left-0 top-0 h-screen w-96 bg-gradient-to-r from-black/60 via-black/40 to-black/20 backdrop-blur-sm pointer-events-none motion-preset-fade motion-duration-200"
                     style={{
                       clipPath: 'circle(480px at 0% 50%)'
                     }}
                   />
-                  
+
                   {/* Navigation card */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -200 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -200 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 300, 
-                      damping: 30,
-                      opacity: { duration: 0.2 }
-                    }}
-                    className="fixed left-18 top-1/4 -translate-x-1/2 -translate-y-1/2 w-80 z-50"
-                  >
+                  <div className="fixed left-18 top-1/4 -translate-x-1/2 -translate-y-1/2 w-80 z-50 motion-preset-slide-right motion-duration-300">
                     <Link 
                       href={`/projects/${createSlug(prev.title)}`}
                       className="block group cursor-pointer"
@@ -175,10 +146,9 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
                         </div>
                       </div>
                     </Link>
-                  </motion.div>
+                  </div>
                 </>
               )}
-            </AnimatePresence>
           </div>
         </div>
       )}
@@ -191,16 +161,11 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
             onMouseEnter={() => handleRightHover(true)}
             onMouseLeave={() => handleRightHover(false)}
           >
-            <AnimatePresence>
-              {isRightHovered && (
-                <>
-                  {/* Right semicircle backdrop overlay with background image */}
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="fixed right-0 top-0 h-screen w-96 cursor-pointer border-0 p-0 bg-transparent"
+            {isRightHovered && (
+              <>
+                {/* Right semicircle backdrop overlay with background image */}
+                <button
+                  className="fixed right-0 top-0 h-screen w-96 cursor-pointer border-0 p-0 bg-transparent motion-preset-fade motion-duration-200"
                     style={{
                       backgroundImage: `url(${next.image})`,
                       backgroundSize: 'cover',
@@ -218,32 +183,17 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
                       }
                     }}
                   />
-                  
+
                   {/* Gradient overlay for readability */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="fixed right-0 top-0 h-screen w-96 bg-gradient-to-l from-black/60 via-black/40 to-black/20 backdrop-blur-sm pointer-events-none"
+                  <div
+                    className="fixed right-0 top-0 h-screen w-96 bg-gradient-to-l from-black/60 via-black/40 to-black/20 backdrop-blur-sm pointer-events-none motion-preset-fade motion-duration-200"
                     style={{
                       clipPath: 'circle(480px at 100% 50%)'
                     }}
                   />
-                  
+
                   {/* Navigation card */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 200 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 200 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 300, 
-                      damping: 30,
-                      opacity: { duration: 0.2 }
-                    }}
-                    className="fixed right-18 top-1/4 translate-x-1/2 -translate-y-1/2 w-80 z-50"
-                  >
+                  <div className="fixed right-18 top-1/4 translate-x-1/2 -translate-y-1/2 w-80 z-50 motion-preset-slide-left motion-duration-300">
                     <Link 
                       href={`/projects/${createSlug(next.title)}`}
                       className="block group cursor-pointer"
@@ -274,10 +224,9 @@ export function ProjectEdgeNavigation({ prev, next }: ProjectEdgeNavigationProps
                         </div>
                       </div>
                     </Link>
-                  </motion.div>
+                  </div>
                 </>
               )}
-            </AnimatePresence>
           </div>
         </div>
       )}

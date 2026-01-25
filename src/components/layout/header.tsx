@@ -9,7 +9,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui"
 import { Menu, X, ChevronLeft } from "lucide-react"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { motion, AnimatePresence } from "framer-motion"
 
 export default function Header() {
   const isMobile = useIsMobile()
@@ -101,46 +100,34 @@ export default function Header() {
       <nav className="container mx-auto py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <AnimatePresence mode="wait">
-              {isProjectPage ? (
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+            {isProjectPage ? (
+              <div className="motion-preset-fade motion-translate-x-in-[-20px] motion-duration-300">
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="flex items-center gap-2 hover:bg-primary/10 transition-colors group"
                 >
-                  <Button
-                    variant="ghost"
-                    asChild
-                    className="flex items-center gap-2 hover:bg-primary/10 transition-colors group"
+                  <Link href="/#projects">
+                    <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+                    <span className="hidden sm:inline">Back to Projects</span>
+                    <span className="sm:hidden">Back</span>
+                  </Link>
+                </Button>
+              </div>
+            ) : (
+              showTitle && (
+                <div className="motion-preset-fade motion-translate-x-in-[-20px] motion-duration-300">
+                  <ScrollLink
+                    to="hero"
+                    smooth={true}
+                    duration={500}
+                    className="text-xl font-bold text-foreground cursor-pointer"
                   >
-                    <Link href="/#projects">
-                      <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                      <span className="hidden sm:inline">Back to Projects</span>
-                      <span className="sm:hidden">Back</span>
-                    </Link>
-                  </Button>
-                </motion.div>
-              ) : (
-                showTitle && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <ScrollLink
-                      to="hero"
-                      smooth={true}
-                      duration={500}
-                      className="text-xl font-bold text-foreground cursor-pointer"
-                    >
-                      Harvey Tseng
-                    </ScrollLink>
-                  </motion.div>
-                )
-              )}
-            </AnimatePresence>
+                    Harvey Tseng
+                  </ScrollLink>
+                </div>
+              )
+            )}
           </div>
 
           {isMobile ? (
@@ -156,21 +143,13 @@ export default function Header() {
           )}
         </div>
 
-        <AnimatePresence>
-          {isMobile && isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="mt-4 flex flex-col space-y-2 overflow-hidden"
-            >
-              <NavItem to="contributions">Contributions</NavItem>
-              <NavItem to="experience">Experience</NavItem>
-              {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isMobile && isMenuOpen && (
+          <div className="mt-4 flex flex-col space-y-2 overflow-hidden motion-preset-fade motion-duration-200">
+            <NavItem to="contributions">Contributions</NavItem>
+            <NavItem to="experience">Experience</NavItem>
+            {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
+          </div>
+        )}
       </nav>
     </header>
   )

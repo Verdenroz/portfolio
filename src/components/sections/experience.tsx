@@ -2,10 +2,10 @@
 
 import { useMemo } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import type { Experience } from "@/types";
 import { experiencesData } from "@/config/experiences";
 import { SkillBadgeWithFallback } from "@/components/ui";
+import { useInView } from "@/hooks/use-in-view";
 
 // Calculate duration in months
 function getDurationMonths(startDate: Date, endDate: Date | null): number {
@@ -37,13 +37,17 @@ function ExperienceCard({
   index: number;
   size: "large" | "medium" | "small";
 }) {
+  const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const delayMs = index * 100;
+
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/30 transition-all ${gridSizeClasses[size]}`}
+    <article
+      ref={ref as React.RefObject<HTMLElement>}
+      className={`group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/30 transition-all ${gridSizeClasses[size]} ${
+        isInView
+          ? `motion-preset-fade motion-translate-y-in-[20px] motion-duration-400 motion-delay-[${delayMs}ms]`
+          : 'opacity-0'
+      }`}
     >
       {/* Background Image */}
       <div className="absolute inset-0 bg-[#0a0a0a]">
@@ -92,11 +96,13 @@ function ExperienceCard({
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
 export default function Experience() {
+  const { ref: headerRef, isInView: headerInView } = useInView({ threshold: 0.1, triggerOnce: true });
+
   const experiencesWithSize = useMemo(() => {
     return experiencesData
       .map(exp => ({
@@ -110,15 +116,16 @@ export default function Experience() {
   return (
     <section id="experience" className="py-16">
       <div className="container mx-auto px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl font-bold text-center text-primary mb-10"
+        <h2
+          ref={headerRef as React.RefObject<HTMLHeadingElement>}
+          className={`text-3xl font-bold text-center text-primary mb-10 ${
+            headerInView
+              ? 'motion-preset-fade motion-translate-y-in-[-20px] motion-duration-500'
+              : 'opacity-0'
+          }`}
         >
           Experience
-        </motion.h2>
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[260px] sm:auto-rows-[240px] md:auto-rows-[200px]">
           {experiencesWithSize.map((experience, index) => (

@@ -2,7 +2,6 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { forwardRef, useRef, ReactNode } from "react";
-import { motion } from "framer-motion";
 
 export interface CarouselProps {
   children: ReactNode;
@@ -126,16 +125,7 @@ const CarouselContent = forwardRef<
   const baseClasses = `relative z-0 grid auto-cols-min grid-flow-col ${gap} overflow-x-auto scrollbar-hide`;
   const fullClassName = `${baseClasses} ${padding} ${className}`;
 
-  const content = enableMotion ? (
-    <motion.div
-      id={id}
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={fullClassName}
-      aria-label={ariaLabel}
-    >
-      {children}
-    </motion.div>
-  ) : as === "ul" ? (
+  const content = as === "ul" ? (
     <ul
       id={id}
       ref={ref as React.RefObject<HTMLUListElement>}
