@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
-import { Toaster } from '@/components/ui'
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -27,7 +26,6 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body className={poppins.className}>
         {children}
-        <Toaster />
         <Analytics />
         <SpeedInsights />
       </body>

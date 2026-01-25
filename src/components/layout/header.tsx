@@ -131,7 +131,7 @@ export default function Header() {
 
           {isMobile ? (
             <Button variant="ghost" onClick={toggleMenu}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           ) : (
             <div className="flex items-center space-x-4">

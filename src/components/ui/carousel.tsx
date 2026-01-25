@@ -12,7 +12,6 @@ export interface CarouselProps {
   ariaLabel?: string;
   className?: string;
   as?: "div" | "ul";
-  enableMotion?: boolean;
   controlsPosition?: "absolute" | "relative"; // for different control layouts
 }
 
@@ -117,11 +116,10 @@ const CarouselContent = forwardRef<
     className?: string;
     ariaLabel?: string;
     as?: "div" | "ul";
-    enableMotion?: boolean;
     gap?: string;
     padding?: string;
   }
->(({ children, id, className = "", ariaLabel, as = "div", enableMotion = false, gap = "gap-6", padding = "" }, ref) => {
+>(({ children, id, className = "", ariaLabel, as = "div", gap = "gap-6", padding = "" }, ref) => {
   const baseClasses = `relative z-0 grid auto-cols-min grid-flow-col ${gap} overflow-x-auto scrollbar-hide`;
   const fullClassName = `${baseClasses} ${padding} ${className}`;
 

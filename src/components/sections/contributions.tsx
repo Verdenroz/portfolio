@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
 import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
-import { toast } from "sonner";
 
 const fetchGitHubContributions = async () => {
   const response = await fetch("/api/github");
@@ -237,9 +236,6 @@ export default function Contributions() {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
-        toast.error("Error", {
-          description: "Failed to fetch GitHub Contributions",
-        });
       } finally {
         setIsLoading(false);
       }
@@ -274,9 +270,6 @@ export default function Contributions() {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
-        toast.error("Error", {
-          description: "Failed to fetch LeetCode Contributions",
-        });
       }
     };
 
