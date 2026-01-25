@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { Carousel, SkillBadgeWithFallback } from "@/components/ui";
+import { Carousel, SkillBadgeWithFallback, ViewTransitionLink } from "@/components/ui";
+import { Reveal } from "@/components/ui/reveal";
 import { projectsData } from "@/config/projects";
 import { createSlug, formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
 
@@ -10,26 +10,29 @@ import { createSlug, formatProjectDateRange, getProjectStartDateISO } from "@/li
 export default function ProjectCarousel() {
   return (
     <section id="projects" className="relative">
-      <h2 className="text-3xl font-bold text-center mb-6 text-primary">
-        Projects
-      </h2>
+      <Reveal>
+        <h2 className="text-3xl font-bold text-center mb-6 text-primary">
+          Projects
+        </h2>
+      </Reveal>
 
-      <Carousel
-        id="project-carousel"
-        scrollAmount={400}
-        gap="gap-x-6"
-        padding="px-24"
-        ariaLabel="Project Carousel"
-        as="ul"
-        controlsPosition="absolute"
-      >
-        {projectsData.map((project) => (
+      <Reveal delay={0.2}>
+        <Carousel
+          id="project-carousel"
+          scrollAmount={400}
+          gap="gap-x-6"
+          padding="px-24"
+          ariaLabel="Project Carousel"
+          as="ul"
+          controlsPosition="absolute"
+        >
+          {projectsData.map((project) => (
           <li
             key={project.title}
             className="relative aspect-[2/3] w-[clamp(18rem,42vmin,26rem)] overflow-hidden rounded-md bg-neutral-900"
             aria-labelledby={`project-${project.title}-heading`}
           >
-            <Link 
+            <ViewTransitionLink
               href={`/projects/${createSlug(project.title)}`}
               className="group block h-full w-full rounded-md border border-neutral-800"
               aria-label={`View ${project.title} project details`}
@@ -66,7 +69,10 @@ export default function ProjectCarousel() {
                   </div>
                 </div>
               </article>
-              <div className="absolute inset-0 bg-neutral-900">
+              <div
+                className="absolute inset-0 bg-neutral-900"
+                style={{ viewTransitionName: `project-${createSlug(project.title)}` } as React.CSSProperties}
+              >
                 <Image
                   src={project.image}
                   alt={project.description}
@@ -77,10 +83,11 @@ export default function ProjectCarousel() {
                   loading="lazy"
                 />
               </div>
-            </Link>
+            </ViewTransitionLink>
           </li>
-        ))}
-      </Carousel>
+          ))}
+        </Carousel>
+      </Reveal>
     </section>
   );
 }

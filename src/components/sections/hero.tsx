@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui"
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
-import { useEffect, useState } from 'react'
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);

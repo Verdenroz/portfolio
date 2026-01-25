@@ -8,10 +8,16 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons', '@heroicons/react', 'date-fns', 'react-scroll'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  swcMinify: true,
+  modularizeImports: {
+    'date-fns': {
+      transform: 'date-fns/{{member}}',
+    },
   },
 };
 
