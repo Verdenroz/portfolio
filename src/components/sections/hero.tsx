@@ -2,8 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { Button } from "@/components/ui"
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
+import { Button, GithubIcon, LinkedinIcon } from "@/components/ui"
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -45,12 +44,12 @@ export default function Hero() {
           <div className="flex space-x-4 justify-center md:justify-start">
             <Button asChild variant="outline">
               <a href="https://github.com/Verdenroz" target="_blank" rel="noopener noreferrer">
-                <GitHubLogoIcon className="mr-2 h-4 w-4" /> GitHub
+                <GithubIcon className="mr-2 h-4 w-4" /> GitHub
               </a>
             </Button>
             <Button asChild variant="outline">
               <a href="https://linkedin.com/in/harvey-tseng" target="_blank" rel="noopener noreferrer">
-                <LinkedInLogoIcon className="mr-2 h-4 w-4" /> LinkedIn
+                <LinkedinIcon className="mr-2 h-4 w-4" /> LinkedIn
               </a>
             </Button>
           </div>

@@ -6,8 +6,7 @@ import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Link as ScrollLink } from "react-scroll"
 import Link from "next/link"
-import { Button } from "@/components/ui"
-import { Menu, X, ChevronLeft } from "lucide-react"
+import { Button, Menu, X, ChevronLeft } from "@/components/ui"
 import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function Header() {

@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', '@heroicons/react', 'date-fns', 'react-scroll'],
+    optimizePackageImports: ['date-fns', 'react-scroll'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

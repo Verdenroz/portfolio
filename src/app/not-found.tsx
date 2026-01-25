@@ -1,10 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Briefcase, User } from 'lucide-react';
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import { Header } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { Button, GithubIcon, LinkedinIcon, Home, Briefcase, User } from '@/components/ui';
 
 export default function NotFound() {
   return (
@@ -87,7 +85,7 @@ export default function NotFound() {
                   className="group p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-center"
                 >
                   <div className="w-8 h-8 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform">
-                    <GitHubLogoIcon className="w-full h-full" />
+                    <GithubIcon className="w-full h-full" />
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     GitHub
@@ -110,7 +108,7 @@ export default function NotFound() {
                     className="flex items-center gap-2"
                     aria-label="Visit Harvey's GitHub profile"
                   >
-                    <GitHubLogoIcon className="h-4 w-4" />
+                    <GithubIcon className="h-4 w-4" />
                     GitHub
                   </a>
                 </Button>
@@ -122,7 +120,7 @@ export default function NotFound() {
                     className="flex items-center gap-2"
                     aria-label="Visit Harvey's LinkedIn profile"
                   >
-                    <LinkedInLogoIcon className="h-4 w-4" />
+                    <LinkedinIcon className="h-4 w-4" />
                     LinkedIn
                   </a>
                 </Button>

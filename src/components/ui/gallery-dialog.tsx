@@ -3,7 +3,7 @@
 import { Dialog, DialogTrigger, DialogTitle, DialogDescription, DialogPortal, DialogOverlay } from "./dialog"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { Button } from "./button"
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, X } from "./icons"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "./icons";
 import { Button } from "./button";
 import { useProjectNavigation } from "@/hooks/use-project-navigation";
 import { createSlug } from "@/lib/projects";

@@ -2,8 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Button, GalleryDialog, ProjectEdgeNavigation, ProjectBadge } from "@/components/ui";
-import { ZoomIn, GitBranch, ExternalLink, BookOpen, Play } from "lucide-react";
+import { Button, GalleryDialog, ProjectEdgeNavigation, ProjectBadge, ZoomIn, GitBranch, ExternalLink, BookOpen, Play } from "@/components/ui";
 import type { Project } from "@/types";
 import { Header } from "@/components/layout";
 import { SkillIconWithFallback } from "@/components/ui";

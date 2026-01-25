@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw } from "./icons";
 
 interface ProjectBadgeProps {
   src: string;
