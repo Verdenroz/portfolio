@@ -175,7 +175,7 @@ export const projectsData: Project[] = [
       { name: "Figma", slug: "figma" },
       { name: "Firebase", slug: "firebase" },
     ],
-    image: "assets/stockdiviner/stockdiviner.webp",
+    image: "/assets/stockdiviner/stockdiviner.webp",
     gallery: [
       "/assets/stockdiviner/stockdiviner.webp",
       "/assets/stockdiviner/stockdiviner-gallery-1.webp",
