@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Button, ProjectEdgeNavigation, ProjectBadge, ZoomIn, GitBranch, ExternalLink, BookOpen, Play, Dialog, DialogTrigger, DialogTitle, DialogDescription, DialogPortal, DialogOverlay, ChevronLeft, ChevronRight, X } from "@/components/ui";
+import { Button, ProjectEdgeNavigation, ProjectBadge, ZoomIn, GitBranch, ExternalLink, BookOpen, Play, Dialog, DialogTrigger, DialogTitle, DialogDescription, DialogPortal, DialogOverlay, ChevronLeft, ChevronRight, X, SkillIcon } from "@/components/ui";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import type { Project } from "@/types";
 import { Header } from "@/components/layout";
-import { SkillIconWithFallback } from "@/components/ui";
 import { formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
+import { getBlurPlaceholder } from "@/lib/blur-placeholder";
 
 function GalleryDialog({
   images,
@@ -80,6 +80,8 @@ function GalleryDialog({
                     height={1200}
                     className="max-w-[80%] max-h-[70vh] sm:max-h-[80vh] w-auto h-auto object-contain"
                     onClick={(e) => e.stopPropagation()}
+                    placeholder="blur"
+                    blurDataURL={getBlurPlaceholder()}
                   />
                 </div>
               </div>
@@ -186,7 +188,7 @@ export default function ProjectPageClient({ project, prev, next }: ProjectPageCl
                                group cursor-default"
                     title={skill.name}
                   >
-                    <SkillIconWithFallback
+                    <SkillIcon
                       skillName={skill.name}
                       width={16}
                       height={16}
@@ -339,6 +341,8 @@ export default function ProjectPageClient({ project, prev, next }: ProjectPageCl
                           height={300}
                           className="object-cover w-full h-full transition-all duration-500
                                      group-hover:scale-110"
+                          placeholder="blur"
+                          blurDataURL={getBlurPlaceholder()}
                         />
                         {/* Hover overlay with zoom icon */}
                         <div className="absolute inset-0 bg-black/60 opacity-0 

@@ -24,6 +24,5 @@ export {
 export { ProjectBadge } from './project-badge';
 export { ProjectEdgeNavigation } from './project-edge-navigation';
 export { Reveal } from './reveal';
-export { SkillBadgeWithFallback } from './skill-badge-with-fallback';
-export { SkillIconWithFallback } from './skill-icon-with-fallback';
+export { SkillBadge, SkillIcon } from './skills';
 export { ViewTransitionLink } from './view-transition-link';

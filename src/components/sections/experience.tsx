@@ -4,8 +4,9 @@ import { useMemo } from "react";
 import Image from "next/image";
 import type { Experience } from "@/types";
 import { experiencesData } from "@/config/experiences";
-import { SkillBadgeWithFallback } from "@/components/ui";
+import { SkillBadge } from "@/components/ui";
 import { useInView } from "@/hooks/use-in-view";
+import { getBlurPlaceholder } from "@/lib/blur-placeholder";
 
 // Calculate duration in months
 function getDurationMonths(startDate: Date, endDate: Date | null): number {
@@ -58,6 +59,8 @@ function ExperienceCard({
           quality={90}
           className="object-contain p-4 sm:p-6 md:p-8 transition-transform duration-500 group-hover:scale-105"
           sizes={size === "large" ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 25vw"}
+          placeholder="blur"
+          blurDataURL={getBlurPlaceholder()}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/20 md:from-black/90 md:via-black/50" />
       </div>
@@ -84,7 +87,7 @@ function ExperienceCard({
           {/* Tech badges - always visible */}
           <div className="flex flex-wrap gap-1.5 mt-2">
             {experience.technologies.slice(0, size === "large" ? 5 : size === "medium" ? 3 : 2).map((tech) => (
-              <SkillBadgeWithFallback
+              <SkillBadge
                 key={tech}
                 skillName={tech}
                 skillSlug={tech.toLowerCase().replace(/\s+/g, "")}

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Carousel, SkillBadgeWithFallback, ViewTransitionLink } from "@/components/ui";
+import { Carousel, SkillBadge, ViewTransitionLink } from "@/components/ui";
 import { Reveal } from "@/components/ui/reveal";
 import { projectsData } from "@/config/projects";
 import { createSlug, formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
+import { getBlurPlaceholder } from "@/lib/blur-placeholder";
 
 
 export default function ProjectCarousel() {
@@ -57,7 +58,7 @@ export default function ProjectCarousel() {
                 <div className="overflow-hidden">
                   <div className="flex flex-wrap gap-2 justify-center transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0 md:translate-y-full">
                     {project.skills.map((skill) => (
-                      <SkillBadgeWithFallback
+                      <SkillBadge
                         key={skill.slug}
                         skillName={skill.name}
                         skillSlug={skill.slug}
@@ -81,6 +82,8 @@ export default function ProjectCarousel() {
                   height={624}
                   sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 416px"
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={getBlurPlaceholder()}
                 />
               </div>
             </ViewTransitionLink>
