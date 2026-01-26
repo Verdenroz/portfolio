@@ -1,43 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { Carousel, SkillBadge, ViewTransitionLink } from "@/components/ui";
-import { Reveal } from "@/components/ui/reveal";
+import Link from "next/link";
+import { Carousel, SkillBadge } from "@/components/ui";
 import { projectsData } from "@/config/projects";
 import { createSlug, formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
 import { getBlurPlaceholder } from "@/lib/blur-placeholder";
 
-
 export default function ProjectCarousel() {
   return (
     <section id="projects" className="relative">
-      <Reveal>
-        <h2 className="text-3xl font-bold text-center mb-6 text-primary">
-          Projects
-        </h2>
-      </Reveal>
+      <h2 className="text-3xl font-bold text-center mb-6 text-primary">
+        Projects
+      </h2>
 
-      <Reveal delay={0.2}>
-        <Carousel
-          id="project-carousel"
-          scrollAmount={400}
-          gap="gap-x-6"
-          padding="px-24"
-          ariaLabel="Project Carousel"
-          as="ul"
-          controlsPosition="absolute"
+      <Carousel
+        id="project-carousel"
+        scrollAmount={400}
+        gap="gap-x-6"
+        padding="px-24"
+        ariaLabel="Project Carousel"
+        as="ul"
+        controlsPosition="absolute"
+      >
+        {projectsData.map((project) => (
+        <li
+          key={project.title}
+          className="relative aspect-[2/3] w-[clamp(18rem,42vmin,26rem)] overflow-hidden rounded-md bg-neutral-900"
+          aria-labelledby={`project-${project.title}-heading`}
         >
-          {projectsData.map((project) => (
-          <li
-            key={project.title}
-            className="relative aspect-[2/3] w-[clamp(18rem,42vmin,26rem)] overflow-hidden rounded-md bg-neutral-900"
-            aria-labelledby={`project-${project.title}-heading`}
+          <Link
+            href={`/projects/${createSlug(project.title)}`}
+            className="group block h-full w-full rounded-md border border-neutral-800"
+            aria-label={`View ${project.title} project details`}
           >
-            <ViewTransitionLink
-              href={`/projects/${createSlug(project.title)}`}
-              className="group block h-full w-full rounded-md border border-neutral-800"
-              aria-label={`View ${project.title} project details`}
-            >
               <article className="absolute inset-0 flex flex-col items-center justify-center gap-y-2 bg-neutral-900/60 p-4 text-center transition-opacity duration-300 md:opacity-0 md:backdrop-blur-sm group-hover:opacity-100 group-focus-visible:opacity-100 z-10">
                 <div className="overflow-hidden">
                   <time
@@ -70,10 +66,7 @@ export default function ProjectCarousel() {
                   </div>
                 </div>
               </article>
-              <div
-                className="absolute inset-0 bg-neutral-900"
-                style={{ viewTransitionName: `project-${createSlug(project.title)}` } as React.CSSProperties}
-              >
+              <div className="absolute inset-0 bg-neutral-900">
                 <Image
                   src={project.image}
                   alt={project.description}
@@ -86,11 +79,10 @@ export default function ProjectCarousel() {
                   blurDataURL={getBlurPlaceholder()}
                 />
               </div>
-            </ViewTransitionLink>
+            </Link>
           </li>
           ))}
         </Carousel>
-      </Reveal>
     </section>
   );
 }
