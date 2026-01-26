@@ -21,6 +21,4 @@ export {
   Play,
   RotateCcw
 } from './icons';
-export { ProjectBadge } from './project-badge';
-export { ProjectEdgeNavigation } from './project-edge-navigation';
 export { SkillBadge, SkillIcon } from './skills';
