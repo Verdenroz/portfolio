@@ -135,7 +135,11 @@ export default function Header() {
           </div>
 
           {isMobile ? (
-            <Button variant="ghost" onClick={toggleMenu}>
+            <Button
+              variant="ghost"
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           ) : (
