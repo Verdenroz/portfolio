@@ -85,10 +85,18 @@ export default function Header() {
     return (
       <Button
         variant="ghost"
-        onClick={() => handleNavClick(to)}
+        asChild
         className="cursor-pointer"
       >
-        {children}
+        <a
+          href={`/#${to}`}
+          onClick={(e) => {
+            e.preventDefault()
+            handleNavClick(to)
+          }}
+        >
+          {children}
+        </a>
       </Button>
     )
   }
