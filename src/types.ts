@@ -3,7 +3,6 @@ interface SkillBadge {
   slug: string;
   slugOverride?: string; // Full URL to icon image if not using Simple Icons
   description: string;
-  proficiency: "Proficient" | "Familiar" | "Learning";
 }
 
 export interface SkillCategory {
