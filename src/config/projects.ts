@@ -16,6 +16,44 @@ const parseProjectDate = (date: string) => {
 
 export const projectsData: Project[] = [
   {
+    title: "AGON",
+    description:
+      "Adaptive Guarded Object Notation: self-describing JSON encoding for LLM prompts with never-worse-than-JSON performance.",
+    date: "2025-12-01 - Present",
+    skills: [
+      { name: "Python", slug: "python" },
+      { name: "Rust", slug: "rust" },
+      { name: "PyO3", slug: "pyo3" },
+      { name: "Pytest", slug: "pytest" },
+      { name: "PyPI", slug: "pypi" },
+    ],
+    image: "/assets/agon/agon.webp",
+    gallery: [
+      "/assets/agon/agon-gallery-1.webp",
+      "/assets/agon/agon-gallery-2.webp",
+      "/assets/agon/agon-gallery-3.webp",
+      "/assets/agon/agon-gallery-4.webp",
+    ],
+    links: {
+      github: "https://github.com/Verdenroz/agon-python",
+      docs: "https://Verdenroz.github.io/agon-python/",
+      pypi: "https://pypi.org/project/agon-python/",
+    },
+    badges: [
+      "https://img.shields.io/pypi/v/agon-python.svg",
+      "https://img.shields.io/pypi/pyversions/agon-python.svg",
+      "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "https://github.com/Verdenroz/agon-python/actions/workflows/ci.yml/badge.svg",
+      "https://codecov.io/gh/Verdenroz/agon-python/branch/master/graph/badge.svg",
+      "https://img.shields.io/badge/rust-%23000000.svg?style=flat&logo=rust&logoColor=white",
+      "https://img.shields.io/badge/PyO3-v0.27-blue",
+      "https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json",
+      "https://img.shields.io/badge/docs-mkdocs-blue",
+    ],
+    color: "#14B8A6",
+    status: "Stable" as const,
+  },
+  {
     title: "Chimeric",
     description:
       "Unified Python interface for multiple LLM providers with automatic provider detection and seamless switching.",
@@ -60,9 +98,15 @@ export const projectsData: Project[] = [
     skills: [
       { name: "Rust", slug: "rust" },
       { name: "Tokio", slug: "tokio" },
+      { name: "Clap", slug: "clap" },
+      { name: "Ratatui", slug: "ratatui" },
+      { name: "SQLite", slug: "sqlite" },
+      { name: "Serde", slug: "serde" },
       { name: "Redis", slug: "redis" },
       { name: "Docker", slug: "docker" },
       { name: "Polars", slug: "polars" },
+      { name: "Nginx", slug: "nginx" },
+      { name: "Caddy", slug: "caddy" },
     ],
     image: "/assets/finance-query/finance-query.webp",
     gallery: [
@@ -81,7 +125,9 @@ export const projectsData: Project[] = [
       "https://img.shields.io/crates/v/finance-query.svg",
       "https://docs.rs/finance-query/badge.svg",
       "https://github.com/Verdenroz/finance-query/actions/workflows/ci.yml/badge.svg",
-      "https://img.shields.io/badge/License-MIT-yellow.svg"
+      "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white",
+      "https://img.shields.io/badge/caddy-%231f88c0.svg?style=flat&logo=caddy&logoColor=white"
     ],
     color: "#F59E0B",
     status: "Active" as const,
@@ -110,7 +156,7 @@ export const projectsData: Project[] = [
       github: "https://github.com/verdenroz/verdax-market",
       play: "Coming Soon",
     },
-    color: "#14B8A6",
+    color: "#228B22",
     status: "Stable" as const,
   },
   {

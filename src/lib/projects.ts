@@ -118,13 +118,14 @@ export function getSkillIconSafe(skillName: string): string {
 
 /**
  * Gets multiple fallback URLs for skill badges (with text) - for project carousel
+ * Note: This always returns shields.io badges (icon + text), never raw image URLs
  */
 export function getSkillBadgeWithFallback(skillName: string, skillSlug: string): string[] {
   const fallbacks: string[] = [];
-  
+
   // Primary: shields.io with skill slug
   fallbacks.push(`https://img.shields.io/badge/${encodeURIComponent(skillName)}-333333?style=flat&logo=${skillSlug}`);
-  
+
   // Secondary: Try simple icons from skills config
   const skillIcon = getSkillIcon(skillName);
   if (skillIcon) {
@@ -134,14 +135,14 @@ export function getSkillBadgeWithFallback(skillName: string, skillSlug: string):
       fallbacks.push(`https://img.shields.io/badge/${encodeURIComponent(skillName)}-333333?style=flat&logo=${simpleIconMatch[1]}`);
     }
   }
-  
+
   // Tertiary: Generic shields.io fallback
   const genericSlug = skillName.toLowerCase().replace(/[^a-z0-9]/g, '');
   fallbacks.push(`https://img.shields.io/badge/${encodeURIComponent(skillName)}-333333?style=flat&logo=${genericSlug}`);
-  
+
   // Final fallback: shields.io without logo
   fallbacks.push(`https://img.shields.io/badge/${encodeURIComponent(skillName)}-333333?style=flat`);
-  
+
   return fallbacks;
 }
 
