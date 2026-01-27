@@ -4,10 +4,9 @@ import type React from "react";
 
 import { useEffect, useState, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
-import { parseISO, format, eachDayOfInterval, setHours } from "date-fns";
+import { parseISOWithNoon, formatYYYYMMDD, formatMonthDay, formatShortMonth, eachDayOfInterval as getEachDay, setHoursToNoon } from "@/lib/date-utils";
 import type { ContributionDay, ContributionWeek } from "@/types";
 import Image from "next/image";
-import { toast } from "sonner";
 
 const fetchGitHubContributions = async () => {
   const response = await fetch("/api/github");
@@ -62,12 +61,12 @@ const ContributionCell: React.FC<{
       : "bg-orange-500";
 
   // Parse the ISO date string and set to noon to avoid timezone issues
-  const parsedDate = setHours(parseISO(date), 12);
+  const parsedDate = parseISOWithNoon(date);
 
   return (
     <div
       className={`w-2 h-2 sm:w-3 sm:h-3 m-0.5 sm:m-[2px] ${bgColor} rounded-[1px]`}
-      title={`${count} contributions on ${format(parsedDate, "MMMM do")}`}
+      title={`${count} contributions on ${formatMonthDay(parsedDate)}`}
     />
   );
 };
@@ -80,9 +79,9 @@ const ContributionChart: React.FC<{
   const firstContributionDate = contributions[0]?.date;
   // Handle case when there are no contributions yet
   const start = contributions.length > 0
-    ? setHours(parseISO(firstContributionDate), 12)
-    : setHours(new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate()), 12); // Default to 1 year ago
-  const end = setHours(new Date(), 12);
+    ? parseISOWithNoon(firstContributionDate)
+    : setHoursToNoon(new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())); // Default to 1 year ago
+  const end = setHoursToNoon(new Date());
 
   const contributionMap = new Map(
     contributions.map((day) => [day.date, day.contributionCount])
@@ -93,10 +92,10 @@ const ContributionChart: React.FC<{
   }[] = [];
   let currentWeek: { date: string; contributionCount: number }[] = [];
 
-  const allDays = eachDayOfInterval({ start, end });
+  const allDays = getEachDay(start, end);
 
   allDays.forEach((day) => {
-    const dateStr = format(day, "yyyy-MM-dd");
+    const dateStr = formatYYYYMMDD(day);
 
     if (currentWeek.length === 7) {
       weeks.push({ contributionDays: [...currentWeek] });
@@ -134,7 +133,7 @@ const ContributionChart: React.FC<{
   let currentColspan = 0;
 
   weeks.forEach((week, index) => {
-    const month = format(new Date(week.contributionDays[0].date), "MMM");
+    const month = formatShortMonth(parseISOWithNoon(week.contributionDays[0].date));
     if (month === currentMonth) {
       currentColspan += 1;
     } else {
@@ -237,9 +236,6 @@ export default function Contributions() {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
-        toast.error("Error", {
-          description: "Failed to fetch GitHub Contributions",
-        });
       } finally {
         setIsLoading(false);
       }
@@ -257,7 +253,7 @@ export default function Contributions() {
             // Add one day to fix the off-by-one issue
             date.setDate(date.getDate() + 1);
             return {
-              date: format(date, "yyyy-MM-dd"),
+              date: formatYYYYMMDD(date),
               contributionCount: count as number,
             };
           }
@@ -274,9 +270,6 @@ export default function Contributions() {
         const errorMessage =
           err instanceof Error ? err.message : "An error occurred";
         setError(errorMessage);
-        toast.error("Error", {
-          description: "Failed to fetch LeetCode Contributions",
-        });
       }
     };
 

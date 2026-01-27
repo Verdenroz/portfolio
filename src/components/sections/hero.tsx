@@ -1,10 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Button } from "@/components/ui"
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 import { useEffect, useState } from 'react'
+import { Button, GithubIcon, LinkedinIcon } from "@/components/ui"
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -16,11 +14,12 @@ export default function Hero() {
   return (
     <section id="hero" className="bg-background text-foreground p-24 mt-16">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-around gap-8 md:gap-12">
-        <motion.div
-          className="md:w-1/2 md:order-2 flex justify-center"
-          initial={mounted ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: mounted ? 0.3 : 0 }}
+        <div
+          className={`md:w-1/2 md:order-2 flex justify-center ${
+            mounted
+              ? 'motion-preset-fade motion-scale-in-95 motion-duration-300'
+              : 'opacity-100'
+          }`}
         >
           <Image
             src="/HT_headshot.webp"
@@ -31,12 +30,13 @@ export default function Hero() {
             sizes="(max-width: 768px) 240px, 300px"
             className="rounded-full border-4 border-primary shadow-lg"
           />
-        </motion.div>
-        <motion.div
-          className="md:w-1/2 md:order-1 text-center md:text-left"
-          initial={mounted ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: mounted ? 0.3 : 0 }}
+        </div>
+        <div
+          className={`md:w-1/2 md:order-1 text-center md:text-left ${
+            mounted
+              ? 'motion-preset-fade motion-translate-y-in-[10px] motion-duration-300'
+              : 'opacity-100'
+          }`}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Harvey Tseng</h1>
           <h2 className="text-2xl md:text-3xl mb-6">Full Stack Developer</h2>
@@ -44,16 +44,16 @@ export default function Hero() {
           <div className="flex space-x-4 justify-center md:justify-start">
             <Button asChild variant="outline">
               <a href="https://github.com/Verdenroz" target="_blank" rel="noopener noreferrer">
-                <GitHubLogoIcon className="mr-2 h-4 w-4" /> GitHub
+                <GithubIcon className="mr-2 h-4 w-4" /> GitHub
               </a>
             </Button>
             <Button asChild variant="outline">
               <a href="https://linkedin.com/in/harvey-tseng" target="_blank" rel="noopener noreferrer">
-                <LinkedInLogoIcon className="mr-2 h-4 w-4" /> LinkedIn
+                <LinkedinIcon className="mr-2 h-4 w-4" /> LinkedIn
               </a>
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

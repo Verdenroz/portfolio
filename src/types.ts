@@ -1,15 +1,13 @@
-// Projects section types
 interface SkillBadge {
   name: string;
-  slug: string; // Simple Icons slug, optionally with color code (e.g., "python/3776AB")
+  slug: string;
   slugOverride?: string; // Full URL to icon image if not using Simple Icons
   description: string;
-  proficiency: "Proficient" | "Familiar" | "Learning";
 }
 
 export interface SkillCategory {
   name: string;
-  color: string; // Tailwind CSS color code (e.g., "F97316" for orange-500)
+  color: string;
   badges: SkillBadge[];
 }
 
@@ -33,9 +31,10 @@ export interface Project {
     pypi?: string;
   };
   badges?: string[];
+  color?: string;
+  status?: "Active" | "Stable" | "Maintained" | "Archived";
 }
 
-// Contributions section types
 export type ContributionDay = {
   date: string;
   contributionCount: number;
@@ -45,7 +44,6 @@ export type ContributionWeek = {
   contributionDays: ContributionDay[];
 };
 
-// Experience section types
 export interface Experience {
   id: string;
   company: string;

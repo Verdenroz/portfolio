@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Carousel, SkillBadgeWithFallback } from "@/components/ui";
+import { Carousel, SkillBadge } from "@/components/ui";
 import { projectsData } from "@/config/projects";
 import { createSlug, formatProjectDateRange, getProjectStartDateISO } from "@/lib/projects";
-
+import { getBlurPlaceholder } from "@/lib/blur-placeholder";
 
 export default function ProjectCarousel() {
   return (
@@ -24,16 +24,16 @@ export default function ProjectCarousel() {
         controlsPosition="absolute"
       >
         {projectsData.map((project) => (
-          <li
-            key={project.title}
-            className="relative aspect-[2/3] w-[clamp(18rem,42vmin,26rem)] overflow-hidden rounded-md bg-neutral-900"
-            aria-labelledby={`project-${project.title}-heading`}
+        <li
+          key={project.title}
+          className="relative aspect-[2/3] w-[clamp(18rem,42vmin,26rem)] overflow-hidden rounded-md bg-neutral-900"
+          aria-labelledby={`project-${project.title}-heading`}
+        >
+          <Link
+            href={`/projects/${createSlug(project.title)}`}
+            className="group block h-full w-full rounded-md border border-neutral-800"
+            aria-label={`View ${project.title} project details`}
           >
-            <Link 
-              href={`/projects/${createSlug(project.title)}`}
-              className="group block h-full w-full rounded-md border border-neutral-800"
-              aria-label={`View ${project.title} project details`}
-            >
               <article className="absolute inset-0 flex flex-col items-center justify-center gap-y-2 bg-neutral-900/60 p-4 text-center transition-opacity duration-300 md:opacity-0 md:backdrop-blur-sm group-hover:opacity-100 group-focus-visible:opacity-100 z-10">
                 <div className="overflow-hidden">
                   <time
@@ -54,7 +54,7 @@ export default function ProjectCarousel() {
                 <div className="overflow-hidden">
                   <div className="flex flex-wrap gap-2 justify-center transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0 md:translate-y-full">
                     {project.skills.map((skill) => (
-                      <SkillBadgeWithFallback
+                      <SkillBadge
                         key={skill.slug}
                         skillName={skill.name}
                         skillSlug={skill.slug}
@@ -75,12 +75,14 @@ export default function ProjectCarousel() {
                   height={624}
                   sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 416px"
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={getBlurPlaceholder()}
                 />
               </div>
             </Link>
           </li>
-        ))}
-      </Carousel>
+          ))}
+        </Carousel>
     </section>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "./icons";
 import { forwardRef, useRef, ReactNode } from "react";
-import { motion } from "framer-motion";
 
 export interface CarouselProps {
   children: ReactNode;
@@ -13,7 +12,6 @@ export interface CarouselProps {
   ariaLabel?: string;
   className?: string;
   as?: "div" | "ul";
-  enableMotion?: boolean;
   controlsPosition?: "absolute" | "relative"; // for different control layouts
 }
 
@@ -118,24 +116,14 @@ const CarouselContent = forwardRef<
     className?: string;
     ariaLabel?: string;
     as?: "div" | "ul";
-    enableMotion?: boolean;
     gap?: string;
     padding?: string;
   }
->(({ children, id, className = "", ariaLabel, as = "div", enableMotion = false, gap = "gap-6", padding = "" }, ref) => {
+>(({ children, id, className = "", ariaLabel, as = "div", gap = "gap-6", padding = "" }, ref) => {
   const baseClasses = `relative z-0 grid auto-cols-min grid-flow-col ${gap} overflow-x-auto scrollbar-hide`;
   const fullClassName = `${baseClasses} ${padding} ${className}`;
 
-  const content = enableMotion ? (
-    <motion.div
-      id={id}
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={fullClassName}
-      aria-label={ariaLabel}
-    >
-      {children}
-    </motion.div>
-  ) : as === "ul" ? (
+  const content = as === "ul" ? (
     <ul
       id={id}
       ref={ref as React.RefObject<HTMLUListElement>}
@@ -172,7 +160,6 @@ export function Carousel({
   ariaLabel,
   className = "",
   as = "div",
-  enableMotion = false,
   controlsPosition = "absolute"
 }: CarouselProps) {
   const carouselRef = useRef<HTMLDivElement | HTMLUListElement>(null);
@@ -205,7 +192,6 @@ export function Carousel({
           id={id}
           ariaLabel={ariaLabel}
           as={as}
-          enableMotion={enableMotion}
           gap={gap}
           padding={padding}
           className={controlsPosition === "relative" ? "pb-4 pt-4" : "pb-4 pt-4"}

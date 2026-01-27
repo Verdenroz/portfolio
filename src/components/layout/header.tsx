@@ -4,12 +4,9 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { Link as ScrollLink } from "react-scroll"
 import Link from "next/link"
-import { Button } from "@/components/ui"
-import { Menu, X, ChevronLeft } from "lucide-react"
+import { Button, Menu, X, ChevronLeft } from "@/components/ui"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { motion, AnimatePresence } from "framer-motion"
 
 export default function Header() {
   const isMobile = useIsMobile()
@@ -66,6 +63,18 @@ export default function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
+  const handleNavClick = (sectionId: string) => {
+    if (isProjectPage) {
+      handleProjectPageNavigation(sectionId)
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+      setIsMenuOpen(false)
+    }
+  }
+
   const NavItem = ({
     to,
     children,
@@ -73,25 +82,21 @@ export default function Header() {
     to: string
     children: React.ReactNode
   }) => {
-    if (isProjectPage) {
-      // On project pages, use navigation handler to return to home
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => handleProjectPageNavigation(to)}
-          className="cursor-pointer"
+    return (
+      <Button
+        variant="ghost"
+        asChild
+        className="cursor-pointer"
+      >
+        <a
+          href={`/#${to}`}
+          onClick={(e) => {
+            e.preventDefault()
+            handleNavClick(to)
+          }}
         >
           {children}
-        </Button>
-      )
-    }
-
-    // On home page, use ScrollLink for smooth scrolling
-    return (
-      <Button variant="ghost" asChild onClick={() => setIsMenuOpen(false)}>
-        <ScrollLink to={to} smooth={true} duration={500} className="cursor-pointer">
-          {children}
-        </ScrollLink>
+        </a>
       </Button>
     )
   }
@@ -101,51 +106,41 @@ export default function Header() {
       <nav className="container mx-auto py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <AnimatePresence mode="wait">
-              {isProjectPage ? (
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+            {isProjectPage ? (
+              <div className="motion-preset-fade motion-translate-x-in-[-20px] motion-duration-300">
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="flex items-center gap-2 hover:bg-primary/10 transition-colors group"
                 >
-                  <Button
-                    variant="ghost"
-                    asChild
-                    className="flex items-center gap-2 hover:bg-primary/10 transition-colors group"
+                  <Link href="/#projects">
+                    <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+                    <span className="hidden sm:inline">Back to Projects</span>
+                    <span className="sm:hidden">Back</span>
+                  </Link>
+                </Button>
+              </div>
+            ) : (
+              showTitle && (
+                <div className="motion-preset-fade motion-translate-x-in-[-20px] motion-duration-300">
+                  <button
+                    onClick={() => handleNavClick('hero')}
+                    className="text-xl font-bold text-foreground cursor-pointer hover:opacity-80 transition-opacity"
                   >
-                    <Link href="/#projects">
-                      <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                      <span className="hidden sm:inline">Back to Projects</span>
-                      <span className="sm:hidden">Back</span>
-                    </Link>
-                  </Button>
-                </motion.div>
-              ) : (
-                showTitle && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <ScrollLink
-                      to="hero"
-                      smooth={true}
-                      duration={500}
-                      className="text-xl font-bold text-foreground cursor-pointer"
-                    >
-                      Harvey Tseng
-                    </ScrollLink>
-                  </motion.div>
-                )
-              )}
-            </AnimatePresence>
+                    Harvey Tseng
+                  </button>
+                </div>
+              )
+            )}
           </div>
 
           {isMobile ? (
-            <Button variant="ghost" onClick={toggleMenu}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <Button
+              variant="ghost"
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           ) : (
             <div className="flex items-center space-x-4">
@@ -156,21 +151,13 @@ export default function Header() {
           )}
         </div>
 
-        <AnimatePresence>
-          {isMobile && isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="mt-4 flex flex-col space-y-2 overflow-hidden"
-            >
-              <NavItem to="contributions">Contributions</NavItem>
-              <NavItem to="experience">Experience</NavItem>
-              {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isMobile && isMenuOpen && (
+          <div className="mt-4 flex flex-col space-y-2 overflow-hidden motion-preset-fade motion-duration-200">
+            <NavItem to="contributions">Contributions</NavItem>
+            <NavItem to="experience">Experience</NavItem>
+            {!isProjectPage && <NavItem to="projects">Projects</NavItem>}
+          </div>
+        )}
       </nav>
     </header>
   )

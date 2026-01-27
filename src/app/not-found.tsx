@@ -1,11 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Home, Briefcase, User } from 'lucide-react';
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import { Header } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { Button, GithubIcon, LinkedinIcon, Home, Briefcase, User } from '@/components/ui';
 
 export default function NotFound() {
   return (
@@ -22,12 +19,7 @@ export default function NotFound() {
 
           <div className="relative">
             {/* 404 Hero Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
+            <div className="mb-12 motion-preset-fade motion-translate-y-in-[20px] motion-duration-600">
               <h1 className="text-8xl sm:text-9xl md:text-[12rem] font-bold bg-gradient-to-br from-primary via-primary to-primary/60 bg-clip-text text-transparent leading-none mb-6">
                 404
               </h1>
@@ -38,15 +30,10 @@ export default function NotFound() {
                 The page you&apos;re looking for seems to have taken a different path. 
                 Let&apos;s get you back to exploring my work and experience.
               </p>
-            </motion.div>
+            </div>
 
             {/* Navigation Assistance */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-12"
-            >
+            <div className="mb-12 motion-preset-fade motion-translate-y-in-[20px] motion-duration-600 motion-delay-200">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                 <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href="/" className="flex items-center gap-2">
@@ -61,15 +48,10 @@ export default function NotFound() {
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
 
             {/* Quick Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mb-12"
-            >
+            <div className="mb-12 motion-preset-fade motion-translate-y-in-[20px] motion-duration-600 motion-delay-[400ms]">
               <h3 className="text-lg font-medium text-foreground mb-6">
                 Popular Sections
               </h3>
@@ -103,22 +85,17 @@ export default function NotFound() {
                   className="group p-4 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-center"
                 >
                   <div className="w-8 h-8 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform">
-                    <GitHubLogoIcon className="w-full h-full" />
+                    <GithubIcon className="w-full h-full" />
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     GitHub
                   </span>
                 </Link>
               </div>
-            </motion.div>
+            </div>
 
             {/* Contact Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="border-t border-border pt-8"
-            >
+            <div className="border-t border-border pt-8 motion-preset-fade motion-translate-y-in-[20px] motion-duration-600 motion-delay-[600ms]">
               <p className="text-sm text-muted-foreground mb-4">
                 Can&apos;t find what you&apos;re looking for?
               </p>
@@ -131,7 +108,7 @@ export default function NotFound() {
                     className="flex items-center gap-2"
                     aria-label="Visit Harvey's GitHub profile"
                   >
-                    <GitHubLogoIcon className="h-4 w-4" />
+                    <GithubIcon className="h-4 w-4" />
                     GitHub
                   </a>
                 </Button>
@@ -143,12 +120,12 @@ export default function NotFound() {
                     className="flex items-center gap-2"
                     aria-label="Visit Harvey's LinkedIn profile"
                   >
-                    <LinkedInLogoIcon className="h-4 w-4" />
+                    <LinkedinIcon className="h-4 w-4" />
                     LinkedIn
                   </a>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </main>

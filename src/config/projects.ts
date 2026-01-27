@@ -16,6 +16,44 @@ const parseProjectDate = (date: string) => {
 
 export const projectsData: Project[] = [
   {
+    title: "AGON",
+    description:
+      "Adaptive Guarded Object Notation: self-describing JSON encoding for LLM prompts with never-worse-than-JSON performance.",
+    date: "2025-12-01 - Present",
+    skills: [
+      { name: "Python", slug: "python" },
+      { name: "Rust", slug: "rust" },
+      { name: "PyO3", slug: "pyo3" },
+      { name: "Pytest", slug: "pytest" },
+      { name: "PyPI", slug: "pypi" },
+    ],
+    image: "/assets/agon/agon.webp",
+    gallery: [
+      "/assets/agon/agon-gallery-1.webp",
+      "/assets/agon/agon-gallery-2.webp",
+      "/assets/agon/agon-gallery-3.webp",
+      "/assets/agon/agon-gallery-4.webp",
+    ],
+    links: {
+      github: "https://github.com/Verdenroz/agon-python",
+      docs: "https://Verdenroz.github.io/agon-python/",
+      pypi: "https://pypi.org/project/agon-python/",
+    },
+    badges: [
+      "https://img.shields.io/pypi/v/agon-python.svg",
+      "https://img.shields.io/pypi/pyversions/agon-python.svg",
+      "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "https://github.com/Verdenroz/agon-python/actions/workflows/ci.yml/badge.svg",
+      "https://codecov.io/gh/Verdenroz/agon-python/branch/master/graph/badge.svg",
+      "https://img.shields.io/badge/rust-%23000000.svg?style=flat&logo=rust&logoColor=white",
+      "https://img.shields.io/badge/PyO3-v0.27-blue",
+      "https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json",
+      "https://img.shields.io/badge/docs-mkdocs-blue",
+    ],
+    color: "#14B8A6",
+    status: "Stable" as const,
+  },
+  {
     title: "Chimeric",
     description:
       "Unified Python interface for multiple LLM providers with automatic provider detection and seamless switching.",
@@ -49,19 +87,26 @@ export const projectsData: Project[] = [
       "https://img.shields.io/badge/basedpyright-checked-42b883",
       "https://img.shields.io/badge/codespell-checked-42b883"
     ],
+    color: "#F43F5E",
+    status: "Maintained" as const,
   },
   {
     title: "FinanceQuery",
     description:
-      "Production-grade RESTful API providing real-time financial data with Redis caching and WebSocket streaming capabilities.",
+      "Rust library, CLI, and HTTP server for querying financial data",
     date: "2024-04-01 - Present",
     skills: [
-      { name: "Python", slug: "python" },
-      { name: "FastAPI", slug: "fastapi" },
-      { name: "Pytest", slug: "pytest" },
+      { name: "Rust", slug: "rust" },
+      { name: "Tokio", slug: "tokio" },
+      { name: "Clap", slug: "clap" },
+      { name: "Ratatui", slug: "ratatui" },
+      { name: "SQLite", slug: "sqlite" },
+      { name: "Serde", slug: "serde" },
       { name: "Redis", slug: "redis" },
-      { name: "AWS", slug: "aws" },
       { name: "Docker", slug: "docker" },
+      { name: "Polars", slug: "polars" },
+      { name: "Nginx", slug: "nginx" },
+      { name: "Caddy", slug: "caddy" },
     ],
     image: "/assets/finance-query/finance-query.webp",
     gallery: [
@@ -69,26 +114,28 @@ export const projectsData: Project[] = [
       "/assets/finance-query/finance-query-gallery-2.webp",
       "/assets/finance-query/finance-query-gallery-3.webp",
       "/assets/finance-query/finance-query-gallery-4.webp",
+      "/assets/finance-query/finance-query-gallery-5.webp",
     ],
     links: {
       github: "https://github.com/verdenroz/finance-query",
       docs: "https://verdenroz.github.io/finance-query/",
+      demo: "https://finance-query.com",
     },
     badges: [
-      "https://github.com/Verdenroz/finance-query/actions/workflows/tests.yml/badge.svg",
-      "https://img.shields.io/github/actions/workflow/status/Verdenroz/finance-query/aws-deploy.yml?branch=master&logo=amazon-aws&label=AWS%20Deploy",
-      "https://img.shields.io/github/actions/workflow/status/Verdenroz/finance-query/render-deploy.yml?branch=master&logo=render&label=Render%20Deploy",
-      "https://codecov.io/gh/Verdenroz/finance-query/graph/badge.svg?token=0S3003BAZY",
-      "https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json",
-      "https://img.shields.io/badge/python-3.11+-blue.svg",
-      "https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi",
-      "https://img.shields.io/badge/License-MIT-yellow.svg"
+      "https://img.shields.io/crates/v/finance-query.svg",
+      "https://docs.rs/finance-query/badge.svg",
+      "https://github.com/Verdenroz/finance-query/actions/workflows/ci.yml/badge.svg",
+      "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white",
+      "https://img.shields.io/badge/caddy-%231f88c0.svg?style=flat&logo=caddy&logoColor=white"
     ],
+    color: "#F59E0B",
+    status: "Active" as const,
   },
   {
     title: "VerdaxMarket",
     description:
-      "Modular Android application delivering institutional-quality stock market insights through MVVM architecture.",
+      "Modular Android application for browsing financial stock market data.",
     date: "2024-01-01 - 2025-09-01",
     skills: [
       { name: "Kotlin", slug: "kotlin" },
@@ -109,11 +156,13 @@ export const projectsData: Project[] = [
       github: "https://github.com/verdenroz/verdax-market",
       play: "Coming Soon",
     },
+    color: "#228B22",
+    status: "Stable" as const,
   },
   {
     title: "JobScrub",
     description:
-      "Full-stack AI platform revolutionizing job search through intelligent resume-to-job matching and community-driven insights.",
+      "Full-stack job search platform with semantic resume-to-job matching and community-driven insights.",
     date: "2025-05-22",
     skills: [
       { name: "Next.js", slug: "nextdotjs" },
@@ -139,7 +188,9 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/FSC-Senior-Project-Spring-25/job-scrub-frontend",
       demo: "https://job-scrub.vercel.app/",
-    }
+    },
+    color: "#EC4899",
+    status: "Stable" as const,
   },
   {
     title: "GoogleFinanceAPI",
@@ -164,18 +215,20 @@ export const projectsData: Project[] = [
       github: "https://github.com/verdenroz/googlefinanceapi",
       docs: "https://gfinance-api-doc.web.app/",
     },
+    color: "#3B82F6",
+    status: "Archived" as const,
   },
   {
     title: "StockDiviner",
     description:
-      "Cross-platform desktop application combining traditional technical analysis with alternative market indicators.",
+      "Desktop application combining traditional technical analysis with alternative market indicators.",
     date: "2024-05-31",
     skills: [
       { name: "Java/JavaFX", slug: "openjdk" },
       { name: "Figma", slug: "figma" },
       { name: "Firebase", slug: "firebase" },
     ],
-    image: "assets/stockdiviner/stockdiviner.webp",
+    image: "/assets/stockdiviner/stockdiviner.webp",
     gallery: [
       "/assets/stockdiviner/stockdiviner.webp",
       "/assets/stockdiviner/stockdiviner-gallery-1.webp",
@@ -184,6 +237,8 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/verdenroz/StockDiviner",
     },
+    color: "#6366F1",
+    status: "Archived" as const,
   },
 ]
   .slice()
